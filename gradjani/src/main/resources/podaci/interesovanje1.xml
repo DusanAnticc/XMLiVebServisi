@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Interesovanje xmlns="http://www.xmlproj.rs/gradjanin/interesovanje"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:pred="http://http://www.xmlproj.rs/interesovanje/predikati/"
+    xsi:schemaLocation="http://www.xmlproj.rs/gradjanin/interesovanje schema/interesovanje.xsd"
+	about="http://www.xmlproj.rs/gradjanin/interesovanje/0512962907122"
+	rel="pred:saglasnost" 
+    href="http://www.xmlproj.rs/gradjanin/saglasnost/1227AB5916">
+    <Opcija>drzavljanin_rs</Opcija>
+    <Licni_podaci xmlns="http://www.xmlproj.rs/gradjanin/licniPodaci">
+        <Jmbg>0512962907122</Jmbg>
+        <Ime>Dragoljub</Ime>
+        <Prezime>Mitrović</Prezime>
+        <Datum_rodjenja>1962-12-05</Datum_rodjenja>
+        <Pol>Muski</Pol>
+    </Licni_podaci>
+    <Davalac_krvi>false</Davalac_krvi>
+    <Izabrane_vakcine>
+        <Vakcina property="pred:nazivVakcine">Fajzer</Vakcina>
+        <Vakcina property="pred:nazivVakcine">Moderna</Vakcina>
+        <Vakcina property="pred:nazivVakcine">Sputnjik V</Vakcina>
+    </Izabrane_vakcine>
+    <Datum property="pred:podneto">2021-12-12</Datum>
+</Interesovanje>

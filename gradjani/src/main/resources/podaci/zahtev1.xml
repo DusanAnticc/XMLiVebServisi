@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Zahtev xmlns="http://www.xmlproj.rs/gradjanin/zahtev"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:pred="http://www.xmlproj.rs/zahtevi/predikati/"
+    xsi:schemaLocation="http://www.xmlproj.rs/gradjanin/zahtev schema/zahtev.xsd"
+	about="http://www.xmlproj.rs/gradjanin/zahtev/0512962907122"
+	rel="pred:potvrda"
+	href="http://www.xmlproj.rs/gradjanin/potvrda/9585JGF1F2">
+	
+    <Licni_podaci xmlns="http://www.xmlproj.rs/gradjanin/licniPodaci">
+        <Jmbg>0512962907122</Jmbg>
+        <Ime>Dragoljub</Ime>
+        <Prezime>Mitrović</Prezime>
+        <Datum_rodjenja>1962-12-05</Datum_rodjenja>
+        <Pol>Muski</Pol>
+        <Br_pasosa>745485126</Br_pasosa>
+    </Licni_podaci>
+    <Razlog property="pred:razlog">Letovanje</Razlog>
+    <Mesto property="pred:mesto">Beograd</Mesto>
+    <Datum_podnosenja property="pred:podnet">2021-08-15</Datum_podnosenja>
+</Zahtev>

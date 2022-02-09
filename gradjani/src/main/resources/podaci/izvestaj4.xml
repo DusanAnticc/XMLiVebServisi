@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Izvestaj xmlns="http://www.xmlproj.rs/sluzbenik/izvestaj"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:pred="http://http://www.xmlproj.rs/izvestaj/predikati/"
+    xsi:schemaLocation="http://www.xmlproj.rs/gradjanin/sertifikat schema/sertifikat.xsd"
+	about="http://www.xmlproj.rs/sluzbenik/izvestaj/2021-06-09/2021-07-09">
+	
+    <Period_od property="pred:od">2021-03-22</Period_od>
+    <Period_do property="pred:do">2021-04-24</Period_do>
+    <Dokumenti>
+        <Podneto_interesovanja>956</Podneto_interesovanja>
+        <Primljeno_zahteva>566</Primljeno_zahteva>
+        <Izdato_sertifikata>499</Izdato_sertifikata>
+    </Dokumenti>
+    <Dato_vakcina>3211</Dato_vakcina>
+    <Kolicine_doza>
+        <Doza>
+            <Broj_doze>1</Broj_doze>
+            <Kolicina>1556</Kolicina>
+        </Doza>
+        <Doza>
+            <Broj_doze>2</Broj_doze>
+            <Kolicina>1655</Kolicina>
+        </Doza>
+    </Kolicine_doza>
+    <Proizvodjaci>
+        <Proizvodjac>
+            <Naziv property="pred:nazivVakcine">Fajzer</Naziv>
+            <Kolicina>1333</Kolicina>
+        </Proizvodjac>
+        <Proizvodjac>
+            <Naziv property="pred:nazivVakcine">Sputnjik V</Naziv>
+            <Kolicina>905</Kolicina>
+        </Proizvodjac>
+        <Proizvodjac>
+            <Naziv property="pred:nazivVakcine">Sinofarm</Naziv>
+            <Kolicina>973</Kolicina>
+        </Proizvodjac>
+    </Proizvodjaci>
+    <Datum_izdavanja property="pred:izdat">2021-08-02</Datum_izdavanja>
+</Izvestaj>

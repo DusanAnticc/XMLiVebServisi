@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Sertifikat xmlns="http://www.xmlproj.rs/gradjanin/sertifikat"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:pred="http://http://www.xmlproj.rs/sertifikat/predikati/"
+    xsi:schemaLocation="http://www.xmlproj.rs/gradjanin/sertifikat schema/sertifikat.xsd"
+    broj_sertifikata="563332AH"
+	about="http://www.xmlproj.rs/gradjanin/sertifikat/563332AH"
+	rel="pred:zahtev"
+	href="http://www.xmlproj.rs/gradjanin/zahtev/0512962907122">
+    <Vreme_izdavanja>2021-07-07T12:27:23</Vreme_izdavanja>
+    <QR_kod property="pred:qr">http://www.xmlproj.rs/gradjanin/sertifikat/563332AH</QR_kod>
+    <Licni_podaci xmlns="http://www.xmlproj.rs/gradjanin/licniPodaci">
+        <Jmbg>0512962907122</Jmbg>
+        <Ime>Dragoljub</Ime>
+        <Prezime>Mitrović</Prezime>
+        <Datum_rodjenja>1962-12-05</Datum_rodjenja>
+        <Pol>Muski</Pol>
+        <Br_pasosa>745485126</Br_pasosa>
+    </Licni_podaci>
+    <Vakcinacije>
+        <Vakcinacija>
+            <Doza>1</Doza>
+            <Naziv property="pred:nazivVakcine">Fajzer</Naziv>
+            <Proizvodjac >Bionteh</Proizvodjac>
+            <Datum_primanja property="pred:primljena">2021-01-10</Datum_primanja>
+            <Ustanova>Gaj Zvezdara</Ustanova>
+        </Vakcinacija>
+        <Vakcinacija>
+            <Doza>2</Doza>
+            <Naziv property="pred:nazivVakcine">Fajzer</Naziv>
+            <Proizvodjac>Bionteh</Proizvodjac>
+            <Datum_primanja property="pred:primljena">2021-07-10</Datum_primanja>
+            <Ustanova>Gaj Zvezdara</Ustanova>
+        </Vakcinacija>
+    </Vakcinacije>
+</Sertifikat>
