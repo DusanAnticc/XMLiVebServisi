@@ -3,6 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:pred="http://www.xmlproj.rs/zahtevi/predikati/"
     xsi:schemaLocation="http://www.xmlproj.rs/gradjanin/zahtev schema/zahtev.xsd"
+	Sifra="JJKA441N"
 	about="http://www.xmlproj.rs/gradjanin/zahtev/0512962907122"
 	rel="pred:potvrda"
 	href="http://www.xmlproj.rs/gradjanin/potvrda/9585JGF1F2">

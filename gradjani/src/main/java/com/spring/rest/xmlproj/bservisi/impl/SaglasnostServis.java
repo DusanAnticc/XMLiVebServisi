@@ -6,6 +6,9 @@ import com.spring.rest.xmlproj.repo.SaglasnostRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class SaglasnostServis implements ISaglasnostServis {
     private final SaglasnostRepo saglasnostRepo;
@@ -15,7 +18,8 @@ public class SaglasnostServis implements ISaglasnostServis {
         this.saglasnostRepo = saglasnostRepo;
     }
 
-    public void upisSaglasnosti(Saglasnost saglasnost){
+    @Override
+    public void upis(Saglasnost saglasnost){
         try {
             this.saglasnostRepo.upis(saglasnost);
         } catch (Exception e) {
@@ -23,13 +27,21 @@ public class SaglasnostServis implements ISaglasnostServis {
         }
     }
 
-    public Saglasnost dobaviSaglasnostPoId(String id){
+    @Override
+    public Saglasnost dobaviPoId(String id){
         try {
-            Saglasnost saglasnost = this.saglasnostRepo.dobaviPoId(id);
-            System.out.println(saglasnost);
-            return saglasnost;
+            return this.saglasnostRepo.dobaviPoId(id);
         } catch (Exception e) {
             return null;
+        }
+    }
+
+    @Override
+    public List<Saglasnost> dobaviSve() {
+        try {
+            return this.saglasnostRepo.dobaviSve();
+        } catch (Exception e) {
+            return new ArrayList<Saglasnost>();
         }
     }
 }

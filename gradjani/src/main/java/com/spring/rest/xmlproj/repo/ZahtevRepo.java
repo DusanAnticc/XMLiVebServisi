@@ -1,6 +1,7 @@
 package com.spring.rest.xmlproj.repo;
 
-import com.spring.rest.xmlproj.obj.Izvestaj;
+import com.spring.rest.xmlproj.obj.Saglasnost;
+import com.spring.rest.xmlproj.obj.Zahtev;
 import com.spring.rest.xmlproj.util.AuthenticationUtilities;
 import org.exist.xmldb.EXistResource;
 import org.springframework.stereotype.Repository;
@@ -15,8 +16,6 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.OutputKeys;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,14 +23,13 @@ import java.util.List;
 import static com.spring.rest.xmlproj.util.CollectionUtil.getOrCreateCollection;
 
 @Repository
-public class IzvestajRepo implements Repo<Izvestaj> {
+public class ZahtevRepo implements Repo<Zahtev> {
 
-    private final String kolekcija = "/db/xmlproj/gradjanin/izvestaji";
+    private final String kolekcija = "/db/xmlproj/gradjanin/zahtevi";
 
     @Override
-    public Izvestaj upis(Izvestaj entitet) throws Exception {
+    public Zahtev upis(Zahtev entitet) throws Exception {
         AuthenticationUtilities.ConnectionProperties conn = AuthenticationUtilities.loadProperties();
-
         Class<?> cl = Class.forName(conn.driver);
         Database database = (Database) cl.newInstance();
         database.setProperty("create-database", "true");
@@ -42,7 +40,7 @@ public class IzvestajRepo implements Repo<Izvestaj> {
 
         try {
             col = getOrCreateCollection(kolekcija, conn);
-            res = (XMLResource) col.createResource(entitet.getPeriodOd().getValue().toString()+"-"+entitet.getPeriodDo().getValue().toString(), XMLResource.RESOURCE_TYPE);
+            res = (XMLResource) col.createResource(entitet.getSifra(), XMLResource.RESOURCE_TYPE);
 
             JAXBContext context = JAXBContext.newInstance(JAXBKontekst);
 
@@ -80,12 +78,12 @@ public class IzvestajRepo implements Repo<Izvestaj> {
     }
 
     @Override
-    public Izvestaj dobaviPoId(String id) throws Exception {
+    public Zahtev dobaviPoId(String id) throws Exception {
         AuthenticationUtilities.ConnectionProperties conn = AuthenticationUtilities.loadProperties();
 
-        Izvestaj izvestaj = null;
-
         Class<?> cl = Class.forName(conn.driver);
+
+        Zahtev zahtev = null;
 
         Database database = (Database) cl.newInstance();
         database.setProperty("create-database", "true");
@@ -110,7 +108,7 @@ public class IzvestajRepo implements Repo<Izvestaj> {
 
                 Unmarshaller unmarshaller = context.createUnmarshaller();
 
-                izvestaj = (Izvestaj) unmarshaller.unmarshal(res.getContentAsDOM());
+                zahtev = (Zahtev) unmarshaller.unmarshal(res.getContentAsDOM());
 
             }
         } finally {
@@ -133,14 +131,14 @@ public class IzvestajRepo implements Repo<Izvestaj> {
             }
         }
 
-        return izvestaj;
+        return zahtev;
     }
 
     @Override
-    public List<Izvestaj> dobaviSve() throws Exception {
+    public List<Zahtev> dobaviSve() throws Exception {
         AuthenticationUtilities.ConnectionProperties conn = AuthenticationUtilities.loadProperties();
 
-        Izvestaj izvestaj = null;
+        Zahtev zahtev = null;
 
         Class<?> cl = Class.forName(conn.driver);
 
@@ -150,7 +148,7 @@ public class IzvestajRepo implements Repo<Izvestaj> {
         DatabaseManager.registerDatabase(database);
 
         Collection col = null;
-        List<Izvestaj> sviIzvestaji = new ArrayList<>();
+        List<Zahtev> sviZahtevi = new ArrayList<>();
 
         try {
             // get the collection
@@ -160,7 +158,6 @@ public class IzvestajRepo implements Repo<Izvestaj> {
             String[] naziviResursa = col.listResources();
 
             for(String id : naziviResursa){
-                System.out.println(id);
                 XMLResource res = (XMLResource)col.getResource(id);
 
                 if(res == null) {
@@ -171,10 +168,8 @@ public class IzvestajRepo implements Repo<Izvestaj> {
 
                     Unmarshaller unmarshaller = context.createUnmarshaller();
 
-                    izvestaj = (Izvestaj) unmarshaller.unmarshal(res.getContentAsDOM());
-                    sviIzvestaji.add(izvestaj);
-                    System.out.println(izvestaj);
-                    System.out.println("VELICINA: "+sviIzvestaji.size());
+                    zahtev = (Zahtev) unmarshaller.unmarshal(res.getContentAsDOM());
+                    sviZahtevi.add(zahtev);
                 }
 
                 if(res != null) {
@@ -188,8 +183,6 @@ public class IzvestajRepo implements Repo<Izvestaj> {
         } finally {
             //don't forget to clean up!
 
-
-
             if(col != null) {
                 try {
                     col.close();
@@ -199,7 +192,6 @@ public class IzvestajRepo implements Repo<Izvestaj> {
             }
         }
 
-        return sviIzvestaji;
+        return sviZahtevi;
     }
 }
-

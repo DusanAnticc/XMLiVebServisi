@@ -1,5 +1,6 @@
 package com.spring.rest.xmlproj.repo;
 
+import com.spring.rest.xmlproj.obj.Interesovanje;
 import com.spring.rest.xmlproj.obj.Saglasnost;
 import com.spring.rest.xmlproj.util.AuthenticationUtilities;
 import org.exist.xmldb.EXistResource;
@@ -22,12 +23,12 @@ import java.util.List;
 import static com.spring.rest.xmlproj.util.CollectionUtil.getOrCreateCollection;
 
 @Repository
-public class SaglasnostRepo implements Repo<Saglasnost>{
+public class InteresovanjeRepo implements Repo<Interesovanje>{
 
-    private final String kolekcija = "/db/xmlproj/gradjanin/saglasnosti";
+    private final String kolekcija = "/db/xmlproj/gradjanin/interesovanja";
 
     @Override
-    public Saglasnost upis(Saglasnost entitet) throws Exception {
+    public Interesovanje upis(Interesovanje entitet) throws Exception {
         AuthenticationUtilities.ConnectionProperties conn = AuthenticationUtilities.loadProperties();
         Class<?> cl = Class.forName(conn.driver);
         Database database = (Database) cl.newInstance();
@@ -77,12 +78,12 @@ public class SaglasnostRepo implements Repo<Saglasnost>{
     }
 
     @Override
-    public Saglasnost dobaviPoId(String id) throws Exception {
+    public Interesovanje dobaviPoId(String id) throws Exception {
         AuthenticationUtilities.ConnectionProperties conn = AuthenticationUtilities.loadProperties();
 
         Class<?> cl = Class.forName(conn.driver);
 
-        Saglasnost saglasnost = null;
+        Interesovanje interesovanje = null;
 
         Database database = (Database) cl.newInstance();
         database.setProperty("create-database", "true");
@@ -97,9 +98,9 @@ public class SaglasnostRepo implements Repo<Saglasnost>{
             col = DatabaseManager.getCollection(conn.uri + kolekcija);
             col.setProperty(OutputKeys.INDENT, "yes");
 
-            res = (XMLResource)col.getResource(id);
+            res = (XMLResource) col.getResource(id);
 
-            if(res == null) {
+            if (res == null) {
                 System.out.println("[WARNING] Document '" + id + "' can not be found!");
             } else {
 
@@ -107,21 +108,21 @@ public class SaglasnostRepo implements Repo<Saglasnost>{
 
                 Unmarshaller unmarshaller = context.createUnmarshaller();
 
-                saglasnost = (Saglasnost) unmarshaller.unmarshal(res.getContentAsDOM());
+                interesovanje = (Interesovanje) unmarshaller.unmarshal(res.getContentAsDOM());
 
             }
         } finally {
             //don't forget to clean up!
 
-            if(res != null) {
+            if (res != null) {
                 try {
-                    ((EXistResource)res).freeResources();
+                    ((EXistResource) res).freeResources();
                 } catch (XMLDBException xe) {
                     xe.printStackTrace();
                 }
             }
 
-            if(col != null) {
+            if (col != null) {
                 try {
                     col.close();
                 } catch (XMLDBException xe) {
@@ -130,14 +131,14 @@ public class SaglasnostRepo implements Repo<Saglasnost>{
             }
         }
 
-        return saglasnost;
+        return interesovanje;
     }
 
     @Override
-    public List<Saglasnost> dobaviSve() throws Exception {
+    public List<Interesovanje> dobaviSve() throws Exception {
         AuthenticationUtilities.ConnectionProperties conn = AuthenticationUtilities.loadProperties();
 
-        Saglasnost saglasnost = null;
+        Interesovanje interesovanje = null;
 
         Class<?> cl = Class.forName(conn.driver);
 
@@ -147,7 +148,7 @@ public class SaglasnostRepo implements Repo<Saglasnost>{
         DatabaseManager.registerDatabase(database);
 
         Collection col = null;
-        List<Saglasnost> sveSaglasnosti = new ArrayList<>();
+        List<Interesovanje> svaInteresovanja = new ArrayList<>();
 
         try {
             // get the collection
@@ -167,8 +168,8 @@ public class SaglasnostRepo implements Repo<Saglasnost>{
 
                     Unmarshaller unmarshaller = context.createUnmarshaller();
 
-                    saglasnost = (Saglasnost) unmarshaller.unmarshal(res.getContentAsDOM());
-                    sveSaglasnosti.add(saglasnost);
+                    interesovanje = (Interesovanje) unmarshaller.unmarshal(res.getContentAsDOM());
+                    svaInteresovanja.add(interesovanje);
                 }
 
                 if(res != null) {
@@ -191,6 +192,6 @@ public class SaglasnostRepo implements Repo<Saglasnost>{
             }
         }
 
-        return sveSaglasnosti;
+        return svaInteresovanja;
     }
 }

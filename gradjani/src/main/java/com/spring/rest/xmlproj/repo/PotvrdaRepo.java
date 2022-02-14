@@ -1,6 +1,7 @@
 package com.spring.rest.xmlproj.repo;
 
-import com.spring.rest.xmlproj.obj.Saglasnost;
+import com.spring.rest.xmlproj.obj.Potvrda;
+import com.spring.rest.xmlproj.obj.Zahtev;
 import com.spring.rest.xmlproj.util.AuthenticationUtilities;
 import org.exist.xmldb.EXistResource;
 import org.springframework.stereotype.Repository;
@@ -22,12 +23,12 @@ import java.util.List;
 import static com.spring.rest.xmlproj.util.CollectionUtil.getOrCreateCollection;
 
 @Repository
-public class SaglasnostRepo implements Repo<Saglasnost>{
+public class PotvrdaRepo implements Repo<Potvrda> {
 
-    private final String kolekcija = "/db/xmlproj/gradjanin/saglasnosti";
+    private final String kolekcija = "/db/xmlproj/gradjanin/potvrde";
 
     @Override
-    public Saglasnost upis(Saglasnost entitet) throws Exception {
+    public Potvrda upis(Potvrda entitet) throws Exception {
         AuthenticationUtilities.ConnectionProperties conn = AuthenticationUtilities.loadProperties();
         Class<?> cl = Class.forName(conn.driver);
         Database database = (Database) cl.newInstance();
@@ -77,12 +78,12 @@ public class SaglasnostRepo implements Repo<Saglasnost>{
     }
 
     @Override
-    public Saglasnost dobaviPoId(String id) throws Exception {
+    public Potvrda dobaviPoId(String id) throws Exception {
         AuthenticationUtilities.ConnectionProperties conn = AuthenticationUtilities.loadProperties();
 
         Class<?> cl = Class.forName(conn.driver);
 
-        Saglasnost saglasnost = null;
+        Potvrda potvrda = null;
 
         Database database = (Database) cl.newInstance();
         database.setProperty("create-database", "true");
@@ -107,7 +108,7 @@ public class SaglasnostRepo implements Repo<Saglasnost>{
 
                 Unmarshaller unmarshaller = context.createUnmarshaller();
 
-                saglasnost = (Saglasnost) unmarshaller.unmarshal(res.getContentAsDOM());
+                potvrda = (Potvrda) unmarshaller.unmarshal(res.getContentAsDOM());
 
             }
         } finally {
@@ -130,14 +131,14 @@ public class SaglasnostRepo implements Repo<Saglasnost>{
             }
         }
 
-        return saglasnost;
+        return potvrda;
     }
 
     @Override
-    public List<Saglasnost> dobaviSve() throws Exception {
+    public List<Potvrda> dobaviSve() throws Exception {
         AuthenticationUtilities.ConnectionProperties conn = AuthenticationUtilities.loadProperties();
 
-        Saglasnost saglasnost = null;
+        Potvrda potvrda = null;
 
         Class<?> cl = Class.forName(conn.driver);
 
@@ -147,7 +148,7 @@ public class SaglasnostRepo implements Repo<Saglasnost>{
         DatabaseManager.registerDatabase(database);
 
         Collection col = null;
-        List<Saglasnost> sveSaglasnosti = new ArrayList<>();
+        List<Potvrda> svePotvrde = new ArrayList<>();
 
         try {
             // get the collection
@@ -167,8 +168,8 @@ public class SaglasnostRepo implements Repo<Saglasnost>{
 
                     Unmarshaller unmarshaller = context.createUnmarshaller();
 
-                    saglasnost = (Saglasnost) unmarshaller.unmarshal(res.getContentAsDOM());
-                    sveSaglasnosti.add(saglasnost);
+                    potvrda = (Potvrda) unmarshaller.unmarshal(res.getContentAsDOM());
+                    svePotvrde.add(potvrda);
                 }
 
                 if(res != null) {
@@ -191,6 +192,6 @@ public class SaglasnostRepo implements Repo<Saglasnost>{
             }
         }
 
-        return sveSaglasnosti;
+        return svePotvrde;
     }
 }
