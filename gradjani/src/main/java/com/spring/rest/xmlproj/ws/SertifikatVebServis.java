@@ -1,7 +1,7 @@
 package com.spring.rest.xmlproj.ws;
 
 import com.spring.rest.xmlproj.bservisi.impl.SertifikatServis;
-import com.spring.rest.xmlproj.obj.Sertifikat;
+import com.spring.rest.xmlproj.obj.sertifikat.Sertifikat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

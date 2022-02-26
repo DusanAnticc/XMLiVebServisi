@@ -1,8 +1,10 @@
 package com.spring.rest.xmlproj.bservisi.impl;
 
 import com.spring.rest.xmlproj.bservisi.IZahtevServis;
-import com.spring.rest.xmlproj.obj.Zahtev;
+import com.spring.rest.xmlproj.obj.zahtev.Zahtev;
+import com.spring.rest.xmlproj.rdf.UpisMeta;
 import com.spring.rest.xmlproj.repo.ZahtevRepo;
+import com.spring.rest.xmlproj.util.FusekiAuthenticationUtilities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,8 @@ public class ZahtevServis implements IZahtevServis {
     public void upis(Zahtev entitet) {
         try {
             this.zahtevRepo.upis(entitet);
+            this.zahtevRepo.generisiXML(entitet);
+            UpisMeta.run(FusekiAuthenticationUtilities.loadProperties(), "/metadata", "../data/xml/zahtevi/"+entitet.getSifra()+".xml", "../data/rdf/zahtevi/"+entitet.getSifra()+".rdf");
         } catch (Exception e) {
             e.printStackTrace();
         }

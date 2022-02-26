@@ -4,7 +4,7 @@
 	xmlns:pred="http://http://www.xmlproj.rs/interesovanje/predikati/"
     xsi:schemaLocation="http://www.xmlproj.rs/gradjanin/interesovanje schema/interesovanje.xsd"
 	Sifra="5AA6VDA8"
-	about="http://www.xmlproj.rs/gradjanin/interesovanje/0512962907122"
+	about="http://www.xmlproj.rs/gradjanin/interesovanje/5AA6VDA8"
 	rel="pred:saglasnost" 
     href="http://www.xmlproj.rs/gradjanin/saglasnost/1227AB5916">
     <Opcija>drzavljanin_rs</Opcija>

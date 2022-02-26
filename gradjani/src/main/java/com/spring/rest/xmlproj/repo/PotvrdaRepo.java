@@ -1,7 +1,6 @@
 package com.spring.rest.xmlproj.repo;
 
-import com.spring.rest.xmlproj.obj.Potvrda;
-import com.spring.rest.xmlproj.obj.Zahtev;
+import com.spring.rest.xmlproj.obj.potvrda.Potvrda;
 import com.spring.rest.xmlproj.util.AuthenticationUtilities;
 import org.exist.xmldb.EXistResource;
 import org.springframework.stereotype.Repository;
@@ -16,6 +15,7 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.OutputKeys;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +26,7 @@ import static com.spring.rest.xmlproj.util.CollectionUtil.getOrCreateCollection;
 public class PotvrdaRepo implements Repo<Potvrda> {
 
     private final String kolekcija = "/db/xmlproj/gradjanin/potvrde";
+    private final String JAXBKontekst = "com.spring.rest.xmlproj.obj.potvrda";
 
     @Override
     public Potvrda upis(Potvrda entitet) throws Exception {
@@ -193,5 +194,22 @@ public class PotvrdaRepo implements Repo<Potvrda> {
         }
 
         return svePotvrde;
+    }
+
+    @Override
+    public void generisiXML(Potvrda entitet){
+        try {
+            JAXBContext context = JAXBContext.newInstance(JAXBKontekst);
+
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+
+            File temp = new File(".." + File.separator + "data" + File.separator + "xml"+ File.separator + "potvrde" + File.separator + entitet.getSifra() + ".xml");
+            temp.createNewFile();
+            marshaller.marshal(entitet, temp);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }

@@ -1,8 +1,7 @@
 package com.spring.rest.xmlproj.ws;
 
 import com.spring.rest.xmlproj.bservisi.impl.PotvrdaServis;
-import com.spring.rest.xmlproj.obj.Potvrda;
-import com.spring.rest.xmlproj.obj.Sertifikat;
+import com.spring.rest.xmlproj.obj.potvrda.Potvrda;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

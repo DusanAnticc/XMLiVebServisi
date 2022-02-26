@@ -1,7 +1,7 @@
 package com.spring.rest.xmlproj.ws;
 
 import com.spring.rest.xmlproj.bservisi.impl.ZahtevServis;
-import com.spring.rest.xmlproj.obj.Zahtev;
+import com.spring.rest.xmlproj.obj.zahtev.Zahtev;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,6 @@
 package com.spring.rest.xmlproj.repo;
 
-import com.spring.rest.xmlproj.obj.Sertifikat;
+import com.spring.rest.xmlproj.obj.sertifikat.Sertifikat;
 import com.spring.rest.xmlproj.util.AuthenticationUtilities;
 import org.exist.xmldb.EXistResource;
 import org.springframework.stereotype.Repository;
@@ -15,6 +15,7 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.OutputKeys;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,7 @@ import static com.spring.rest.xmlproj.util.CollectionUtil.getOrCreateCollection;
 public class SertifikatRepo implements Repo<Sertifikat> {
 
     private final String kolekcija = "/db/xmlproj/gradjanin/sertifikati";
+    private final String JAXBKontekst = "com.spring.rest.xmlproj.obj.sertifikat";
 
     @Override
     public Sertifikat upis(Sertifikat entitet) throws Exception {
@@ -192,5 +194,22 @@ public class SertifikatRepo implements Repo<Sertifikat> {
         }
 
         return sviSertifikati;
+    }
+
+    @Override
+    public void generisiXML(Sertifikat entitet){
+        try {
+            JAXBContext context = JAXBContext.newInstance(JAXBKontekst);
+
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+
+            File temp = new File(".." + File.separator + "data" + File.separator + "xml"+ File.separator + "sertifikati" + File.separator +entitet.getBrojSertifikata()+ ".xml");
+            temp.createNewFile();
+            marshaller.marshal(entitet, temp);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }

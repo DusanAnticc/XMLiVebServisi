@@ -1,7 +1,7 @@
 package com.spring.rest.xmlproj.ws;
 
 import com.spring.rest.xmlproj.bservisi.impl.SaglasnostServis;
-import com.spring.rest.xmlproj.obj.Saglasnost;
+import com.spring.rest.xmlproj.obj.saglasnost.Saglasnost;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ import javax.ws.rs.core.UriInfo;
 import java.util.List;
 
 @Service
-@Path("/gradjani")
+@Path("gradjani/")
 public class SaglasnostVebServisImpl{
 
     private final SaglasnostServis saglasnostServis;

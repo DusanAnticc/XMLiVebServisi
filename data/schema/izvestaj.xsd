@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.xmlproj.rs/sluzbenik/izvestaj"
+    xmlns:iz="http://www.xmlproj.rs/sluzbenik/izvestaj"
+    xmlns:pred="http://www.xmlproj.rs/izvestaj/predikati/">
+
+    <xs:element name="Izvestaj">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Period_od">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:date">
+                                <xs:attribute name="property" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Period_do">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:date">
+                                <xs:attribute name="property" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Dokumenti">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Podneto_interesovanja">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:positiveInteger"/>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Primljeno_zahteva">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:positiveInteger"/>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Izdato_sertifikata">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:positiveInteger"/>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Dato_vakcina">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:positiveInteger"/>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="Kolicine_doza">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" name="Doza">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="Broj_doze">
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:positiveInteger"/>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="Kolicina">
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:positiveInteger"/>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Proizvodjaci">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" name="Proizvodjac">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="Naziv">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                  <xs:extension base="xs:string">
+                                                  <xs:attribute name="property" type="xs:string"/>
+                                                  </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="Kolicina">
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:positiveInteger"/>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Datum_izdavanja">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:date">
+                                <xs:attribute name="property" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="about" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -30,7 +30,7 @@ public class MetadataExtractor {
 	
 	private TransformerFactory transformerFactory;
 
-	private static final String XSLT_FILE = "data/xsl/grddl.xsl";
+	private static final String XSLT_FILE = "../data/xsl/grddl.xsl";
 	
 	public MetadataExtractor() throws SAXException, IOException {
 		
@@ -66,29 +66,6 @@ public class MetadataExtractor {
 		// Trigger the transformation
 		grddlTransformer.transform(source, result);
 		
-	}
-	
-	
-	public void test() throws Exception {
-
-		System.out.println("[INFO] " + MetadataExtractor.class.getSimpleName());
-		
-		String filePath = "gen/grddl_metadata.rdf";
-		
-		InputStream in = new FileInputStream(new File("data/rdfa/contacts.xml")); 
-
-		OutputStream out = new FileOutputStream(filePath);
-		
-		extractMetadata(in, out);
-		
-		System.out.println("[INFO] File \"" + filePath + "\" generated successfully.");
-		
-		System.out.println("[INFO] End.");
-
-	}
-
-	public static void main(String[] args) throws Exception {
-		new MetadataExtractor().test();
 	}
 
 }

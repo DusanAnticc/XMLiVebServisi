@@ -1,6 +1,6 @@
 package com.spring.rest.xmlproj.repo;
 
-import com.spring.rest.xmlproj.obj.Saglasnost;
+import com.spring.rest.xmlproj.obj.saglasnost.Saglasnost;
 import com.spring.rest.xmlproj.util.AuthenticationUtilities;
 import org.exist.xmldb.EXistResource;
 import org.springframework.stereotype.Repository;
@@ -15,6 +15,7 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.OutputKeys;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,7 @@ import static com.spring.rest.xmlproj.util.CollectionUtil.getOrCreateCollection;
 public class SaglasnostRepo implements Repo<Saglasnost>{
 
     private final String kolekcija = "/db/xmlproj/gradjanin/saglasnosti";
+    private final String JAXBKontekst = "com.spring.rest.xmlproj.obj.saglasnost";
 
     @Override
     public Saglasnost upis(Saglasnost entitet) throws Exception {
@@ -192,5 +194,22 @@ public class SaglasnostRepo implements Repo<Saglasnost>{
         }
 
         return sveSaglasnosti;
+    }
+
+    @Override
+    public void generisiXML(Saglasnost entitet){
+        try {
+            JAXBContext context = JAXBContext.newInstance(JAXBKontekst);
+
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+
+            File temp = new File(".." + File.separator + "data" + File.separator + "xml"+ File.separator + "saglasnosti" + File.separator +entitet.getSifra() + ".xml");
+            temp.createNewFile();
+            marshaller.marshal(entitet, temp);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }

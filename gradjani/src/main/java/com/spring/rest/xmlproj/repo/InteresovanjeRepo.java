@@ -1,7 +1,6 @@
 package com.spring.rest.xmlproj.repo;
 
-import com.spring.rest.xmlproj.obj.Interesovanje;
-import com.spring.rest.xmlproj.obj.Saglasnost;
+import com.spring.rest.xmlproj.obj.interesovanje.Interesovanje;
 import com.spring.rest.xmlproj.util.AuthenticationUtilities;
 import org.exist.xmldb.EXistResource;
 import org.springframework.stereotype.Repository;
@@ -12,11 +11,11 @@ import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.OutputKeys;
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +25,7 @@ import static com.spring.rest.xmlproj.util.CollectionUtil.getOrCreateCollection;
 public class InteresovanjeRepo implements Repo<Interesovanje>{
 
     private final String kolekcija = "/db/xmlproj/gradjanin/interesovanja";
+    private final String JAXBKontekst = "com.spring.rest.xmlproj.obj.interesovanje";
 
     @Override
     public Interesovanje upis(Interesovanje entitet) throws Exception {
@@ -47,12 +47,12 @@ public class InteresovanjeRepo implements Repo<Interesovanje>{
             Marshaller marshaller = context.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 
+
             marshaller.marshal(entitet, os);
 
             res.setContent(os);
 
             col.storeResource(res);
-
         } finally {
 
             //don't forget to cleanup
@@ -71,7 +71,6 @@ public class InteresovanjeRepo implements Repo<Interesovanje>{
                     xe.printStackTrace();
                 }
             }
-
 
             return entitet;
         }
@@ -193,5 +192,22 @@ public class InteresovanjeRepo implements Repo<Interesovanje>{
         }
 
         return svaInteresovanja;
+    }
+
+    @Override
+    public void generisiXML(Interesovanje entitet){
+        try {
+            JAXBContext context = JAXBContext.newInstance(JAXBKontekst);
+
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+
+            File temp = new File(".." + File.separator + "data" + File.separator + "xml"+ File.separator + "interesovanja" + File.separator + entitet.getSifra() + ".xml");
+            temp.createNewFile();
+            marshaller.marshal(entitet, temp);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }

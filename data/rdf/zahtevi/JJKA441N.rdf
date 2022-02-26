@@ -1,0 +1,14 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
+  <rdf:Description rdf:about="http://www.xmlproj.rs/gradjanin/zahtev/JJKA441N">
+    <pred:potvrda xmlns:pred="http://www.xmlproj.rs/zahtev/predikati/" rdf:resource="http://www.xmlproj.rs/gradjanin/potvrda/9585JGF1F2"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.xmlproj.rs/gradjanin/zahtev/JJKA441N">
+    <pred:razlog xmlns:pred="http://www.xmlproj.rs/zahtev/predikati/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Letovanje</pred:razlog>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.xmlproj.rs/gradjanin/zahtev/JJKA441N">
+    <pred:mesto xmlns:pred="http://www.xmlproj.rs/zahtev/predikati/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Beograd</pred:mesto>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.xmlproj.rs/gradjanin/zahtev/JJKA441N">
+    <pred:podnet xmlns:pred="http://www.xmlproj.rs/zahtev/predikati/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">2021-08-15</pred:podnet>
+  </rdf:Description>
+</rdf:RDF>

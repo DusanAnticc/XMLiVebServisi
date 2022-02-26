@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.xmlproj.rs/gradjanin/interesovanje"
+    xmlns:lp="http://www.xmlproj.rs/gradjanin/licniPodaci"
+    xmlns:it="http://www.xmlproj.rs/gradjanin/interesovanje"
+    xmlns:pred="http://www.xmlproj.rs/interesovanje/predikati/">
+
+    <xs:import namespace="http://www.xmlproj.rs/gradjanin/licniPodaci"
+        schemaLocation="licni_podaci.xsd"/>
+    <xs:element name="Interesovanje">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Opcija">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="drzavljanin_rs"/>
+                            <xs:enumeration value="strani_sa_boravkom_u_rs"/>
+                            <xs:enumeration value="strani_bez_boravka_u_rs"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element ref="lp:Licni_podaci"/>
+                <xs:element name="Davalac_krvi">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:boolean"/>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="Izabrane_vakcine">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" name="Vakcina">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute name="property" type="xs:string"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Datum">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:date">
+                                <xs:attribute name="property" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="about" type="xs:string"/>
+            <xs:attribute name="rel" type="xs:string"/>
+            <xs:attribute name="href" type="xs:string"/>
+            <xs:attribute name="Sifra">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="8"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

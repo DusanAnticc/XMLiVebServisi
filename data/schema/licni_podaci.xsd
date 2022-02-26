@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.xmlproj.rs/gradjanin/licniPodaci"
+    xmlns:lp="http://www.xmlproj.rs/gradjanin/licniPodaci">
+
+    <xs:element name="Licni_podaci">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="Jmbg" nillable="true">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="[0-9]{13}"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="Ime">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="15"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="Prezime">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="15"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="Datum_rodjenja">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:date"/>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="Pol">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="Muski"/>
+                            <xs:enumeration value="Zenski"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element minOccurs="0" name="Kontakt" type="lp:TKontakt"/>
+                <xs:element minOccurs="0" name="Br_pasosa">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="[0-9]{9}"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element minOccurs="0" name="Opstina">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="30"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="TKontakt">
+        <xs:all>
+            <xs:element name="Broj_fiksnog">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[0-9]{3}-[0-9]{4}-[0-9]{3}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Broj_mobilnog">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[0-9]{3}-[0-9]{6,7}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Email">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[A-Za-z0-9]+@[a-z]+\.[a-z]+"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:all>
+    </xs:complexType>
+</xs:schema>

@@ -1,8 +1,10 @@
 package com.spring.rest.xmlproj.bservisi.impl;
 
 import com.spring.rest.xmlproj.bservisi.IPotvrdaServis;
-import com.spring.rest.xmlproj.obj.Potvrda;
+import com.spring.rest.xmlproj.obj.potvrda.Potvrda;
+import com.spring.rest.xmlproj.rdf.UpisMeta;
 import com.spring.rest.xmlproj.repo.PotvrdaRepo;
+import com.spring.rest.xmlproj.util.FusekiAuthenticationUtilities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,8 @@ public class PotvrdaServis implements IPotvrdaServis {
     public void upis(Potvrda entitet) {
         try {
             this.potvrdaRepo.upis(entitet);
+            this.potvrdaRepo.generisiXML(entitet);
+            UpisMeta.run(FusekiAuthenticationUtilities.loadProperties(), "/metadata", "../data/xml/potvrde/"+entitet.getSifra()+".xml", "../data/rdf/potvrde/"+entitet.getSifra()+".rdf");
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.xmlproj.rs/gradjanin/zahtev"
+    xmlns:lp="http://www.xmlproj.rs/gradjanin/licniPodaci"
+    xmlns:za="http://www.xmlproj.rs/gradjanin/zahtev">
+
+    <xs:import namespace="http://www.xmlproj.rs/gradjanin/licniPodaci"
+        schemaLocation="licni_podaci.xsd"/>
+    <xs:element name="Zahtev">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="lp:Licni_podaci"/>
+                <xs:element name="Razlog">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="property" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Mesto">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="property" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Datum_podnosenja">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:date">
+                                <xs:attribute name="property" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="about" type="xs:string"/>
+            <xs:attribute name="rel" type="xs:string"/>
+            <xs:attribute name="href" type="xs:string"/>
+            <xs:attribute name="Sifra">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="8"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

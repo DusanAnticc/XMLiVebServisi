@@ -133,6 +133,21 @@
 			<artifactId>j8fu</artifactId>
 			<version>1.4</version>
 		</dependency>
+
+
+		<dependency>
+			<groupId>org.apache.thrift</groupId>
+			<artifactId>libthrift</artifactId>
+			<version>0.16.0</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-compress</artifactId>
+			<version>1.21</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

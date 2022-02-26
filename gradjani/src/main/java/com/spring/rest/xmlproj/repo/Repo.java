@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface Repo<T> {
 
-    final String JAXBKontekst = "com.spring.rest.xmlproj.obj";
-
     T upis(T entitet) throws Exception;
 
     T dobaviPoId(String id) throws Exception;
 
     List<T> dobaviSve() throws Exception;
+
+    void generisiXML(T entitet);
 }

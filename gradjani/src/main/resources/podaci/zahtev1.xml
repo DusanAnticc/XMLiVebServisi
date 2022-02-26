@@ -4,7 +4,7 @@
 	xmlns:pred="http://www.xmlproj.rs/zahtevi/predikati/"
     xsi:schemaLocation="http://www.xmlproj.rs/gradjanin/zahtev schema/zahtev.xsd"
 	Sifra="JJKA441N"
-	about="http://www.xmlproj.rs/gradjanin/zahtev/0512962907122"
+	about="http://www.xmlproj.rs/gradjanin/zahtev/JJKA441N"
 	rel="pred:potvrda"
 	href="http://www.xmlproj.rs/gradjanin/potvrda/9585JGF1F2">
 	
