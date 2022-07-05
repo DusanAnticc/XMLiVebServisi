@@ -41,7 +41,7 @@ public class PotvrdaRepo implements Repo<Potvrda> {
 
         try {
             col = getOrCreateCollection(kolekcija, conn);
-            res = (XMLResource) col.createResource(entitet.getSifra(), XMLResource.RESOURCE_TYPE);
+            res = (XMLResource) col.createResource(entitet.getSifra()+".xml", XMLResource.RESOURCE_TYPE);
 
             JAXBContext context = JAXBContext.newInstance(JAXBKontekst);
 
@@ -99,7 +99,7 @@ public class PotvrdaRepo implements Repo<Potvrda> {
             col = DatabaseManager.getCollection(conn.uri + kolekcija);
             col.setProperty(OutputKeys.INDENT, "yes");
 
-            res = (XMLResource)col.getResource(id);
+            res = (XMLResource)col.getResource(id+".xml");
 
             if(res == null) {
                 System.out.println("[WARNING] Document '" + id + "' can not be found!");
@@ -112,7 +112,11 @@ public class PotvrdaRepo implements Repo<Potvrda> {
                 potvrda = (Potvrda) unmarshaller.unmarshal(res.getContentAsDOM());
 
             }
-        } finally {
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
             //don't forget to clean up!
 
             if(res != null) {
@@ -130,9 +134,9 @@ public class PotvrdaRepo implements Repo<Potvrda> {
                     xe.printStackTrace();
                 }
             }
-        }
 
-        return potvrda;
+            return potvrda;
+        }
     }
 
     @Override
@@ -159,7 +163,7 @@ public class PotvrdaRepo implements Repo<Potvrda> {
             String[] naziviResursa = col.listResources();
 
             for(String id : naziviResursa){
-                XMLResource res = (XMLResource)col.getResource(id);
+                XMLResource res = (XMLResource)col.getResource(id+".xml");
 
                 if(res == null) {
                     System.out.println("[WARNING] Document '" + id + "' can not be found!");

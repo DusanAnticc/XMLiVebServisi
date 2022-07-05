@@ -3,7 +3,6 @@ package com.spring.rest.xmlproj.repo;
 import com.spring.rest.xmlproj.obj.interesovanje.Interesovanje;
 import com.spring.rest.xmlproj.util.AuthenticationUtilities;
 import org.exist.xmldb.EXistResource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.xmldb.api.DatabaseManager;
 import org.xmldb.api.base.Collection;
@@ -12,13 +11,15 @@ import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 
 import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.OutputKeys;
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+
 
 import static com.spring.rest.xmlproj.util.CollectionUtil.getOrCreateCollection;
 
@@ -41,7 +42,7 @@ public class InteresovanjeRepo implements Repo<Interesovanje>{
 
         try {
             col = getOrCreateCollection(kolekcija, conn);
-            res = (XMLResource) col.createResource(entitet.getSifra(), XMLResource.RESOURCE_TYPE);
+            res = (XMLResource) col.createResource(entitet.getSifra()+".xml", XMLResource.RESOURCE_TYPE);
 
             JAXBContext context = JAXBContext.newInstance(JAXBKontekst);
 
@@ -97,7 +98,7 @@ public class InteresovanjeRepo implements Repo<Interesovanje>{
             // get the collection
             col = DatabaseManager.getCollection(conn.uri + kolekcija);
             col.setProperty(OutputKeys.INDENT, "yes");
-            res = (XMLResource) col.getResource(id);
+            res = (XMLResource) col.getResource(id+".xml");
 
             if (res == null) {
                 System.out.println("[WARNING] Document '" + id + "' can not be found!");
@@ -163,7 +164,7 @@ public class InteresovanjeRepo implements Repo<Interesovanje>{
             String[] naziviResursa = col.listResources();
 
             for(String id : naziviResursa){
-                XMLResource res = (XMLResource)col.getResource(id);
+                XMLResource res = (XMLResource)col.getResource(id+".xml");
 
                 if(res == null) {
                     System.out.println("[WARNING] Document '" + id + "' can not be found!");

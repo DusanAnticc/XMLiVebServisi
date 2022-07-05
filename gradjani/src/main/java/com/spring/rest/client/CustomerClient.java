@@ -2,7 +2,6 @@ package com.spring.rest.client;
 
 import java.io.File;
 import java.io.InputStream;
-import java.net.URL;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.*;
