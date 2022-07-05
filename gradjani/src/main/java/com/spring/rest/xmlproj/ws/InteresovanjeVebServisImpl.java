@@ -40,12 +40,11 @@ public class InteresovanjeVebServisImpl{
     }
 
     @GET
-    @Path("/interesovanja/{id}/")
+    @Path("/interesovanja/{id}")
     @Produces("application/xml")
     public Response dobaviJednoInteresovanje(@PathParam("id") String id) {
         Response r;
         Interesovanje interesovanje = this.interesovanjeServis.dobaviPoId(id);
-
         if(interesovanje != null){
             return Response.ok().type("application/xml").entity(interesovanje).build();
         }else{

@@ -7,6 +7,9 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ImportResource;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 /*
  * Glavna klasa Spring Boot aplikacije
@@ -23,7 +26,12 @@ public class RestApplication {
 //	private Bus bus;
 
 	public static void main(String[] args) {
-		SpringApplication.run(RestApplication.class, args);
+		SpringApplication app = new SpringApplication(RestApplication.class);
+		Map<String,Object> settings =  new HashMap<>();
+		settings.put("server.port","8080");
+		settings.put("logging.level.org.springframework.web","DEBUG");
+		app.setDefaultProperties(settings);
+		app.run(args);
 	}
 
 	/*Konfiguracija apache CXF JAX-RS servleta

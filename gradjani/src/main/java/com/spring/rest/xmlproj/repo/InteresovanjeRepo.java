@@ -3,6 +3,7 @@ package com.spring.rest.xmlproj.repo;
 import com.spring.rest.xmlproj.obj.interesovanje.Interesovanje;
 import com.spring.rest.xmlproj.util.AuthenticationUtilities;
 import org.exist.xmldb.EXistResource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.xmldb.api.DatabaseManager;
 import org.xmldb.api.base.Collection;
@@ -96,7 +97,6 @@ public class InteresovanjeRepo implements Repo<Interesovanje>{
             // get the collection
             col = DatabaseManager.getCollection(conn.uri + kolekcija);
             col.setProperty(OutputKeys.INDENT, "yes");
-
             res = (XMLResource) col.getResource(id);
 
             if (res == null) {
@@ -109,8 +109,14 @@ public class InteresovanjeRepo implements Repo<Interesovanje>{
 
                 interesovanje = (Interesovanje) unmarshaller.unmarshal(res.getContentAsDOM());
 
+                System.out.println(interesovanje);
             }
-        } finally {
+
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
             //don't forget to clean up!
 
             if (res != null) {
@@ -128,9 +134,9 @@ public class InteresovanjeRepo implements Repo<Interesovanje>{
                     xe.printStackTrace();
                 }
             }
-        }
 
-        return interesovanje;
+            return interesovanje;
+        }
     }
 
     @Override
@@ -189,9 +195,9 @@ public class InteresovanjeRepo implements Repo<Interesovanje>{
                     xe.printStackTrace();
                 }
             }
-        }
 
-        return svaInteresovanja;
+            return svaInteresovanja;
+        }
     }
 
     @Override
