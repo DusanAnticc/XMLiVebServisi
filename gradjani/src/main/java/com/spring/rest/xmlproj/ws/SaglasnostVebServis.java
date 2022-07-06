@@ -14,12 +14,12 @@ import java.util.List;
 
 @Service
 @Path("gradjani/")
-public class SaglasnostVebServisImpl{
+public class SaglasnostVebServis {
 
     private final SaglasnostServis saglasnostServis;
 
     @Autowired
-    public SaglasnostVebServisImpl(SaglasnostServis saglasnostServis) {
+    public SaglasnostVebServis(SaglasnostServis saglasnostServis) {
         this.saglasnostServis = saglasnostServis;
     }
 
@@ -57,7 +57,7 @@ public class SaglasnostVebServisImpl{
     public Response dobaviSveSaglasnosti() {
         List<Saglasnost> sveSaglasnosti = this.saglasnostServis.dobaviSve();
         Response r;
-
+        System.out.println(sveSaglasnosti.size());
         if(sveSaglasnosti.size() == 0){
             r = Response.noContent().build();
         }else{

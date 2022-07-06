@@ -163,7 +163,7 @@ public class SaglasnostRepo implements Repo<Saglasnost>{
             String[] naziviResursa = col.listResources();
 
             for(String id : naziviResursa){
-                XMLResource res = (XMLResource)col.getResource(id+".xml");
+                XMLResource res = (XMLResource)col.getResource(id);
 
                 if(res == null) {
                     System.out.println("[WARNING] Document '" + id + "' can not be found!");
@@ -195,9 +195,8 @@ public class SaglasnostRepo implements Repo<Saglasnost>{
                     xe.printStackTrace();
                 }
             }
+            return sveSaglasnosti;
         }
-
-        return sveSaglasnosti;
     }
 
     @Override

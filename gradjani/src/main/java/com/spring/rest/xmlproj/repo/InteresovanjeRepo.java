@@ -164,7 +164,7 @@ public class InteresovanjeRepo implements Repo<Interesovanje>{
             String[] naziviResursa = col.listResources();
 
             for(String id : naziviResursa){
-                XMLResource res = (XMLResource)col.getResource(id+".xml");
+                XMLResource res = (XMLResource)col.getResource(id);
 
                 if(res == null) {
                     System.out.println("[WARNING] Document '" + id + "' can not be found!");
@@ -196,7 +196,6 @@ public class InteresovanjeRepo implements Repo<Interesovanje>{
                     xe.printStackTrace();
                 }
             }
-
             return svaInteresovanja;
         }
     }

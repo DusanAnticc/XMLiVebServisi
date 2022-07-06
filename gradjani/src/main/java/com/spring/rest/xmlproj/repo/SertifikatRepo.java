@@ -163,7 +163,7 @@ public class SertifikatRepo implements Repo<Sertifikat> {
             String[] naziviResursa = col.listResources();
 
             for(String id : naziviResursa){
-                XMLResource res = (XMLResource)col.getResource(id+".xml");
+                XMLResource res = (XMLResource)col.getResource(id);
 
                 if(res == null) {
                     System.out.println("[WARNING] Document '" + id + "' can not be found!");
@@ -195,9 +195,8 @@ public class SertifikatRepo implements Repo<Sertifikat> {
                     xe.printStackTrace();
                 }
             }
+            return sviSertifikati;
         }
-
-        return sviSertifikati;
     }
 
     @Override

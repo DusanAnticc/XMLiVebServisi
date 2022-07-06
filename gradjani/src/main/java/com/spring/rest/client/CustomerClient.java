@@ -2,6 +2,7 @@ package com.spring.rest.client;
 
 import java.io.File;
 import java.io.InputStream;
+import java.net.URL;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.*;
@@ -79,7 +80,7 @@ public final class CustomerClient {
 
         System.out.println("\n");
         System.out.println("Sent HTTP POST request to add saglasnost");
-        inputFile = ClassLoader.getSystemResource("podaci/saglasnost3.xml").getFile();
+        inputFile = ClassLoader.getSystemResource("podaci/saglasnost1.xml").getFile();
         input = new File(inputFile);
         post = new PostMethod(BASE_URL + "/gradjani/saglasnosti/upis/");
         post.addRequestHeader("Accept" , "text/xml");

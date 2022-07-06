@@ -14,12 +14,12 @@ import java.util.List;
 
 @Service
 @Path("gradjani/")
-public class InteresovanjeVebServisImpl{
+public class InteresovanjeVebServis {
 
     private final InteresovanjeServis interesovanjeServis;
 
     @Autowired
-    public InteresovanjeVebServisImpl(InteresovanjeServis interesovanjeServis) {
+    public InteresovanjeVebServis(InteresovanjeServis interesovanjeServis) {
         this.interesovanjeServis = interesovanjeServis;
     }
 

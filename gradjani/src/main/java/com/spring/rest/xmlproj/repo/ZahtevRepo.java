@@ -162,7 +162,7 @@ public class ZahtevRepo implements Repo<Zahtev> {
             String[] naziviResursa = col.listResources();
 
             for(String id : naziviResursa){
-                XMLResource res = (XMLResource)col.getResource(id+".xml");
+                XMLResource res = (XMLResource)col.getResource(id);
 
                 if(res == null) {
                     System.out.println("[WARNING] Document '" + id + "' can not be found!");
@@ -194,9 +194,8 @@ public class ZahtevRepo implements Repo<Zahtev> {
                     xe.printStackTrace();
                 }
             }
+            return sviZahtevi;
         }
-
-        return sviZahtevi;
     }
 
     @Override
