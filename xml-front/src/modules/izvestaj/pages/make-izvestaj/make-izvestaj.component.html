@@ -1,0 +1,63 @@
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="form">
+      <h2>Interesovanje za vakcinisanje protiv COVID-19</h2>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [formGroup]="form" [rangePicker]="picker">
+          <input
+            matStartDate
+            formControlName="periodOd"
+            placeholder="Start date"
+          />
+          <input matEndDate formControlName="periodDo" placeholder="End date" />
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+
+      <button
+        class="b"
+        mat-raised-button
+        color="primary"
+        [disabled]="!form.valid"
+      >
+        Kreiraj
+      </button>
+    </form>
+    <button
+      class="b"
+      mat-raised-button
+      color="primary"
+      [disabled]="!form.valid"
+    >
+      Preuzmi html
+    </button>
+    <button
+      class="b"
+      mat-raised-button
+      color="primary"
+      [disabled]="!form.valid"
+    >
+      Preuzmi pdf
+    </button>
+    <button
+      class="b"
+      mat-raised-button
+      color="primary"
+      [disabled]="!form.valid"
+    >
+      Preuzmi rdf
+    </button>
+    <button
+      class="b"
+      mat-raised-button
+      color="primary"
+      [disabled]="!form.valid"
+    >
+      Preuzmi json
+    </button>
+  </mat-card-content>
+</mat-card>
+<div id="izvestaj"></div>
