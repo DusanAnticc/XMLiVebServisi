@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.xmlproj.rs/korisnik" xmlns:kor="http://www.xmlproj.rs/korisnik"
+    xmlns:lp="http://www.xmlproj.rs/gradjanin/licniPodaci">
+
+    <xs:import namespace="http://www.xmlproj.rs/gradjanin/licniPodaci"
+        schemaLocation="licni_podaci.xsd"/>
+    <xs:element name="Korisnik">
+        <xs:complexType>
+            <xs:all>
+                <xs:element ref="lp:Licni_podaci"/>
+                <xs:element name="Korisnicko_ime" type="xs:string"/>
+                <xs:element name="Lozinka" type="xs:string"/>
+                <xs:element name="Uloga">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="gradjanin"/>
+                            <xs:enumeration value="sluzbenik"/>
+                            <xs:enumeration value="radnik"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:all>
+            <xs:attribute name="about"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

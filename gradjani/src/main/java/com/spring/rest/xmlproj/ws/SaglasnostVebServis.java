@@ -57,7 +57,6 @@ public class SaglasnostVebServis {
     public Response dobaviSveSaglasnosti() {
         List<Saglasnost> sveSaglasnosti = this.saglasnostServis.dobaviSve();
         Response r;
-        System.out.println(sveSaglasnosti.size());
         if(sveSaglasnosti.size() == 0){
             r = Response.noContent().build();
         }else{

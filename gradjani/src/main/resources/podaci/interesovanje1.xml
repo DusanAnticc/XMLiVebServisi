@@ -14,6 +14,14 @@
         <Prezime>Mitrović</Prezime>
         <Datum_rodjenja>1962-12-05</Datum_rodjenja>
         <Pol>Muski</Pol>
+		<Kontakt>
+			<Broj_fiksnog>015-4654-321</Broj_fiksnog>
+			<Broj_mobilnog>062-9854213</Broj_mobilnog>
+			<Email>email@email.com</Email>
+		</Kontakt>
+		<Opstina>
+			Koceljeva
+		</Opstina>
     </Licni_podaci>
     <Davalac_krvi>false</Davalac_krvi>
     <Izabrane_vakcine>
