@@ -15,6 +15,12 @@
             <Prezime>Matić</Prezime>
             <Datum_rodjenja>1985-12-05</Datum_rodjenja>
             <Pol>Muski</Pol>
+            <Opstina>Svilajnac</Opstina>
+			<Kontakt>
+				<Broj_fiksnog>015-4654-321</Broj_fiksnog>
+				<Broj_mobilnog>062-9854213</Broj_mobilnog>
+				<Email>email@email.com</Email>
+			</Kontakt>
         </Licni_podaci>
         <Ime_roditelja>Stanoje</Ime_roditelja>
         <Mesto_rodjenja>Svilajnac</Mesto_rodjenja>

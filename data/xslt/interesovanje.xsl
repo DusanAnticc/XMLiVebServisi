@@ -102,6 +102,7 @@
                 padding-top: 15px;
                 padding-bottom: 15px;
                 font-size: 20px;
+				color: blue;
                 }
 
             </style>
@@ -110,56 +111,56 @@
             <body>
 
                 <br/>
-                <h2 class="centring">Исказивање интересовања за вакцинисање против COVID-19</h2>
+                <h2 class="centring">Iskazivanje interesovanja za vakcinisanje protiv COVID-19</h2>
                 <div class="text-padding">
-                    <div class="row-padding">Одаберите опцију:</div>
+                    <div class="row-padding">Odaberite opciju:</div>
                     <div class="intend">
                         <div class="row">
                             <div class="column1">
                                 <xsl:if test="b:Opcija='drzavljanin_rs'">
-                                    <div class="margin-row-padding"> Држављанин Републике Србије</div>
+                                    <div class="margin-row-padding"> Državljanin Republike Srbije</div>
                                 </xsl:if>
                                 <xsl:if test="b:Opcija!='drzavljanin_rs'">
-                                    <div class="row-padding"> Држављанин Републике Србије</div>
+                                    <div class="row-padding"> Državljanin Republike Srbije</div>
                                 </xsl:if>
                             </div>
                             <div class="column1">
                                 <xsl:if test="b:Opcija='strani_sa_boravkom_u_rs'">
-                                    <div class="margin-row-padding"> Страни држављанин са боравком у РС</div>
+                                    <div class="margin-row-padding"> Strani državljanin sa boravkom u RS</div>
                                 </xsl:if>
                                 <xsl:if test="b:Opcija!='strani_sa_boravkom_u_rs'">
-                                    <div class="row-padding"> Страни држављанин са боравком у РС</div>
+                                    <div class="row-padding"> Strani državljanin sa boravkom u RS</div>
                                 </xsl:if>
                             </div>
                             <div class="column1">
                                 <xsl:if test="b:Opcija='strani_bez_boravka_u_rs'">
-                                    <div class="margin-row-padding"> Страни држављанин без боравка у РС</div>
+                                    <div class="margin-row-padding"> Strani državljanin bez boravka u RS</div>
                                 </xsl:if>
                                 <xsl:if test="b:Opcija!='strani_bez_boravka_u_rs'">
-                                    <div class="row-padding"> Страни држављанин без боравка у РС</div>
+                                    <div class="row-padding"> Strani državljanin bez boravka u RS</div>
                                 </xsl:if>
                             </div>
                         </div>
                     </div>
                     <br/>
-                    <div class="row-padding">ЈМБГ:</div>
+                    <div class="row-padding">JMBG:</div>
                     <div class="row-padding-5">.......................................................................<xsl:value-of select="lp:Licni_podaci/lp:Jmbg"/>.......................................................................</div>
-                    <div class="row-padding">Име:</div>
+                    <div class="row-padding">Ime:</div>
                     <div class="row-padding-5">.......................................................................<xsl:value-of select="lp:Licni_podaci/lp:Ime"/>.......................................................................</div>
-                    <div class="row-padding">Презиме:</div>
+                    <div class="row-padding">Prezime:</div>
                     <div class="row-padding-5">.......................................................................<xsl:value-of select="lp:Licni_podaci/lp:Prezime"/>.......................................................................</div>
-                    <div class="row-padding">Адреса електронске поште:</div>
+                    <div class="row-padding">Adresa elektronske pošte:</div>
                     <div class="row-padding-5">.......................................................................<xsl:value-of select="lp:Licni_podaci/lp:Kontakt/lp:Email"/>.......................................................................</div>
-                    <div class="row-padding">Број мобилног телефона (навести број у формату 06X-XXXXXX(X)):</div>
+                    <div class="row-padding">Broj mobilnog telefona (navesti broj u formatu 06X-XXXXXX(X)):</div>
                     <div class="row-padding-5">.......................................................................<xsl:value-of select="lp:Licni_podaci/lp:Kontakt/lp:Broj_mobilnog"/>.......................................................................</div>
-                    <div class="row-padding">Број фиксног телефона (навести број у формату 011-XXXX-XXX):</div>
+                    <div class="row-padding">Broj fiksnog telefona (navesti broj u formatu 011-XXXX-XXX):</div>
                     <div class="row-padding-5">.......................................................................<xsl:value-of select="lp:Licni_podaci/lp:Kontakt/lp:Broj_fiksnog"/>.......................................................................</div>
-                    <div class="row-padding">Одаберите локацију где желите да примите вакцину (унесите општину):</div>
+                    <div class="row-padding">Odaberite lokaciju gde želite da primite vakcinu (unesite opštinu):</div>
                     <div class="row-padding-5">.......................................................................<xsl:value-of select="lp:Licni_podaci/lp:Opstina"/>.......................................................................</div>
                     <br/>
-                    <div class="row-padding">Исказујем интересовање да примим искључиво вакцину следећих произвођача за
-                        који Агенција за лекове и медицинска средства потврди безбедност, ефикасност и
-                        квалитет и изда дозволу за употребу лека:
+                    <div class="row-padding">Iskazujem interesovanje da primim isključivo vakcinu sledećih proizvođača za
+                        koji Agencija za lekove i medicinska sredstva potvrdi bezbednost, efikasnost i
+                        kvalitet i izda dozvolu za upotrebu leka:
                     </div>
                     <div class="intend">
 					<xsl:for-each select="b:Izabrane_vakcine/b:Vakcina">
@@ -171,23 +172,23 @@
 					</xsl:for-each>
                     </div>
                     <br/>
-                    <div class="row-padding">Да ли сте добровољни давалац крви?</div>
+                    <div class="row-padding">Da li ste dobrovoljni davalac krvi?</div>
                     <div class="intend">
                         <div class="row">
                             <div class="column1">
                                 <xsl:if test="b:Davalac_krvi='true'">
-                                    <div class="margin-row-padding"> Да</div>
+                                    <div class="margin-row-padding"> Da</div>
                                 </xsl:if>
                                 <xsl:if test="b:Davalac_krvi!='true'">
-                                    <div class="row-padding"> Да</div>
+                                    <div class="row-padding"> Da</div>
                                 </xsl:if>
                             </div>
                              <div class="column1">
                                 <xsl:if test="b:Davalac_krvi='false'">
-                                    <div class="margin-row-padding"> Не</div>
+                                    <div class="margin-row-padding"> Ne</div>
                                 </xsl:if>
                                 <xsl:if test="b:Davalac_krvi!='false'">
-                                    <div class="row-padding"> Не</div>
+                                    <div class="row-padding"> Ne</div>
                                 </xsl:if>
                             </div>
                         </div>
@@ -198,12 +199,12 @@
                     <br/>
                     <div class="row">
                         <div class="column1">
-                            <div class="row-padding">дана <xsl:value-of select="b:Datum"/> </div>
+                            <div class="row-padding">dana <xsl:value-of select="b:Datum"/> </div>
                         </div>
                         <div class="column1">
                             <div>
                                 <div class="centring row-padding">__________________ </div>
-                                <div class="centring row-padding">Потпис</div>
+                                <div class="centring row-padding">Potpis</div>
                             </div>
 
                         </div>

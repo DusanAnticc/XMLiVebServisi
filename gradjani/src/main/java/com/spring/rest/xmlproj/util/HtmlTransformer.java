@@ -12,6 +12,10 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import com.spring.rest.xmlproj.obj.interesovanje.Interesovanje;
+import com.spring.rest.xmlproj.obj.izvestaj.Izvestaj;
+import com.spring.rest.xmlproj.obj.saglasnost.Saglasnost;
+import com.spring.rest.xmlproj.obj.sertifikat.Sertifikat;
+import com.spring.rest.xmlproj.obj.zahtev.Zahtev;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.xml.sax.SAXException;
@@ -34,17 +38,22 @@ public class HtmlTransformer {
 
     private static TransformerFactory transformerFactory;
 
-    public static final String HTML_FILE = "../data/transform_result/html/interesovanje.html";
+    public static final String HTML_FILE = "../data/transform_result/html/potvrda.html";
 
-    public static final String INPUT_FILE = "../data/xml/interesovanja/5AA6VDA8.xml";
+//    public static final String INPUT_FILE = "../data/xml/zahtevi/JJKA441N.xml";
+    public static final String INPUT_FILE = "./src/main/resources/podaci/potvrda1.xml";
 
-    public static final String XSL_FILE = "../data/xslt/interesovanje.xsl";
+    public static final String XSL_FILE = "../data/xslt/potvrda.xsl";
     
     private static HashMap<Class, String> shemaLocationRegistry = new HashMap<>();
     
     static {
 
     	shemaLocationRegistry.put(Interesovanje.class, "../data/xslt/interesovanje.xsl");
+        shemaLocationRegistry.put(Izvestaj.class, "../data/xslt/izvestaj.xsl");
+        shemaLocationRegistry.put(Saglasnost.class, "../data/xslt/saglasnost.xsl");
+        shemaLocationRegistry.put(Sertifikat.class, "../data/xslt/sertifikat.xsl");
+        shemaLocationRegistry.put(Zahtev.class, "../data/xslt/zahtev.xsl");
     }
     
 

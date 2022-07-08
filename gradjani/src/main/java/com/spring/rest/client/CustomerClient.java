@@ -80,7 +80,7 @@ public final class CustomerClient {
 
         System.out.println("\n");
         System.out.println("Sent HTTP POST request to add saglasnost");
-        inputFile = ClassLoader.getSystemResource("podaci/saglasnost1.xml").getFile();
+        inputFile = ClassLoader.getSystemResource("podaci/saglasnost2.xml").getFile();
         input = new File(inputFile);
         post = new PostMethod(BASE_URL + "/gradjani/saglasnosti/upis/");
         post.addRequestHeader("Accept" , "text/xml");

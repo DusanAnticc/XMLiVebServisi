@@ -80,6 +80,7 @@
                                         <xs:enumeration value="mup"/>
                                         <xs:enumeration value="vojska"/>
                                         <xs:enumeration value="drugo"/>
+                                        <xs:enumeration value="prosveta"/>
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
