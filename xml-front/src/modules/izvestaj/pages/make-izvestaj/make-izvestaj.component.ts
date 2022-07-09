@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { IzvestajService } from '../../services/izvestaj/izvestaj/izvestaj.service';
+import { IzvestajService } from '../../services/izvestaj/izvestaj.service';
 
 @Component({
   selector: 'app-make-izvestaj',
