@@ -1,19 +1,18 @@
 package com.spring.rest.xmlproj.ws;
 
 import com.spring.rest.xmlproj.bservisi.impl.ZahtevServis;
+import com.spring.rest.xmlproj.obj.liste.Zahtevi;
 import com.spring.rest.xmlproj.obj.zahtev.Zahtev;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.GenericEntity;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
 import java.util.List;
 
-@Service
-@Path("gradjani/")
+@RestController
+@CrossOrigin
+@RequestMapping(value = "gradjani/zahtevi", produces = {"application/xml"})
 public class ZahtevVebServis {
 
     private final ZahtevServis zahtevServis;
@@ -23,47 +22,35 @@ public class ZahtevVebServis {
         this.zahtevServis = zahtevServis;
     }
 
-    @GET
-    @Path("/zahtevi/")
-    @Produces("application/xml")
-    public Response dobaviSveZahteve() {
+    @GetMapping("")
+    public ResponseEntity<?> dobaviSveZahteve() {
         List<Zahtev> sviZahtevi = this.zahtevServis.dobaviSve();
-        Response r;
 
         if(sviZahtevi.size() == 0){
-            r = Response.noContent().build();
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }else{
-            r = Response.ok(new GenericEntity<List<Zahtev>>(sviZahtevi) {}).type("application/xml").build();
+            return new ResponseEntity<>(new Zahtevi(sviZahtevi), HttpStatus.OK);
         }
-
-        return r;
     }
 
-    @GET
-    @Path("/zahtevi/{id}/")
-    @Produces("application/xml")
-    public Response dobaviJedanZahtev(@PathParam("id") String id) {
-        Response r;
+    @GetMapping("/{id}")
+    public ResponseEntity<?> dobaviJedanZahtev(@PathVariable("id") String id) {
         Zahtev zahtev = this.zahtevServis.dobaviPoId(id);
 
         if(zahtev != null){
-            return Response.ok().type("application/xml").entity(zahtev).build();
+            return new ResponseEntity<>(zahtev, HttpStatus.OK);
         }else{
-            return Response.noContent().build();
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
 
-    @POST
-    @Path("/zahtevi/upis/")
-    public Response upisZahtev(Zahtev zahtev, @Context UriInfo uriInfo) {
-        Response r;
+    @PostMapping("/upis")
+    public ResponseEntity<?> upisZahtev(@RequestBody Zahtev zahtev) {
         if (zahtev != null) {
             this.zahtevServis.upis(zahtev);
-            r = Response.ok().type("application/xml").entity(zahtev).build();
+            return new ResponseEntity<>(null, HttpStatus.CREATED);
         } else {
-            r = Response.notModified().build();
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
-
-        return r;
     }
 }

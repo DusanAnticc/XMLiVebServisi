@@ -2,18 +2,18 @@ package com.spring.rest.xmlproj.ws;
 
 import com.spring.rest.xmlproj.bservisi.impl.InteresovanjeServis;
 import com.spring.rest.xmlproj.obj.interesovanje.Interesovanje;
+import com.spring.rest.xmlproj.obj.liste.Interesovanja;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.GenericEntity;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
 import java.util.List;
 
-@Service
-@Path("gradjani/")
+@RestController
+@CrossOrigin
+@RequestMapping(value = "gradjani/interesovanja", produces = {"application/xml" })
 public class InteresovanjeVebServis {
 
     private final InteresovanjeServis interesovanjeServis;
@@ -23,46 +23,35 @@ public class InteresovanjeVebServis {
         this.interesovanjeServis = interesovanjeServis;
     }
 
-    @GET
-    @Path("/interesovanja/")
-    @Produces("application/xml")
-    public Response dobaviSvaInteresovanja() {
+    @GetMapping("")
+    public ResponseEntity<?> dobaviSvaInteresovanja() {
         List<Interesovanje> svaInteresovanja = this.interesovanjeServis.dobaviSve();
-        Response r;
 
         if(svaInteresovanja.size() == 0){
-            r = Response.noContent().build();
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }else{
-            r = Response.ok(new GenericEntity<List<Interesovanje>>(svaInteresovanja) {}).type("application/xml").build();
+            return new ResponseEntity<>(new Interesovanja(svaInteresovanja), HttpStatus.OK);
         }
-
-        return r;
     }
 
-    @GET
-    @Path("/interesovanja/{id}")
-    @Produces("application/xml")
-    public Response dobaviJednoInteresovanje(@PathParam("id") String id) {
-        Response r;
+    @GetMapping("/{id}")
+    public ResponseEntity<?> dobaviJednoInteresovanje(@PathVariable("id") String id) {
+
         Interesovanje interesovanje = this.interesovanjeServis.dobaviPoId(id);
         if(interesovanje != null){
-            return Response.ok().type("application/xml").entity(interesovanje).build();
+            return new ResponseEntity<>(interesovanje, HttpStatus.OK);
         }else{
-            return Response.noContent().build();
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
 
-    @POST
-    @Path("/interesovanja/upis/")
-    public Response upisInteresovanja(Interesovanje interesovanje, @Context UriInfo uriInfo) {
-        Response r;
+    @PostMapping("/upis")
+    public ResponseEntity<?> upisInteresovanja(@RequestBody Interesovanje interesovanje) {
         if (interesovanje != null) {
             this.interesovanjeServis.upis(interesovanje);
-            r = Response.ok().type("application/xml").entity(interesovanje).build();
+            return new ResponseEntity<>(null, HttpStatus.CREATED);
         } else {
-            r = Response.notModified().build();
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
-
-        return r;
     }
 }

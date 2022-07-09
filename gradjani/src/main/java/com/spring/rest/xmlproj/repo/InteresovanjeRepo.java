@@ -110,7 +110,6 @@ public class InteresovanjeRepo implements Repo<Interesovanje>{
 
                 interesovanje = (Interesovanje) unmarshaller.unmarshal(res.getContentAsDOM());
 
-                System.out.println(interesovanje);
             }
 
         }

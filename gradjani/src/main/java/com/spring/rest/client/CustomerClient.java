@@ -30,7 +30,7 @@ import org.apache.commons.io.IOUtils;
  */
 public final class CustomerClient {
 
-	public static String BASE_URL = "http://localhost:8080/xmlproj";
+	public static String BASE_URL = "http://localhost:8080";
 
 	public static String URL_ENCODING = "UTF-8";
 	
@@ -38,10 +38,10 @@ public final class CustomerClient {
     public static void main(String args[]) throws Exception {
 
         System.out.println("\n");
-        System.out.println("Sent HTTP POST request to add interesovanje");
-        String inputFile = ClassLoader.getSystemResource("podaci/interesovanje1.xml").getFile();
+        System.out.println("Sent HTTP POST request to add korisnik");
+        String inputFile = ClassLoader.getSystemResource("podaci/korisnik1.xml").getFile();
         File input = new File(inputFile);
-        PostMethod post = new PostMethod(BASE_URL + "/gradjani/interesovanja/upis/");
+        PostMethod post = new PostMethod(BASE_URL + "/gradjani/korisnici/registracija");
         post.addRequestHeader("Accept" , "text/xml");
         RequestEntity entity = new FileRequestEntity(input, "text/xml");
         post.setRequestEntity(entity);

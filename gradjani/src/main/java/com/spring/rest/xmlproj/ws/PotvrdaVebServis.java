@@ -1,19 +1,19 @@
 package com.spring.rest.xmlproj.ws;
 
 import com.spring.rest.xmlproj.bservisi.impl.PotvrdaServis;
+import com.spring.rest.xmlproj.obj.liste.Potvrde;
 import com.spring.rest.xmlproj.obj.potvrda.Potvrda;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.GenericEntity;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
 import java.util.List;
 
-@Service
-@Path("gradjani/")
+@RestController
+@CrossOrigin
+@RequestMapping(value = "gradjani/potvrde", produces = {"application/xml"})
 public class PotvrdaVebServis {
 
     private final PotvrdaServis potvrdaServis;
@@ -23,47 +23,34 @@ public class PotvrdaVebServis {
         this.potvrdaServis = potvrdaServis;
     }
 
-    @GET
-    @Path("/potvrde/")
-    @Produces("application/xml")
-    public Response dobaviSvePotvrde() {
+    @GetMapping("")
+    public ResponseEntity<?> dobaviSvePotvrde() {
         List<Potvrda> svePotvrde = this.potvrdaServis.dobaviSve();
-        Response r;
-
         if(svePotvrde.size() == 0){
-            r = Response.noContent().build();
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }else{
-            r = Response.ok(new GenericEntity<List<Potvrda>>(svePotvrde) {}).type("application/xml").build();
+            return new ResponseEntity<>(new Potvrde(svePotvrde), HttpStatus.OK);
         }
-
-        return r;
     }
 
-    @GET
-    @Path("/potvrde/{id}/")
-    @Produces("application/xml")
-    public Response dobaviJednuPotvrdu(@PathParam("id") String id) {
-        Response r;
+    @GetMapping("/{id}")
+    public ResponseEntity<?> dobaviJednuPotvrdu(@PathVariable("id") String id) {
         Potvrda potvrda = this.potvrdaServis.dobaviPoId(id);
 
         if(potvrda != null){
-            return Response.ok().type("application/xml").entity(potvrda).build();
+            return new ResponseEntity<>(potvrda, HttpStatus.OK);
         }else{
-            return Response.noContent().build();
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
 
-    @POST
-    @Path("/sertifikati/upis/")
-    public Response upisPotvrde(Potvrda potvrda, @Context UriInfo uriInfo) {
-        Response r;
+    @PostMapping("/upis")
+    public ResponseEntity<?> upisPotvrde(@RequestBody Potvrda potvrda) {
         if (potvrda != null) {
             this.potvrdaServis.upis(potvrda);
-            r = Response.ok().type("application/xml").entity(potvrda).build();
+            return new ResponseEntity<>(null, HttpStatus.CREATED);
         } else {
-            r = Response.notModified().build();
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
-
-        return r;
     }
 }

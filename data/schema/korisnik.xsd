@@ -9,7 +9,6 @@
         <xs:complexType>
             <xs:all>
                 <xs:element ref="lp:Licni_podaci"/>
-                <xs:element name="Korisnicko_ime" type="xs:string"/>
                 <xs:element name="Lozinka" type="xs:string"/>
                 <xs:element name="Uloga">
                     <xs:simpleType>

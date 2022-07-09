@@ -1,19 +1,20 @@
 package com.spring.rest.xmlproj.ws;
 
 import com.spring.rest.xmlproj.bservisi.impl.SertifikatServis;
+import com.spring.rest.xmlproj.obj.liste.Sertifikati;
 import com.spring.rest.xmlproj.obj.sertifikat.Sertifikat;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.GenericEntity;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
+
 import java.util.List;
 
-@Service
-@Path("gradjani/")
+@RestController
+@CrossOrigin
+@RequestMapping(value = "gradjani/sertifikati", produces = {"application/xml"})
 public class SertifikatVebServis {
 
     private final SertifikatServis sertifikatServis;
@@ -24,47 +25,34 @@ public class SertifikatVebServis {
     }
 
 
-    @GET
-    @Path("/sertifikati/")
-    @Produces("application/xml")
-    public Response dobaviSveSertifikate() {
+    @GetMapping("")
+    public ResponseEntity<?> dobaviSveSertifikate() {
         List<Sertifikat> sviSertifikati = this.sertifikatServis.dobaviSve();
-        Response r;
-
         if(sviSertifikati.size() == 0){
-            r = Response.noContent().build();
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }else{
-            r = Response.ok(new GenericEntity<List<Sertifikat>>(sviSertifikati) {}).type("application/xml").build();
+            return new ResponseEntity<>(new Sertifikati(sviSertifikati), HttpStatus.OK);
         }
-
-        return r;
     }
 
-    @GET
-    @Path("/sertifikati/{id}/")
-    @Produces("application/xml")
-    public Response dobaviJedanSertifikat(@PathParam("id") String id) {
-        Response r;
+    @GetMapping("/{id}")
+    public ResponseEntity<?> dobaviJedanSertifikat(@PathVariable("id") String id) {
         Sertifikat sertifikat = this.sertifikatServis.dobaviPoId(id);
 
         if(sertifikat != null){
-            return Response.ok().type("application/xml").entity(sertifikat).build();
+            return new ResponseEntity<>(sertifikat, HttpStatus.OK);
         }else{
-            return Response.noContent().build();
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
 
-    @POST
-    @Path("/sertifikati/upis/")
-    public Response upisSertifikata(Sertifikat sertifikat, @Context UriInfo uriInfo) {
-        Response r;
+    @PostMapping("/upis")
+    public ResponseEntity<?> upisSertifikata(@RequestBody Sertifikat sertifikat) {
         if (sertifikat != null) {
             this.sertifikatServis.upis(sertifikat);
-            r = Response.ok().type("application/xml").entity(sertifikat).build();
+            return new ResponseEntity<>(null, HttpStatus.CREATED);
         } else {
-            r = Response.notModified().build();
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
-
-        return r;
     }
 }

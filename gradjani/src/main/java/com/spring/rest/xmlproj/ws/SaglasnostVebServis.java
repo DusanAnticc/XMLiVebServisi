@@ -1,19 +1,19 @@
 package com.spring.rest.xmlproj.ws;
 
 import com.spring.rest.xmlproj.bservisi.impl.SaglasnostServis;
+import com.spring.rest.xmlproj.obj.liste.Saglasnosti;
 import com.spring.rest.xmlproj.obj.saglasnost.Saglasnost;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.GenericEntity;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
 import java.util.List;
 
-@Service
-@Path("gradjani/")
+@RestController
+@CrossOrigin
+@RequestMapping(value = "gradjani/saglasnosti", produces = {"application/xml"})
 public class SaglasnostVebServis {
 
     private final SaglasnostServis saglasnostServis;
@@ -23,46 +23,34 @@ public class SaglasnostVebServis {
         this.saglasnostServis = saglasnostServis;
     }
 
-    @POST
-    @Path("/saglasnosti/upis/")
-    public Response upisSaglasnosti(Saglasnost saglasnost,@Context UriInfo uriInfo) {
-        Response r;
-        if (saglasnost != null) {
+    @PostMapping("/upis")
+    public ResponseEntity<?> upisSaglasnosti(@RequestBody Saglasnost saglasnost) {
+        if(saglasnost != null){
             this.saglasnostServis.upis(saglasnost);
-            r = Response.ok().type("application/xml").entity(saglasnost).build();
-        } else {
-            r = Response.notModified().build();
+            return new ResponseEntity<>(null, HttpStatus.CREATED);
+        }else{
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
-
-        return r;
     }
 
-    @GET
-    @Path("/saglasnosti/{id}/")
-    @Produces("application/xml")
-    public Response dobaviJednuSaglasnost(@PathParam("id") String id) {
-        Response r;
+    @GetMapping("/{id}")
+    public ResponseEntity<?> dobaviJednuSaglasnost(@PathVariable("id") String id) {
         Saglasnost saglasnost = this.saglasnostServis.dobaviPoId(id);
 
-        if(saglasnost != null){
-            return Response.ok().type("application/xml").entity(saglasnost).build();
+        if(saglasnost == null){
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }else{
-            return Response.noContent().build();
+            return new ResponseEntity<>(saglasnost, HttpStatus.OK);
         }
     }
 
-    @GET
-    @Path("/saglasnosti/")
-    @Produces("application/xml")
-    public Response dobaviSveSaglasnosti() {
+    @GetMapping("")
+    public ResponseEntity<?> dobaviSveSaglasnosti() {
         List<Saglasnost> sveSaglasnosti = this.saglasnostServis.dobaviSve();
-        Response r;
         if(sveSaglasnosti.size() == 0){
-            r = Response.noContent().build();
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }else{
-            r = Response.ok(new GenericEntity<List<Saglasnost>>(sveSaglasnosti) {}).type("application/xml").build();
+            return new ResponseEntity<>(new Saglasnosti(sveSaglasnosti), HttpStatus.OK);
         }
-
-        return r;
     }
 }
