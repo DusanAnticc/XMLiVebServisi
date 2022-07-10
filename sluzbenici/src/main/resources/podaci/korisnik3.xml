@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Korisnik xmlns="http://www.xmlproj.rs/korisnik" about="http://www.xmlproj.rs/korisnik/milica@maildrop.cc">
+	<Licni_podaci xmlns="http://www.xmlproj.rs/gradjanin/licniPodaci">
+		<Jmbg>0512962907122</Jmbg>
+        <Ime>Milica</Ime>
+        <Prezime>Miličić</Prezime>
+        <Datum_rodjenja>1988-05-26</Datum_rodjenja>
+        <Pol>Zenski</Pol>
+		<Kontakt>
+			<Email>milica@maildrop.cc</Email>
+			<Broj_fiksnog>015-4654-321</Broj_fiksnog>
+			<Broj_mobilnog>062-9854213</Broj_mobilnog>
+		</Kontakt>
+	</Licni_podaci>
+	<Lozinka>123</Lozinka>
+	<Uloga>gradjanin</Uloga>
+</Korisnik>

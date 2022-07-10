@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Potvrda xmlns="http://www.xmlproj.rs/gradjanin/potvrda"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:pred="http://http://www.xmlproj.rs/potvrda/predikati/"
+    xsi:schemaLocation="http://www.xmlproj.rs/gradjanin/potvrda schema/potvrda.xsd"
+    Sifra="9585JGF1F2"
+	about="http://www.xmlproj.rs/gradjanin/potvrda/9585JGF1F2"
+	rel="pred:saglasnost"
+	href="http://www.xmlproj.rs/gradjanin/saglasnost/1227AB5916">
+    <Licni_podaci xmlns="http://www.xmlproj.rs/gradjanin/licniPodaci">
+        <Jmbg>0512962907122</Jmbg>
+        <Ime>Dragoljub</Ime>
+        <Prezime>Mitrović</Prezime>
+        <Datum_rodjenja>1962-12-05</Datum_rodjenja>
+        <Pol>Muski</Pol>
+    </Licni_podaci>
+    <Primljene_doze>
+        <Doza>
+            <Datum_davanja>2021-01-10</Datum_davanja>
+            <Br_doze>1</Br_doze>
+            <Br_serije>48654219</Br_serije>
+        </Doza>
+        <Doza>
+            <Datum_davanja>2021-07-10</Datum_davanja>
+            <Br_doze>2</Br_doze>
+            <Br_serije>48654219</Br_serije>
+        </Doza>
+    </Primljene_doze>
+    <Zdravstvena_ustanova property="pred:ustanova">Gaj Zvezdara</Zdravstvena_ustanova>
+    <Naziv_vakcine property="pred:nazivVakcine">Fajzer Bionteh</Naziv_vakcine>
+    <Datum_izdavanja property="pred:datumIzdavanja">2021-08-15</Datum_izdavanja>
+    <Izdavalac_potvrde>Dom zdravlja zvezdara</Izdavalac_potvrde>
+    <QR_kod>http://www.xmlproj.rs/gradjanin/potvrda/9585JGF1F2</QR_kod>
+</Potvrda>

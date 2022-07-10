@@ -7,7 +7,6 @@ import com.spring.rest.xmlproj.repo.InteresovanjeRepo;
 import com.spring.rest.xmlproj.util.FusekiAuthenticationUtilities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,12 +15,10 @@ import java.util.List;
 public class InteresovanjeServis implements IInteresovanjeServis {
 
     private final InteresovanjeRepo interesovanjeRepo;
-    private final RestTemplate restTemplate;
 
     @Autowired
-    public InteresovanjeServis(InteresovanjeRepo interesovanjeRepo, RestTemplate restTemplate) {
+    public InteresovanjeServis(InteresovanjeRepo interesovanjeRepo) {
         this.interesovanjeRepo = interesovanjeRepo;
-        this.restTemplate = restTemplate;
     }
 
     @Override

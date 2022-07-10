@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Saglasnost xmlns="http://www.xmlproj.rs/gradjanin/saglasnost"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:pred="http://http://www.xmlproj.rs/saglasnost/predikati/"
+    xsi:schemaLocation="http://www.xmlproj.rs/gradjanin/saglasnost schema/saglasnost.xsd"
+	Sifra="1227AB5916"
+	about="http://www.xmlproj.rs/gradjanin/saglasnost/1227AB5916"
+	rel="pred:interesovanje"
+	href="http://www.xmlproj.rs/gradjanin/interesovanje/JJKA441N">
+    <Pacijentov_deo>
+        <Drzavljanstvo>srpsko</Drzavljanstvo>
+        <Licni_podaci xmlns="http://www.xmlproj.rs/gradjanin/licniPodaci">
+            <Jmbg>0512962907122</Jmbg>
+            <Ime>Dragoljub</Ime>
+            <Prezime>Mitrović</Prezime>
+            <Datum_rodjenja>1962-12-05</Datum_rodjenja>
+            <Pol>Muski</Pol>
+        </Licni_podaci>
+        <Ime_roditelja>Simeun</Ime_roditelja>
+        <Mesto_rodjenja>Donja Ljuboviđa</Mesto_rodjenja>
+        <Adresa>
+            <Mesto>Beograd</Mesto>
+            <Ulica>Kralja Aleksandra</Ulica>
+            <Broj>122</Broj>
+        </Adresa>
+        <Radni_status>zaposlen</Radni_status>
+        <Zanimanje>drugo</Zanimanje>
+        <Koristi_soc_zastitu>
+            <Vrednost property="pred:koristiSoc">false</Vrednost>
+            <Mesto></Mesto>
+            <Opstina></Opstina>
+        </Koristi_soc_zastitu>
+        <Izjava>
+            <Vrednost>true</Vrednost>
+            <Lek>Fajzer Bionteh</Lek>
+        </Izjava>
+        <Datum property="pred:podneta">2020-12-27</Datum>
+    </Pacijentov_deo>
+    <Radnikov_deo>
+        <Zdravstvena_ustanova property="pred:ustanova">Gaj zvezdara</Zdravstvena_ustanova>
+        <Vakc_punkt>Punkt 5</Vakc_punkt>
+        <Podaci_lekar>
+            <Ime>Đorđe</Ime>
+            <Prezime>Maksimović</Prezime>
+            <Faksimil property="pred:faksimil">Dr. Đorđe Maksimović 564124</Faksimil>
+            <Broj_telefona>064-1123415</Broj_telefona>
+        </Podaci_lekar>
+        <Vakcine>
+            <Vakcina>
+                <Naziv property="pred:nazivVakcine">Fajzer Bionteh</Naziv>
+                <Datum_davanja>2021-01-10</Datum_davanja>
+                <Nacin_davanja>IM</Nacin_davanja>
+                <Ekstremitet>LR</Ekstremitet>
+                <Serija>674512</Serija>
+                <Proizvodjac>Bionteh</Proizvodjac>
+                <Nuspojava>Nepoznato</Nuspojava>
+            </Vakcina>
+        </Vakcine>
+        <Privremene_nuspojave>
+        </Privremene_nuspojave>
+        <Odluka property="pred:odluka">false</Odluka>
+    </Radnikov_deo>
+</Saglasnost>
