@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 
 //import { ModalComponent } from '../../components/modal/modal.component';
-//import { Doza } from '../../model/Doza';
+import { Doza } from '../../Doza';
 import { PotvrdaService } from '../../services/potvrda.service';
 
 @Component({
@@ -24,7 +24,7 @@ export class MakePotvrdaComponent implements OnInit {
     { value: 'AstraZeneca' },
     { value: 'Moderna' },
   ];
-  //doze: Doza[] = [];
+  doze: Doza[] = [];
   displayedColumns: string[] = ['datum_davanja', 'serija'];
 
   constructor(

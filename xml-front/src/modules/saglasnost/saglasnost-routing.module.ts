@@ -4,7 +4,7 @@ import { SaglasnostComponent } from './saglasnost/saglasnost.component';
 
 const routes: Routes = [
   {
-    path: 'form',
+    path: '',
     pathMatch: 'full',
     component: SaglasnostComponent,
   },
