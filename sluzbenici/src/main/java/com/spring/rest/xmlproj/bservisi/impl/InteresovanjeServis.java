@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class InteresovanjeServis implements IInteresovanjeServis {
@@ -57,6 +58,14 @@ public class InteresovanjeServis implements IInteresovanjeServis {
     public List<Interesovanje> dobaviSve() {
         try {
             return this.interesovanjeRepo.dobaviSve();
+        } catch (Exception e) {
+            return new ArrayList<Interesovanje>();
+        }
+    }
+
+    public List<Interesovanje> dobaviNeobradjenaInteresovanja(){
+        try {
+            return this.interesovanjeRepo.dobaviSve().stream().filter(i -> i.getHref() == null).collect(Collectors.toList());
         } catch (Exception e) {
             return new ArrayList<Interesovanje>();
         }
