@@ -8,7 +8,8 @@
 @XmlSchema(
         namespace = "http://www.xmlproj.rs/sluzbenik/izvestaj",
         xmlns = {
-                @XmlNs(namespaceURI = "http://www.xmlproj.rs/sluzbenik/izvestaj", prefix = "")
+                @XmlNs(namespaceURI = "http://www.xmlproj.rs/sluzbenik/izvestaj", prefix = ""),
+                @XmlNs(namespaceURI = "http://www.xmlproj.rs/potvrda/predikati/", prefix = "pred")
         },
         elementFormDefault = XmlNsForm.QUALIFIED
 )

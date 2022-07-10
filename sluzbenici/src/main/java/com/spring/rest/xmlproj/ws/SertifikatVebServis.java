@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping(value = "sluzbenici/sertifikati", produces = {"application/xml"})
+@RequestMapping(value = "api/sluzbenici/sertifikati", produces = {"application/xml"})
 public class SertifikatVebServis {
 
     private final SertifikatServis sertifikatServis;

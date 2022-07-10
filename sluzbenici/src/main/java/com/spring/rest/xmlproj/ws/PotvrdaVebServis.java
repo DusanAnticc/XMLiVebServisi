@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping(value = "sluzbenici/potvrde", produces = {"application/xml"})
+@RequestMapping(value = "api/sluzbenici/potvrde", produces = {"application/xml"})
 public class PotvrdaVebServis {
 
     private final PotvrdaServis potvrdaServis;

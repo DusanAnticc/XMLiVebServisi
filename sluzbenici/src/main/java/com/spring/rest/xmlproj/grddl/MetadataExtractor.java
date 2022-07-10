@@ -15,6 +15,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.xml.sax.SAXException;
 
 import com.sun.org.apache.xalan.internal.xsltc.trax.TransformerFactoryImpl;
@@ -27,14 +28,11 @@ import com.sun.org.apache.xalan.internal.xsltc.trax.TransformerFactoryImpl;
  * 
  */
 public class MetadataExtractor {
-	
-	@Value("${configPath}")
-    private String configPath;
 
 
 	private TransformerFactory transformerFactory;
 
-	private static String XSLT_FILE = "/data/xsl/grddl.xsl";
+	private static String XSLT_FILE = "C:\\Users\\Dusan\\Desktop\\XMLiVebServisi\\data\\xsl\\grddl.xsl";
 	
 	public MetadataExtractor() throws SAXException, IOException {
 		
@@ -52,7 +50,7 @@ public class MetadataExtractor {
 	public void extractMetadata(InputStream in, OutputStream out) throws FileNotFoundException, TransformerException {
 		
 		// Create transformation source
-		StreamSource transformSource = new StreamSource(new File(configPath+XSLT_FILE));
+		StreamSource transformSource = new StreamSource(new File(XSLT_FILE));
 		
 		// Initialize GRDDL transformer object
 		Transformer grddlTransformer = transformerFactory.newTransformer(transformSource);

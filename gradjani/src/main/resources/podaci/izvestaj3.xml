@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:pred="http://http://www.xmlproj.rs/izvestaj/predikati/"
     xsi:schemaLocation="http://www.xmlproj.rs/gradjanin/sertifikat schema/sertifikat.xsd"
-	about="http://www.xmlproj.rs/sluzbenik/izvestaj/2022-01-05/2022-02-05">
+	about="http://www.xmlproj.rs/sluzbenik/izvestaj/2022-01-05_2022-02-05">
 	
     <Period_od property="pred:od">2022-01-05</Period_od>
     <Period_do property="pred:do">2022-02-05</Period_do>

@@ -4,23 +4,31 @@ import com.spring.rest.xmlproj.bservisi.impl.InteresovanjeServis;
 import com.spring.rest.xmlproj.obj.interesovanje.Interesovanje;
 import com.spring.rest.xmlproj.obj.liste.Interesovanja;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
+
 
 @RestController
 @CrossOrigin
-@RequestMapping(value = "gradjani/interesovanja", produces = {"application/xml" })
+@RequestMapping(value = "api/gradjani/interesovanja", produces = {"application/xml" })
 public class InteresovanjeVebServis {
 
     private final InteresovanjeServis interesovanjeServis;
+    private final RestTemplate restTemplate;
 
     @Autowired
-    public InteresovanjeVebServis(InteresovanjeServis interesovanjeServis) {
+    public InteresovanjeVebServis(InteresovanjeServis interesovanjeServis, RestTemplate restTemplate) {
         this.interesovanjeServis = interesovanjeServis;
+        this.restTemplate = restTemplate;
     }
 
     @GetMapping("")
