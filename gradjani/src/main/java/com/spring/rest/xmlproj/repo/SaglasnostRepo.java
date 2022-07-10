@@ -3,6 +3,7 @@ package com.spring.rest.xmlproj.repo;
 import com.spring.rest.xmlproj.obj.saglasnost.Saglasnost;
 import com.spring.rest.xmlproj.util.AuthenticationUtilities;
 import org.exist.xmldb.EXistResource;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 import org.xmldb.api.DatabaseManager;
 import org.xmldb.api.base.Collection;
@@ -24,6 +25,9 @@ import static com.spring.rest.xmlproj.util.CollectionUtil.getOrCreateCollection;
 
 @Repository
 public class SaglasnostRepo implements Repo<Saglasnost>{
+
+    @Value("${configPath}")
+    private String configPath;
 
     private final String kolekcija = "/db/xmlproj/gradjanin/saglasnosti";
     private final String JAXBKontekst = "com.spring.rest.xmlproj.obj.saglasnost";
@@ -208,7 +212,7 @@ public class SaglasnostRepo implements Repo<Saglasnost>{
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 
 
-            File temp = new File(".." + File.separator + "data" + File.separator + "xml"+ File.separator + "saglasnosti" + File.separator +entitet.getSifra() + ".xml");
+            File temp = new File(configPath + File.separator + "data" + File.separator + "xml"+ File.separator + "saglasnosti" + File.separator +entitet.getSifra() + ".xml");
             temp.createNewFile();
             marshaller.marshal(entitet, temp);
         }catch(Exception e){

@@ -6,6 +6,7 @@ import com.spring.rest.xmlproj.rdf.UpisMeta;
 import com.spring.rest.xmlproj.repo.InteresovanjeRepo;
 import com.spring.rest.xmlproj.util.FusekiAuthenticationUtilities;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -14,6 +15,8 @@ import java.util.List;
 
 @Service
 public class InteresovanjeServis implements IInteresovanjeServis {
+    @Value("${configPath}")
+    private String configPath;
 
     private final InteresovanjeRepo interesovanjeRepo;
     private final RestTemplate restTemplate;
