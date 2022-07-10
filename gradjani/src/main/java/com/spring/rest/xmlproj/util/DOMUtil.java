@@ -1,4 +1,4 @@
-package com.spring.rest.xmlproj.obj;
+package com.spring.rest.xmlproj.util;
 
 import java.io.OutputStream;
 

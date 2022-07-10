@@ -6,6 +6,7 @@ import com.spring.rest.xmlproj.rdf.UpisMeta;
 import com.spring.rest.xmlproj.repo.SertifikatRepo;
 import com.spring.rest.xmlproj.util.FusekiAuthenticationUtilities;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,6 +14,9 @@ import java.util.List;
 
 @Service
 public class SertifikatServis implements ISertifikatServis {
+
+    @Value("${configPath}")
+    private String configPath;
 
     private final SertifikatRepo sertifikatRepo;
 
@@ -26,7 +30,7 @@ public class SertifikatServis implements ISertifikatServis {
         try {
             this.sertifikatRepo.upis(entitet);
             this.sertifikatRepo.generisiXML(entitet);
-            UpisMeta.run(FusekiAuthenticationUtilities.loadProperties(), "/metadata", "../data/xml/sertifikati/"+entitet.getBrojSertifikata()+".xml", "../data/rdf/sertifikati/"+entitet.getBrojSertifikata()+".rdf");
+            UpisMeta.run(FusekiAuthenticationUtilities.loadProperties(), "/metadata", configPath+"/data/xml/sertifikati/"+entitet.getBrojSertifikata()+".xml", configPath+"/data/rdf/sertifikati/"+entitet.getBrojSertifikata()+".rdf");
         } catch (Exception e) {
             e.printStackTrace();
         }

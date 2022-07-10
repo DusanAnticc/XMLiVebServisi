@@ -6,6 +6,7 @@ import com.spring.rest.xmlproj.rdf.UpisMeta;
 import com.spring.rest.xmlproj.repo.PotvrdaRepo;
 import com.spring.rest.xmlproj.util.FusekiAuthenticationUtilities;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,6 +14,9 @@ import java.util.List;
 
 @Service
 public class PotvrdaServis implements IPotvrdaServis {
+
+    @Value("${configPath}")
+    private String configPath;
 
     private final PotvrdaRepo potvrdaRepo;
 
@@ -27,7 +31,7 @@ public class PotvrdaServis implements IPotvrdaServis {
         try {
             this.potvrdaRepo.upis(entitet);
             this.potvrdaRepo.generisiXML(entitet);
-            UpisMeta.run(FusekiAuthenticationUtilities.loadProperties(), "/metadata", "../data/xml/potvrde/"+entitet.getSifra()+".xml", "../data/rdf/potvrde/"+entitet.getSifra()+".rdf");
+            UpisMeta.run(FusekiAuthenticationUtilities.loadProperties(), "/metadata", configPath+"/data/xml/potvrde/"+entitet.getSifra()+".xml", configPath+"/data/rdf/potvrde/"+entitet.getSifra()+".rdf");
         } catch (Exception e) {
             e.printStackTrace();
         }
