@@ -26,10 +26,6 @@ export class MakeZahtevComponent implements OnInit {
     { value: 'Nis' },
   ];
 
-  public tools: object = {
-    items: [
-        'Bold', 'Italic', 'Underline']
-};
   constructor(private zahtevService: ZahtevService) {
     this.form = new FormGroup({
       jmbg: new FormControl('', [Validators.required, Validators.pattern('[0-9 ]{13}')]),
