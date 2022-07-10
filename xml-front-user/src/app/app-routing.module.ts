@@ -7,17 +7,17 @@ const routes: Routes = [
     component: RootLayoutComponent,
     children: [
       {
-        path: 'saglasnost',
-        loadChildren: () =>
-          import('./../modules/saglasnost/saglasnost.module').then(
-            (m) => m.SaglasnostModule
-          ),
-      },
-      {
         path: 'zahtev',
         loadChildren: () =>
           import('./../modules/zahtev/zahtev.module').then(
             (m) => m.ZahtevModule
+          ),
+      },
+      {
+        path: 'saglasnost',
+        loadChildren: () =>
+          import('./../modules/saglasnost/saglasnost.module').then(
+            (m) => m.SaglasnostModule
           ),
       },
       {

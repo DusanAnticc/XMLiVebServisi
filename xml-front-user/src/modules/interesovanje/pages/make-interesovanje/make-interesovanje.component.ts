@@ -80,7 +80,8 @@ export class MakeInteresovanjeComponent implements OnInit {
           Datum: (moment(new Date())).format('YYYY-MM-DD')
         }
       }
-    }; this.interesovanjeService.create(obj).subscribe(
+    }; 
+    this.interesovanjeService.create(obj).subscribe(
       (result: any) => {
         this.parser.parseString(result, function (err: any, res: any) {
         });
