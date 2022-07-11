@@ -144,19 +144,19 @@
                     </div>
                     <br/>
                     <div class="row-padding">JMBG:</div>
-                    <div class="row-padding-5">.......................................................................<xsl:value-of select="lp:Licni_podaci/lp:Jmbg"/>.......................................................................</div>
+                    <xsl:value-of select="lp:Licni_podaci/lp:Jmbg"/>
                     <div class="row-padding">Ime:</div>
-                    <div class="row-padding-5">.......................................................................<xsl:value-of select="lp:Licni_podaci/lp:Ime"/>.......................................................................</div>
+                    <xsl:value-of select="lp:Licni_podaci/lp:Ime"/>
                     <div class="row-padding">Prezime:</div>
-                    <div class="row-padding-5">.......................................................................<xsl:value-of select="lp:Licni_podaci/lp:Prezime"/>.......................................................................</div>
+                    <xsl:value-of select="lp:Licni_podaci/lp:Prezime"/>
                     <div class="row-padding">Adresa elektronske pošte:</div>
-                    <div class="row-padding-5">.......................................................................<xsl:value-of select="lp:Licni_podaci/lp:Kontakt/lp:Email"/>.......................................................................</div>
+                    <xsl:value-of select="lp:Licni_podaci/lp:Kontakt/lp:Email"/>
                     <div class="row-padding">Broj mobilnog telefona (navesti broj u formatu 06X-XXXXXX(X)):</div>
-                    <div class="row-padding-5">.......................................................................<xsl:value-of select="lp:Licni_podaci/lp:Kontakt/lp:Broj_mobilnog"/>.......................................................................</div>
+                    <xsl:value-of select="lp:Licni_podaci/lp:Kontakt/lp:Broj_mobilnog"/>
                     <div class="row-padding">Broj fiksnog telefona (navesti broj u formatu 011-XXXX-XXX):</div>
-                    <div class="row-padding-5">.......................................................................<xsl:value-of select="lp:Licni_podaci/lp:Kontakt/lp:Broj_fiksnog"/>.......................................................................</div>
+                    <xsl:value-of select="lp:Licni_podaci/lp:Kontakt/lp:Broj_fiksnog"/>
                     <div class="row-padding">Odaberite lokaciju gde želite da primite vakcinu (unesite opštinu):</div>
-                    <div class="row-padding-5">.......................................................................<xsl:value-of select="lp:Licni_podaci/lp:Opstina"/>.......................................................................</div>
+                    <xsl:value-of select="lp:Licni_podaci/lp:Opstina"/>
                     <br/>
                     <div class="row-padding">Iskazujem interesovanje da primim isključivo vakcinu sledećih proizvođača za
                         koji Agencija za lekove i medicinska sredstva potvrdi bezbednost, efikasnost i

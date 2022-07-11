@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping(value = "sluzbenici/interesovanja", produces = {"application/xml" })
+@RequestMapping(value = "api/sluzbenici/interesovanja", produces = {"application/xml" })
 public class InteresovanjeVebServis {
 
     private final InteresovanjeServis interesovanjeServis;
@@ -42,6 +42,16 @@ public class InteresovanjeVebServis {
             return new ResponseEntity<>(interesovanje, HttpStatus.OK);
         }else{
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PostMapping("/upis")
+    public ResponseEntity<?> upisInteresovanja(@RequestBody Interesovanje interesovanje) {
+        if (interesovanje != null) {
+            this.interesovanjeServis.upis(interesovanje);
+            return new ResponseEntity<>(null, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
 }

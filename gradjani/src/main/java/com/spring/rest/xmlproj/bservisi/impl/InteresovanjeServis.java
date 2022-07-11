@@ -2,16 +2,23 @@ package com.spring.rest.xmlproj.bservisi.impl;
 
 import com.spring.rest.xmlproj.bservisi.IInteresovanjeServis;
 import com.spring.rest.xmlproj.obj.interesovanje.Interesovanje;
+import com.spring.rest.xmlproj.obj.interesovanje.Interesovanje.IzabraneVakcine.Vakcina;
 import com.spring.rest.xmlproj.rdf.UpisMeta;
 import com.spring.rest.xmlproj.repo.InteresovanjeRepo;
 import com.spring.rest.xmlproj.util.FusekiAuthenticationUtilities;
+import com.spring.rest.xmlproj.util.HtmlTransformer;
+import com.spring.rest.xmlproj.util.PDFTransformer;
+import com.spring.rest.xmlproj.util.RandomString;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Service
 public class InteresovanjeServis implements IInteresovanjeServis {
@@ -19,20 +26,37 @@ public class InteresovanjeServis implements IInteresovanjeServis {
     private String configPath;
 
     private final InteresovanjeRepo interesovanjeRepo;
-    private final RestTemplate restTemplate;
+    private final EmailServis emailServis;
+    private final PDFTransformer pdfTransformer;
+    private final HtmlTransformer htmlTransformer;
 
     @Autowired
-    public InteresovanjeServis(InteresovanjeRepo interesovanjeRepo, RestTemplate restTemplate) {
+    public InteresovanjeServis(InteresovanjeRepo interesovanjeRepo, EmailServis emailServis, PDFTransformer pdfTransformer, HtmlTransformer htmlTransformer) {
         this.interesovanjeRepo = interesovanjeRepo;
-        this.restTemplate = restTemplate;
+        this.emailServis = emailServis;
+        this.pdfTransformer = pdfTransformer;
+        this.htmlTransformer = htmlTransformer;
     }
 
     @Override
     public void upis(Interesovanje entitet) {
         try {
+            if(entitet.getSifra() == null || entitet.getSifra().equals(""))
+                entitet.setSifra(RandomString.getAlphaNumericString(8).toUpperCase());
+            entitet.setAbout("http://www.xmlproj.rs/gradjanin/interesovanje/"+entitet.getSifra());
+            entitet.setRel("pred:saglasnost");
+            for(Vakcina v : entitet.getIzabraneVakcine().getVakcina())
+                v.setProperty("pred:nazivVakcine");
+            entitet.getDatum().setProperty("pred:podneto");
             this.interesovanjeRepo.upis(entitet);
             this.interesovanjeRepo.generisiXML(entitet);
-            UpisMeta.run(FusekiAuthenticationUtilities.loadProperties(), "/metadata", "../data/xml/interesovanja/"+entitet.getSifra()+".xml", "../data/rdf/interesovanja/"+entitet.getSifra()+".rdf");
+
+            htmlTransformer.generateHTML(configPath+"/data/xml/interesovanja/"+entitet.getSifra()+".xml", configPath+"/data/xslt/interesovanje.xsl");
+            pdfTransformer.generatePDFfromHTML(configPath+"/data/transform_result/html/"+entitet.getSifra()+".html");
+            emailServis.slanjeInteresovanja(entitet.getLicniPodaci().getKontakt().getEmail(), configPath+"/data/transform_result/pdf/"+entitet.getSifra()+".pdf");
+            UpisMeta.run(FusekiAuthenticationUtilities.loadProperties(), "/metadata", configPath+"/data/xml/interesovanja/"+entitet.getSifra()+".xml", configPath+"/data/rdf/interesovanja/"+entitet.getSifra()+".rdf");
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }

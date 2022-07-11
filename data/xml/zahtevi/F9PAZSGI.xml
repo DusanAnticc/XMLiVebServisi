@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns3:Zahtev xmlns="http://www.xmlproj.rs/gradjanin/licniPodaci" xmlns:pred="http://www.xmlproj.rs/zahtev/predikati/" xmlns:ns3="http://www.xmlproj.rs/gradjanin/zahtev" about="http://www.xmlproj.rs/gradjanin/zahtev/F9PAZSGI" rel="pred:potvrda" Sifra="F9PAZSGI">
+    <Licni_podaci>
+        <Jmbg>9856595234631</Jmbg>
+        <Ime>dusna</Ime>
+        <Prezime>Dusan</Prezime>
+        <Datum_rodjenja>1997-06-12</Datum_rodjenja>
+        <Pol>Muski</Pol>
+        <Br_pasosa>061115748</Br_pasosa>
+    </Licni_podaci>
+    <ns3:Razlog property="pred:razlog">leto</ns3:Razlog>
+    <ns3:Mesto property="pred:mesto">Nis</ns3:Mesto>
+    <ns3:Datum_podnosenja property="pred:podnet">2022-07-11</ns3:Datum_podnosenja>
+</ns3:Zahtev>

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
-@RequestMapping(value = "sluzbenici/korisnici", produces = {"application/xml"})
+@RequestMapping(value = "api/sluzbenici/korisnici", produces = {"application/xml"})
 public class KorisnikVebServis {
 
     private final KorisnikServis korisnikServis;

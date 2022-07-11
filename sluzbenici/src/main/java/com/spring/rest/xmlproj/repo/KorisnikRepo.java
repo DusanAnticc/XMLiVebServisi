@@ -4,6 +4,7 @@ import com.spring.rest.xmlproj.obj.korisnik.Korisnik;
 import com.spring.rest.xmlproj.obj.potvrda.Potvrda;
 import com.spring.rest.xmlproj.util.AuthenticationUtilities;
 import org.exist.xmldb.EXistResource;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 import org.xmldb.api.DatabaseManager;
 import org.xmldb.api.base.Collection;
@@ -25,6 +26,8 @@ import static com.spring.rest.xmlproj.util.CollectionUtil.getOrCreateCollection;
 
 @Repository
 public class KorisnikRepo implements Repo<Korisnik>{
+    @Value("${configPath}")
+    private String configPath;
 
     private final String kolekcija = "/db/xmlproj/korisnici";
     private final String JAXBKontekst = "com.spring.rest.xmlproj.obj.korisnik";
@@ -209,7 +212,7 @@ public class KorisnikRepo implements Repo<Korisnik>{
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 
 
-            File temp = new File(".." + File.separator + "data" + File.separator + "xml"+ File.separator + "korisnici" + File.separator + entitet.getLicniPodaci().getKontakt().getEmail() + ".xml");
+            File temp = new File(configPath + File.separator + "data" + File.separator + "xml"+ File.separator + "korisnici" + File.separator + entitet.getLicniPodaci().getKontakt().getEmail() + ".xml");
             temp.createNewFile();
             marshaller.marshal(entitet, temp);
         }catch(Exception e){

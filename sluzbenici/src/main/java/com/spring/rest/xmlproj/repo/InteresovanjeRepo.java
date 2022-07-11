@@ -3,6 +3,7 @@ package com.spring.rest.xmlproj.repo;
 import com.spring.rest.xmlproj.obj.interesovanje.Interesovanje;
 import com.spring.rest.xmlproj.util.AuthenticationUtilities;
 import org.exist.xmldb.EXistResource;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 import org.xmldb.api.DatabaseManager;
 import org.xmldb.api.base.Collection;
@@ -25,6 +26,8 @@ import static com.spring.rest.xmlproj.util.CollectionUtil.getOrCreateCollection;
 
 @Repository
 public class InteresovanjeRepo implements Repo<Interesovanje>{
+    @Value("${configPath}")
+    private String configPath;
 
     private final String kolekcija = "/db/xmlproj/gradjanin/interesovanja";
     private final String JAXBKontekst = "com.spring.rest.xmlproj.obj.interesovanje";
@@ -208,7 +211,7 @@ public class InteresovanjeRepo implements Repo<Interesovanje>{
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 
 
-            File temp = new File(".." + File.separator + "data" + File.separator + "xml"+ File.separator + "interesovanja" + File.separator + entitet.getSifra() + ".xml");
+            File temp = new File(configPath + File.separator + "data" + File.separator + "xml"+ File.separator + "interesovanja" + File.separator + entitet.getSifra() + ".xml");
             temp.createNewFile();
             marshaller.marshal(entitet, temp);
         }catch(Exception e){

@@ -28,6 +28,7 @@ public class KorisnikServis implements IKorisnikServis {
     @Override
     public void upis(Korisnik entitet) {
         try{
+            entitet.setAbout("http://www.xmlproj.rs/korisnik/"+entitet.getLicniPodaci().getKontakt().getEmail());
             this.korisnikRepo.upis(entitet);
             this.korisnikRepo.generisiXML(entitet);
             UpisMeta.run(FusekiAuthenticationUtilities.loadProperties(), "/metadata", configPath+"/data/xml/korisnici/"+entitet.getLicniPodaci().getKontakt().getEmail()+".xml", configPath+"/data/rdf/korisnici/"+entitet.getLicniPodaci().getKontakt().getEmail()+".rdf");

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns3:Saglasnost xmlns="http://www.xmlproj.rs/gradjanin/licniPodaci" xmlns:pred="http://www.xmlproj.rs/saglasnost/predikati/" xmlns:ns3="http://www.xmlproj.rs/gradjanin/saglasnost" Sifra="BO9AF86M9E" about="http://www.xmlproj.rs/gradjanin/saglasnost/BO9AF86M9E" rel="pred:interesovanje">
+    <ns3:Pacijentov_deo>
+        <ns3:Drzavljanstvo>srpsko</ns3:Drzavljanstvo>
+        <Licni_podaci>
+            <Jmbg>5498132326541</Jmbg>
+            <Ime>Dusan</Ime>
+            <Prezime>Danac</Prezime>
+            <Datum_rodjenja>1997-12-06</Datum_rodjenja>
+            <Pol>Muski</Pol>
+            <Kontakt>
+                <Broj_fiksnog>068984548</Broj_fiksnog>
+                <Broj_mobilnog>0689845484</Broj_mobilnog>
+                <Email>dusan@maildrop.cc</Email>
+            </Kontakt>
+        </Licni_podaci>
+        <ns3:Ime_roditelja>Dusan</ns3:Ime_roditelja>
+        <ns3:Mesto_rodjenja>Banja Luka</ns3:Mesto_rodjenja>
+        <ns3:Adresa>
+            <ns3:Mesto>Banja Luka</ns3:Mesto>
+            <ns3:Ulica>jdsghsdkjghsdgjksd</ns3:Ulica>
+            <ns3:Broj>5</ns3:Broj>
+        </ns3:Adresa>
+        <ns3:Radni_status>penzioner</ns3:Radni_status>
+        <ns3:Zanimanje>vojska</ns3:Zanimanje>
+        <ns3:Koristi_soc_zastitu>
+            <ns3:Vrednost property="pred:koristiSoc">true</ns3:Vrednost>
+            <ns3:Opstina>dfg</ns3:Opstina>
+        </ns3:Koristi_soc_zastitu>
+        <ns3:Izjava>
+            <ns3:Vrednost>true</ns3:Vrednost>
+            <ns3:Lek>AstraZeneca</ns3:Lek>
+        </ns3:Izjava>
+        <ns3:Datum property="pred:podneta">2022-07-11</ns3:Datum>
+    </ns3:Pacijentov_deo>
+    <ns3:Radnikov_deo>
+        <ns3:Zdravstvena_ustanova property="pred:ustanova"></ns3:Zdravstvena_ustanova>
+        <ns3:Vakc_punkt></ns3:Vakc_punkt>
+        <ns3:Podaci_lekar>
+            <ns3:Ime></ns3:Ime>
+            <ns3:Prezime></ns3:Prezime>
+            <ns3:Faksimil property="pred:faksimil"></ns3:Faksimil>
+            <ns3:Broj_telefona></ns3:Broj_telefona>
+        </ns3:Podaci_lekar>
+        <ns3:Vakcine/>
+        <ns3:Privremene_nuspojave/>
+        <ns3:Odluka property="pred:odluka">false</ns3:Odluka>
+    </ns3:Radnikov_deo>
+</ns3:Saglasnost>

@@ -9,19 +9,36 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.tool.xml.XMLWorker;
 import com.itextpdf.tool.xml.XMLWorkerHelper;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class PDFTransformer {
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
-    public static final String INPUT_FILE = "../data/transform_result/html/potvrda.html";
+@Component
+public class PDFTransformer {
+    @Value("${configPath}")
+    private String configPath;
+
+    public static final String INPUT_FILE = "C:/Users/Dusan/Desktop/XMLiVebServisi/data/transform_result/html/potvrda.html";
 
     public void generatePDFfromHTML(String htmlLocation) throws IOException, DocumentException {
+        File htmlFile = new File(htmlLocation);
+        String htmlFileName = htmlFile.getName().split("\\.")[0];
+
+        String outputLocation = "C:/Users/Dusan/Desktop/XMLiVebServisi/data/transform_result/pdf/"+htmlFileName+".pdf";
+
+        File pdfFile = new File(outputLocation);
+
+        
+        System.out.println("Created pdf file:"+pdfFile.createNewFile());
+
         Document document = new Document();
 
-        PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream("../data/transform_result/pdf/potvrda.pdf"));
+        PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream(outputLocation));
 
         document.open();
 
