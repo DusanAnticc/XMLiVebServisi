@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="card">
+      <form class="card-form">
+            <h2 class="card-title">Potvrda o vakcinaciji</h2>
+        <div class="input">
+            <input
+                type="text"
+                class="input-field"
+                id="nameAndSurname"
+                name="nameAndSurname"
+                required
+            />
+            <label class="input-label">Ime i prezime</label>
+        </div>
+        <div class="input">
+          <input
+            type="date"
+            class="input-field"
+            id="startDate"
+            name="startDate"
+            required
+          />
+          <label class="input-label">Datum rodjenja</label>
+        </div>
+        <div class="input">
+                <select name="gender" class="drop-menu" id="lang">
+                    <option value="Musko">Musko</option>
+                    <option value="Zensko">Zensko</option>
+                    <option value="Drugo">Drugo</option>
+                </select>
+            <label class="input-label">Pol</label>
+        </div>
+        <div class="input">
+            <input
+              type="text"
+              class="input-field"
+              id="jmbg"
+              name="jmbg"
+              required
+            />
+            <label class="input-label">Jmbg</label>
+        </div>
+        <div class="input">
+            <select name="vaccine" class="drop-menu" id="lang">
+                <option value="Pfizer-BioNtech">Pfizer-BioNtech</option>
+                <option value="Sputnik V">Sputnik V</option>
+                <option value="Sinopharm">Sinopharm</option>
+                <option value="AstraZeneca">AstraZeneca</option>
+                <option value="Moderna">Moderna</option>
+            </select>
+        <label class="input-label">Odaberite vakcinu</label>
+        </div>
+
+        <div class="action">
+          <button
+            type="submit"
+            class="action-button"
+            id="submit"
+            name="submit"
+            (click)="confirmDose()"
+          >
+            Potvrdi primljenu dozu vakcine
+          </button>
+        </div>
+      </form>
+      <div class="card-info">
+        <div class="action">
+      </div>
+    </div>
+  </div>
