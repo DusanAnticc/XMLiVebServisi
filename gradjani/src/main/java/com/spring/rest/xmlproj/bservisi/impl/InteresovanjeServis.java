@@ -12,11 +12,15 @@ import com.spring.rest.xmlproj.util.RandomString;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -29,13 +33,15 @@ public class InteresovanjeServis implements IInteresovanjeServis {
     private final EmailServis emailServis;
     private final PDFTransformer pdfTransformer;
     private final HtmlTransformer htmlTransformer;
+    private final RestTemplate restTemplate;
 
     @Autowired
-    public InteresovanjeServis(InteresovanjeRepo interesovanjeRepo, EmailServis emailServis, PDFTransformer pdfTransformer, HtmlTransformer htmlTransformer) {
+    public InteresovanjeServis(InteresovanjeRepo interesovanjeRepo, EmailServis emailServis, PDFTransformer pdfTransformer, HtmlTransformer htmlTransformer, RestTemplate restTemplate) {
         this.interesovanjeRepo = interesovanjeRepo;
         this.emailServis = emailServis;
         this.pdfTransformer = pdfTransformer;
         this.htmlTransformer = htmlTransformer;
+        this.restTemplate = restTemplate;
     }
 
     @Override
@@ -55,6 +61,8 @@ public class InteresovanjeServis implements IInteresovanjeServis {
             pdfTransformer.generatePDFfromHTML(configPath+"/data/transform_result/html/"+entitet.getSifra()+".html");
             emailServis.slanjeInteresovanja(entitet.getLicniPodaci().getKontakt().getEmail(), configPath+"/data/transform_result/pdf/"+entitet.getSifra()+".pdf");
             UpisMeta.run(FusekiAuthenticationUtilities.loadProperties(), "/metadata", configPath+"/data/xml/interesovanja/"+entitet.getSifra()+".xml", configPath+"/data/rdf/interesovanja/"+entitet.getSifra()+".rdf");
+
+            this.slanjeSluzbenicima(entitet);
 
 
         } catch (Exception e) {
@@ -78,5 +86,13 @@ public class InteresovanjeServis implements IInteresovanjeServis {
         } catch (Exception e) {
             return new ArrayList<Interesovanje>();
         }
+    }
+
+    public void slanjeSluzbenicima(Interesovanje entitet){
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_XML);
+        HttpEntity<Interesovanje> request = new HttpEntity<Interesovanje>(entitet, headers);
+
+        ResponseEntity<Interesovanje> entity = restTemplate.postForEntity("http://localhost:8081/api/sluzbenici/interesovanja/upis", request, Interesovanje.class);
     }
 }

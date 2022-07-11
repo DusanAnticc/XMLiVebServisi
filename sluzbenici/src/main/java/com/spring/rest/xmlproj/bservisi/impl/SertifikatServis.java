@@ -2,9 +2,11 @@ package com.spring.rest.xmlproj.bservisi.impl;
 
 import com.spring.rest.xmlproj.bservisi.ISertifikatServis;
 import com.spring.rest.xmlproj.obj.sertifikat.Sertifikat;
+import com.spring.rest.xmlproj.obj.sertifikat.Sertifikat.Vakcinacije.Vakcinacija;
 import com.spring.rest.xmlproj.rdf.UpisMeta;
 import com.spring.rest.xmlproj.repo.SertifikatRepo;
 import com.spring.rest.xmlproj.util.FusekiAuthenticationUtilities;
+import com.spring.rest.xmlproj.util.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -27,6 +29,15 @@ public class SertifikatServis implements ISertifikatServis {
     @Override
     public void upis(Sertifikat entitet) {
         try {
+            if(entitet.getBrojSertifikata() == null || entitet.getBrojSertifikata().equals(""))
+                entitet.setBrojSertifikata(RandomString.getAlphaNumericString(8).toUpperCase());
+            entitet.setAbout("http://www.xmlproj.rs/gradjanin/sertifikat/"+entitet.getBrojSertifikata());
+            entitet.setRel("pred:zahtev");
+            entitet.getQRKod().setProperty("pred:qr");
+            for(Vakcinacija v : entitet.getVakcinacije().getVakcinacija()){
+                v.getNaziv().setProperty("pred:nazivVakcine");
+                v.getDatumPrimanja().setProperty("pred:primljena");
+            }
             this.sertifikatRepo.upis(entitet);
             this.sertifikatRepo.generisiXML(entitet);
             UpisMeta.run(FusekiAuthenticationUtilities.loadProperties(), "/metadata", configPath+"/data/xml/sertifikati/"+entitet.getBrojSertifikata()+".xml", configPath+"/data/rdf/sertifikati/"+entitet.getBrojSertifikata()+".rdf");

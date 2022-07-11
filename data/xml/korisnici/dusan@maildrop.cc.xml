@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:Korisnik xmlns="http://www.xmlproj.rs/gradjanin/licniPodaci" xmlns:ns2="http://www.xmlproj.rs/korisnik" about="http://www.xmlproj.rs/korisnik/dusan@maildrop.cc">
+    <Licni_podaci>
+        <Jmbg>5498132326541</Jmbg>
+        <Ime>Dusan</Ime>
+        <Prezime>Danac</Prezime>
+        <Datum_rodjenja>1997-12-06</Datum_rodjenja>
+        <Pol>Muski</Pol>
+        <Kontakt>
+            <Broj_fiksnog>068984548</Broj_fiksnog>
+            <Broj_mobilnog>0689845484</Broj_mobilnog>
+            <Email>dusan@maildrop.cc</Email>
+        </Kontakt>
+    </Licni_podaci>
+    <ns2:Lozinka>123</ns2:Lozinka>
+    <ns2:Uloga>gradjanin</ns2:Uloga>
+</ns2:Korisnik>

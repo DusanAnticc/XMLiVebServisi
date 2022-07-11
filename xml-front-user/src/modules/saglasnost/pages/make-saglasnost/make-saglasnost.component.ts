@@ -63,7 +63,7 @@ export class MakeSaglasnostComponent {
     this.form = new FormGroup({
       jmbg: new FormControl('', [Validators.pattern('[0-9 ]{13}')]),
       stranoDrzavljanstvo: new FormControl(''),
-      brPasosa: new FormControl(''),
+      brPasosa: new FormControl('', [Validators.pattern('[0-9 ]{9}')]),
       imeRoditelja: new FormControl('', [Validators.required]),
       datum: new FormControl('', [
         Validators.required,
@@ -153,7 +153,6 @@ export class MakeSaglasnostComponent {
         },
       },
     };
-    console.log('majmun');
 
     this.saglasnostService.create(obj).subscribe((result: any) => {
       this.parser.parseString(result, function (err: any, res: any) {});

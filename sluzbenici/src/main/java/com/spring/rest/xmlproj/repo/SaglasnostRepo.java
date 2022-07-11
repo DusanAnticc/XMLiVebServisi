@@ -28,7 +28,7 @@ public class SaglasnostRepo implements Repo<Saglasnost>{
     @Value("${configPath}")
     private String configPath;
 
-    private final String kolekcija = "/db/xmlproj/gradjanin/saglasnosti";
+    private final String kolekcija = "/db/xmlproj/sluzbenik/saglasnosti";
     private final String JAXBKontekst = "com.spring.rest.xmlproj.obj.saglasnost";
 
     @Override

@@ -28,7 +28,7 @@ public class ZahtevRepo implements Repo<Zahtev> {
     @Value("${configPath}")
     private String configPath;
 
-    private final String kolekcija = "/db/xmlproj/gradjanin/zahtevi";
+    private final String kolekcija = "/db/xmlproj/sluzbenik/zahtevi";
     private final String JAXBKontekst = "com.spring.rest.xmlproj.obj.zahtev";
 
     @Override

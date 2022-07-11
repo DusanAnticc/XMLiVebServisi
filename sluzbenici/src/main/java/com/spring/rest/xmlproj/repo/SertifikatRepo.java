@@ -28,7 +28,7 @@ public class SertifikatRepo implements Repo<Sertifikat> {
     @Value("${configPath}")
     private String configPath;
 
-    private final String kolekcija = "/db/xmlproj/gradjanin/sertifikati";
+    private final String kolekcija = "/db/xmlproj/sluzbenik/sertifikati";
     private final String JAXBKontekst = "com.spring.rest.xmlproj.obj.sertifikat";
 
     @Override
