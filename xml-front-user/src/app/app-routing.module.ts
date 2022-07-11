@@ -34,6 +34,13 @@ const routes: Routes = [
             (m) => m.RegistracijaModule
           ),
       },
+      {
+        path: 'prijava',
+        loadChildren: () =>
+          import('./../modules/prijava/prijava.module').then(
+            (m) => m.PrijavaModule
+          ),
+      },
     ],
   },
 ];
