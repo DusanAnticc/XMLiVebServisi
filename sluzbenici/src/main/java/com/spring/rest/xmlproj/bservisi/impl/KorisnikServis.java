@@ -6,6 +6,7 @@ import com.spring.rest.xmlproj.rdf.UpisMeta;
 import com.spring.rest.xmlproj.repo.KorisnikRepo;
 import com.spring.rest.xmlproj.util.FusekiAuthenticationUtilities;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,6 +14,8 @@ import java.util.List;
 
 @Service
 public class KorisnikServis implements IKorisnikServis {
+    @Value("${configPath}")
+    private String configPath;
 
     private final KorisnikRepo korisnikRepo;
 
@@ -26,7 +29,7 @@ public class KorisnikServis implements IKorisnikServis {
         try{
             this.korisnikRepo.upis(entitet);
             this.korisnikRepo.generisiXML(entitet);
-            UpisMeta.run(FusekiAuthenticationUtilities.loadProperties(), "/metadata", "../data/xml/korisnici/"+entitet.getLicniPodaci().getKontakt().getEmail()+".xml", "../data/rdf/korisnici/"+entitet.getLicniPodaci().getKontakt().getEmail()+".rdf");
+            UpisMeta.run(FusekiAuthenticationUtilities.loadProperties(), "/metadata", configPath+"/data/xml/korisnici/"+entitet.getLicniPodaci().getKontakt().getEmail()+".xml", configPath+"/data/rdf/korisnici/"+entitet.getLicniPodaci().getKontakt().getEmail()+".rdf");
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,0 +1,20 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
+  <rdf:Description rdf:about="http://www.xmlproj.rs/gradjanin/saglasnost/BO9AF86M9E">
+    <pred:interesovanje xmlns:pred="http://www.xmlproj.rs/saglasnost/predikati/" rdf:resource="http://www.xmlproj.rs/gradjanin/saglasnost/BO9AF86M9E"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.xmlproj.rs/gradjanin/saglasnost/BO9AF86M9E">
+    <pred:koristiSoc xmlns:pred="http://www.xmlproj.rs/saglasnost/predikati/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">true</pred:koristiSoc>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.xmlproj.rs/gradjanin/saglasnost/BO9AF86M9E">
+    <pred:podneta xmlns:pred="http://www.xmlproj.rs/saglasnost/predikati/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">2022-07-11</pred:podneta>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.xmlproj.rs/gradjanin/saglasnost/BO9AF86M9E">
+    <pred:ustanova xmlns:pred="http://www.xmlproj.rs/saglasnost/predikati/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.xmlproj.rs/gradjanin/saglasnost/BO9AF86M9E">
+    <pred:faksimil xmlns:pred="http://www.xmlproj.rs/saglasnost/predikati/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.xmlproj.rs/gradjanin/saglasnost/BO9AF86M9E">
+    <pred:odluka xmlns:pred="http://www.xmlproj.rs/saglasnost/predikati/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">false</pred:odluka>
+  </rdf:Description>
+</rdf:RDF>

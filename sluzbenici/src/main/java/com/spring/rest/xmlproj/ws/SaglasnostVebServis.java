@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping(value = "sluzbenici/saglasnosti", produces = {"application/xml"})
+@RequestMapping(value = "api/sluzbenici/saglasnosti", produces = {"application/xml"})
 public class SaglasnostVebServis {
 
     private final SaglasnostServis saglasnostServis;

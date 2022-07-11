@@ -27,18 +27,15 @@ const routes: Routes = [
             (m) => m.InteresovanjeModule
           ),
       },
+      {
+        path: 'registracija',
+        loadChildren: () =>
+          import('./../modules/registracija/registracija.module').then(
+            (m) => m.RegistracijaModule
+          ),
+      },
     ],
   },
-  // {
-  //   path: 'auth',
-  //   children: [
-  //     {
-  //       path: '',
-  //       loadChildren: () =>
-  //         import('./../auth/auth.module').then((m) => m.AuthModule),
-  //     },
-  //   ],
-  // },
 ];
 
 @NgModule({

@@ -1,0 +1,120 @@
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <h2>Dopuna saglaasnosti za vakcinisanje protiv COVID-19</h2>
+      <mat-form-field>
+        <input matInput placeholder="Jmbg pacijenta" formControlName="jmbg" />
+        <mat-error *ngIf="!form.valid"
+          >Jmbg je <strong>obavezan</strong></mat-error
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Zdravstvena ustanova"
+          formControlName="zdravstvenaUstanova"
+        />
+        <mat-error *ngIf="!form.valid"
+          >Zdravstvena ustanova je <strong>obavezan</strong></mat-error
+        >
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Datum vakcinacije</mat-label>
+        <input
+          matInput
+          [matDatepicker]="matDate3Picker"
+          formControlName="datumDavanjaVakcine"
+        />
+        <mat-datepicker-toggle matSuffix [for]="matDate3Picker">
+        </mat-datepicker-toggle>
+        <mat-datepicker #matDate3Picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Vakcinacijski punkt"
+          formControlName="vakcinacijskiPunkt"
+        />
+        <mat-error *ngIf="!form.valid"
+          >Vakcinacijski punkt je <strong>obavezan</strong></mat-error
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Podaci o lekaru"
+          formControlName="podaciOLekaru"
+        />
+        <mat-error *ngIf="!form.valid"
+          >Podaci o lekaru je <strong>obavezan</strong></mat-error
+        >
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="select">
+        <mat-label>Odaberite vakcinu</mat-label>
+        <mat-select required formControlName="vakcina">
+          <mat-option *ngFor="let vaccine of vaccines" [value]="vaccine.value">
+            {{ vaccine.value }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="!form.valid"><strong>Obavezno</strong></mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Način davanja vakcine"
+          formControlName="nacinDavanjaVakcine"
+        />
+        <mat-error *ngIf="!form.valid"
+          >Način davanja vakcine je <strong>obavezan</strong></mat-error
+        >
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="select">
+        <mat-label>Odaberite ekstremitet</mat-label>
+        <mat-select required formControlName="ekstremitet">
+          <mat-option *ngFor="let ekst of ekstremitet" [value]="ekst.value">
+            {{ ekst.viewValue }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="!form.valid"><strong>Obavezno</strong></mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Serija vakcine"
+          formControlName="serijaVakcine"
+        />
+        <mat-error *ngIf="!form.valid"
+          >Serija vakcine je <strong>obavezan</strong></mat-error
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Proizvođač vakcine"
+          formControlName="proizvodjac"
+        />
+        <mat-error *ngIf="!form.valid"
+          >Proizvođač vakcine je <strong>obavezan</strong></mat-error
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Neželjena vakcine"
+          formControlName="nezeljenaReakcija"
+        />
+        <mat-error *ngIf="!form.valid"
+          >Neželjena vakcine je <strong>obavezan</strong></mat-error
+        >
+      </mat-form-field>
+      <button
+        class="b"
+        mat-raised-button
+        color="primary"
+        [disabled]="!form.valid"
+      >
+        Kreiraj
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

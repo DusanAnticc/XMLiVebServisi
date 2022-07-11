@@ -17,6 +17,7 @@ import com.spring.rest.xmlproj.obj.saglasnost.Saglasnost;
 import com.spring.rest.xmlproj.obj.sertifikat.Sertifikat;
 import com.spring.rest.xmlproj.obj.zahtev.Zahtev;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.xml.sax.SAXException;
 
@@ -33,6 +34,9 @@ import java.util.HashMap;
 public class HtmlTransformer {
 	@Autowired
 	private JaxBParser parser;
+
+    @Value("${configPath}")
+    private String configPath;
 	
     private static DocumentBuilderFactory documentFactory;
 
@@ -92,6 +96,14 @@ public class HtmlTransformer {
     public void generateHTML(String xmlPath, String xslPath) throws FileNotFoundException {
 
         try {
+            File xmlFile = new File(xmlPath);
+
+            String outputPath = "C:/Users/Dusan/Desktop/XMLiVebServisi/data/transform_result/html/"+xmlFile.getName().split("\\.")[0]+".html";
+
+            System.out.println(outputPath);
+
+            File outputHtmlFile = new File(outputPath);
+            System.out.println("Created html file:"+outputHtmlFile.createNewFile());
 
             // Initialize Transformer instance
             StreamSource transformSource = new StreamSource(new File(xslPath));
@@ -104,7 +116,7 @@ public class HtmlTransformer {
 
             // Transform DOM to HTML
             DOMSource source = new DOMSource(buildDocument(xmlPath));
-            StreamResult result = new StreamResult(new FileOutputStream(HTML_FILE));
+            StreamResult result = new StreamResult(new FileOutputStream(outputPath));
             transformer.transform(source, result);
             
             
@@ -114,6 +126,9 @@ public class HtmlTransformer {
         } catch (TransformerFactoryConfigurationError e) {
             e.printStackTrace();
         } catch (TransformerException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

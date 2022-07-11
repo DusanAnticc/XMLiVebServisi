@@ -12,7 +12,7 @@
 	<groupId>com.spring</groupId>
 	<artifactId>rest</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>rest</name>
+	<name>rest-sluzbenik</name>
 	<description>JAX RS with Spring Boot primer</description>
 
 	<properties>

@@ -6,6 +6,7 @@ import com.spring.rest.xmlproj.rdf.UpisMeta;
 import com.spring.rest.xmlproj.repo.SaglasnostRepo;
 import com.spring.rest.xmlproj.util.FusekiAuthenticationUtilities;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,6 +14,9 @@ import java.util.List;
 
 @Service
 public class SaglasnostServis implements ISaglasnostServis {
+    @Value("${configPath}")
+    private String configPath;
+
     private final SaglasnostRepo saglasnostRepo;
 
     @Autowired
@@ -25,7 +29,7 @@ public class SaglasnostServis implements ISaglasnostServis {
         try {
             this.saglasnostRepo.upis(saglasnost);
             this.saglasnostRepo.generisiXML(saglasnost);
-            UpisMeta.run(FusekiAuthenticationUtilities.loadProperties(), "/metadata", "../data/xml/saglasnosti/"+saglasnost.getSifra()+".xml", "../data/rdf/saglasnosti/"+saglasnost.getSifra()+".rdf");
+            UpisMeta.run(FusekiAuthenticationUtilities.loadProperties(), "/metadata", configPath+"/data/xml/saglasnosti/"+saglasnost.getSifra()+".xml", configPath+"/data/rdf/saglasnosti/"+saglasnost.getSifra()+".rdf");
         } catch (Exception e) {
             e.printStackTrace();
         }

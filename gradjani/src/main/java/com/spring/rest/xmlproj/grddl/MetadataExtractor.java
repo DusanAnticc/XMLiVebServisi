@@ -31,7 +31,7 @@ public class MetadataExtractor {
 	
 	private TransformerFactory transformerFactory;
 
-	private static String XSLT_FILE = "...\\data\\xsl\\grddl.xsl";
+	private static String XSLT_FILE = "C:\\Users\\Dusan\\Desktop\\XMLiVebServisi\\data\\xsl\\grddl.xsl";
 	
 	public MetadataExtractor() throws SAXException, IOException {
 		

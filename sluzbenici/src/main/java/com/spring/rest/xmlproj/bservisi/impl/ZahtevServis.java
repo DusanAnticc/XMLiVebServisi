@@ -6,6 +6,7 @@ import com.spring.rest.xmlproj.rdf.UpisMeta;
 import com.spring.rest.xmlproj.repo.ZahtevRepo;
 import com.spring.rest.xmlproj.util.FusekiAuthenticationUtilities;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,6 +14,8 @@ import java.util.List;
 
 @Service
 public class ZahtevServis implements IZahtevServis {
+    @Value("${configPath}")
+    private String configPath;
 
     private final ZahtevRepo zahtevRepo;
 
@@ -27,7 +30,7 @@ public class ZahtevServis implements IZahtevServis {
         try {
             this.zahtevRepo.upis(entitet);
             this.zahtevRepo.generisiXML(entitet);
-            UpisMeta.run(FusekiAuthenticationUtilities.loadProperties(), "/metadata", "../data/xml/zahtevi/"+entitet.getSifra()+".xml", "../data/rdf/zahtevi/"+entitet.getSifra()+".rdf");
+            UpisMeta.run(FusekiAuthenticationUtilities.loadProperties(), "/metadata", configPath+"/data/xml/zahtevi/"+entitet.getSifra()+".xml", configPath+"/data/rdf/zahtevi/"+entitet.getSifra()+".rdf");
         } catch (Exception e) {
             e.printStackTrace();
         }

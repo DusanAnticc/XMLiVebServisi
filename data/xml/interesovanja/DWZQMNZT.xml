@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns3:Interesovanje xmlns="http://www.xmlproj.rs/gradjanin/licniPodaci" xmlns:pred="http://www.xmlproj.rs/interesovanje/predikati/" xmlns:ns3="http://www.xmlproj.rs/gradjanin/interesovanje" about="http://www.xmlproj.rs/gradjanin/interesovanje/DWZQMNZT" rel="pred:saglasnost" Sifra="DWZQMNZT">
+    <ns3:Opcija>strani_bez_boravka_u_rs</ns3:Opcija>
+    <Licni_podaci>
+        <Jmbg>5498132326541</Jmbg>
+        <Ime>Dusan</Ime>
+        <Prezime>Antic</Prezime>
+        <Kontakt>
+            <Broj_fiksnog>061115748</Broj_fiksnog>
+            <Broj_mobilnog>0611157484</Broj_mobilnog>
+            <Email>dusan@maildrop.cc</Email>
+        </Kontakt>
+        <Opstina>Nis</Opstina>
+    </Licni_podaci>
+    <ns3:Davalac_krvi>false</ns3:Davalac_krvi>
+    <ns3:Izabrane_vakcine>
+        <ns3:Vakcina property="pred:nazivVakcine">Sputnik V</ns3:Vakcina>
+    </ns3:Izabrane_vakcine>
+    <ns3:Datum property="pred:podneto">2022-07-11</ns3:Datum>
+</ns3:Interesovanje>
