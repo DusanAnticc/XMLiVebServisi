@@ -1,6 +1,7 @@
 package com.spring.rest.xmlproj.bservisi.impl;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.mail.MessagingException;
@@ -29,7 +30,7 @@ public class EmailServis {
         this.javaMailSender = javaMailSender;
     }
 
-    public void sendMail(String toEmail, String path) {
+    public void slanjeInteresovanja(String toEmail, String path) {
         try {
             MimeMessage msg = javaMailSender.createMimeMessage();
             msg.setSubject("Interesovanje");
@@ -40,11 +41,16 @@ public class EmailServis {
             
             SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
             Date date = new Date(System.currentTimeMillis());
+            Calendar c = Calendar.getInstance(); 
+            c.setTime(date); 
+            c.add(Calendar.DATE, 7);
+            date = c.getTime();
+
 
             Multipart emailContent = new MimeMultipart();
             MimeBodyPart textBodyPart = new MimeBodyPart();
-            textBodyPart.setText("Pozdravljamo vašu zainteresovanost za imunizaciju!" +
-                    "Vaš termin je" + formatter.format(date)+
+            textBodyPart.setText("Pozdravljamo vašu zainteresovanost za imunizaciju!\n" +
+                    "Vaš termin je " + formatter.format(date)+" \n"+
                     "U prilogu se nalazi Vaše interesovanje.");
 
             MimeBodyPart jpgBodyPart = new MimeBodyPart();

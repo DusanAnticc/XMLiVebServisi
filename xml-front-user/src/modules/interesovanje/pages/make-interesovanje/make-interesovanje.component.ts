@@ -20,10 +20,7 @@ export class MakeInteresovanjeComponent implements OnInit {
   form: FormGroup;
   parser = new x2js.Parser();
   options: any[] = [
-    {
-      value: 'drzavljanin_rs',
-      viewValue: 'Državljanin Republike Srbije',
-    },
+    { value: 'drzavljanin_rs', viewValue: 'Državljanin Republike Srbije' },
     {
       value: 'strani_sa_boravkom_u_rs',
       viewValue: 'Strani državljanin sa boravkom u RS',
@@ -41,6 +38,7 @@ export class MakeInteresovanjeComponent implements OnInit {
     { value: 'Moderna' },
     { value: 'Bilo koja' },
   ];
+  yesNo: any[] = [{ value: 'Da' }, { value: 'Ne' }];
   opstine: any[] = [
     { value: 'Novi Sad' },
     { value: 'Beograd' },

@@ -1,108 +1,74 @@
 <mat-card>
-  <mat-card-content>
-    <form [formGroup]="form" (ngSubmit)="submit()">
-      <h2>Interesovanje za vakcinisanje protiv COVID-19</h2>
-      <mat-form-field appearance="fill" class="select">
-        <mat-label>Odaberite opciju</mat-label>
-        <mat-select required formControlName="opcija">
-          <mat-option *ngFor="let option of options" [value]="option.value">
-            {{ option.viewValue }}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="!form.valid"><strong>Obavezno</strong></mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Jmbg" formControlName="jmbg" required />
-        <mat-error *ngIf="!form.valid"
-          >Jmbg je <strong>obavezan</strong></mat-error
-        >
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Ime" formControlName="ime" required />
-        <mat-error *ngIf="!form.valid"
-          >Ime je <strong>obavezno</strong></mat-error
-        >
-      </mat-form-field>
-      <mat-form-field>
-        <input
-          matInput
-          placeholder="Prezime"
-          formControlName="prezime"
-          required
-        />
-        <mat-error *ngIf="!form.valid"
-          >Prezime je <strong>obavezno</strong></mat-error
-        >
-      </mat-form-field>
-      <mat-form-field>
-        <input
-          matInput
-          placeholder="Aresa elektronske pošte"
-          formControlName="email"
-          required
-        />
-        <mat-error *ngIf="!form.valid"
-          >Adresa elektronske pošte je <strong>obavezna</strong></mat-error
-        >
-      </mat-form-field>
-      <mat-form-field>
-        <input
-          matInput
-          placeholder="Broj mobilnog telefona (navesti broj u formatu 06X... bez crtica i razmaka)"
-          formControlName="brMobilni"
-          required
-        />
-        <mat-error *ngIf="!form.valid"
-          >Broj mobilnog telefona je potrebno uneti u navedenom
-          formatu</mat-error
-        >
-      </mat-form-field>
-      <mat-form-field>
-        <input
-          matInput
-          placeholder="Broj fiksnog telefona (navesti broj u formatu 011... bez crtica i razmaka)"
-          formControlName="brFiksni"
-          required
-        />
-        <mat-error *ngIf="!form.valid"
-          >Broj fiksnog telefona je potrebno uneti u navedenom
-          formatu</mat-error
-        >
-      </mat-form-field>
-      <mat-form-field appearance="fill" class="select">
-        <mat-label>Odaberite lokaciju gde želite da primite vakcinu</mat-label>
-        <mat-select required formControlName="opstina">
-          <mat-option *ngFor="let o of opstine" [value]="o.value">
-            {{ o.value }}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="!form.valid"><strong>Obavezno</strong></mat-error>
-      </mat-form-field>
-      <mat-form-field appearance="fill" class="select">
-        <mat-label>Odaberite vakcinu</mat-label>
-        <mat-select required formControlName="vakcina">
-          <mat-option *ngFor="let vaccine of vaccines" [value]="vaccine.value">
-            {{ vaccine.value }}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="!form.valid"><strong>Obavezno</strong></mat-error>
-      </mat-form-field>
-      <mat-form-field appearance="fill" class="select">
-        <mat-label>Da li ste dobrovoljni davalac krvi?</mat-label>
-        <mat-select required formControlName="davalac">
-          <mat-option [value]="true">Da</mat-option>
-          <mat-option [value]="false">Ne</mat-option>
-        </mat-select>
-        <mat-error *ngIf="!form.valid"><strong>Obavezno</strong></mat-error>
-      </mat-form-field>
-      <button
-        class="b"
-        mat-raised-button
-        color="primary"
-        [disabled]="!form.valid"
-      >
-        Kreiraj
-      </button>
-    </form>
-  </mat-card-content>
-</mat-card>
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <h2>Interesovanje za vakcinisanje</h2>
+
+        <mat-form-field>
+          <mat-label>Odaberite opciju</mat-label>
+          <mat-select required formControlName="opcija">
+            <mat-option *ngFor="let option of options" [value]="option.value">
+              {{option.viewValue}}
+            </mat-option>
+          </mat-select>          
+        </mat-form-field>
+        
+        <mat-form-field>
+          <input matInput placeholder="Jmbg" formControlName="jmbg" required />          
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Ime" formControlName="ime" required />         
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Prezime" formControlName="prezime" required />          
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Aresa elektronske pošte" formControlName="email" required />          
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Broj mobilnog telefona (06... )"
+            formControlName="brMobilni" required />
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Broj fiksong telefona (011... )"
+            formControlName="brFiksni" required />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Grad</mat-label>
+          <mat-select required formControlName="opstina">
+            <mat-option *ngFor="let o of opstine" [value]="o.value">
+              {{o.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field >
+          <mat-label>Vakcina</mat-label>
+          <mat-select required formControlName="vakcina">
+            <mat-option *ngFor="let vaccine of vaccines" [value]="vaccine.value">
+              {{vaccine.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field >
+          <mat-label>Da li ste dobrovoljni davalac krvi?</mat-label>
+          <mat-select required formControlName="davalac">
+            <mat-option *ngFor="let option of yesNo" [value]="option.value">
+              {{option.value}}
+            </mat-option>  
+          </mat-select>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" [disabled]="!form.valid">
+          Kreiraj
+        </button>
+
+      </form>
+    </mat-card-content>
+  </mat-card>

@@ -53,7 +53,7 @@ public class InteresovanjeServis implements IInteresovanjeServis {
 
             htmlTransformer.generateHTML(configPath+"/data/xml/interesovanja/"+entitet.getSifra()+".xml", configPath+"/data/xslt/interesovanje.xsl");
             pdfTransformer.generatePDFfromHTML(configPath+"/data/transform_result/html/"+entitet.getSifra()+".html");
-            emailServis.sendMail(entitet.getLicniPodaci().getKontakt().getEmail(), configPath+"/data/transform_result/pdf/"+entitet.getSifra()+".pdf");
+            emailServis.slanjeInteresovanja(entitet.getLicniPodaci().getKontakt().getEmail(), configPath+"/data/transform_result/pdf/"+entitet.getSifra()+".pdf");
             UpisMeta.run(FusekiAuthenticationUtilities.loadProperties(), "/metadata", configPath+"/data/xml/interesovanja/"+entitet.getSifra()+".xml", configPath+"/data/rdf/interesovanja/"+entitet.getSifra()+".rdf");
 
 

@@ -1,7 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { MakeZahtevComponent } from './pages/make-zahtev/make-zahtev.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    component: MakeZahtevComponent,
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
