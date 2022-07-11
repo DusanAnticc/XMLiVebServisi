@@ -1,0 +1,40 @@
+<div class="container">
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>Ime i prezime</th>
+          <th>Jmbg</th>
+          <th>Datum podnosenja</th>
+          <th>Razlog za podnosenje</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr id="requestTable" *ngFor="let request of pendingRequests">
+          <td>{{ request.nameAndSurname }}</td>
+          <td>{{ request.jmbg }}</td>
+          <td>{{ request.date }}</td>
+          <td>{{ request.reason }}</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-success"
+              (click)="confirmRequest(request.id)"
+            >
+              Prihvati
+            </button>
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="declineRequest(request.id)"
+            >
+              Odbij
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

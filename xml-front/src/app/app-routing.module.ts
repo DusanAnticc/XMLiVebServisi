@@ -22,10 +22,10 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'zahtev',
+        path: 'request',
         loadChildren: () =>
-          import('./../modules/zahtev/zahtev.module').then(
-            (m) => m.ZahtevModule
+          import('./../modules/request/request.module').then(
+            (m) => m.RequestModule
           ),
       },
       {
