@@ -1,0 +1,78 @@
+<div class="container">
+    <div class="card">
+      <form class="card-form">
+            <h2 class="card-title">Izvestaj o imunizaciji</h2>
+        <div class="input">
+          <input
+            type="date"
+            class="input-field"
+            id="startDate"
+            name="startDate"
+            required
+          />
+          <label class="input-label">Pocetni datum</label>
+        </div>
+        <div class="input">
+            <input
+              type="date"
+              class="input-field"
+              id="endDate"
+              name="endDate"
+              required
+            />
+            <label class="input-label">Krajnji datum</label>
+          </div>
+        
+        <div class="action">
+          <button
+            type="submit"
+            class="action-button"
+            id="submit"
+            name="submit"
+            (click)="create()"
+          >
+            Kreiraj
+          </button>
+        </div>
+      </form>
+      <div class="card-info">
+        <div class="action">
+            <button
+              type="submit"
+              class="get-html"
+              id="submit"
+              name="submit"
+              (click)="getHtml()"
+            >
+              Preuzmi html
+            </button>
+            <button
+            type="submit"
+            class="get-pdf"
+            id="submit"
+            name="submit"
+            (click)="getPdf()"
+            >
+                Preuzmi pdf
+            </button>
+            <button
+            type="submit"
+            class="get-pdf"
+            id="submit"
+            name="submit"
+            (click)="getRdf()"
+            >
+            Preuzmi rdf
+            </button>
+            <button
+            type="submit"
+            class="get-pdf"
+            id="submit"
+            name="submit"
+            (click)="getJson()"
+            >
+                Preuzmi json
+            </button>
+      </div>
+    </div>
+  </div>

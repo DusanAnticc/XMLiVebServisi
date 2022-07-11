@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RootLayoutComponent } from './root-layout/root-layout.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -14,10 +15,10 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'izvestaj',
+        path: 'report',
         loadChildren: () =>
-          import('./../modules/izvestaj/izvestaj.module').then(
-            (m) => m.IzvestajModule
+          import('./../modules/report/report.module').then(
+            (m) => m.ReportModule
           ),
       },
       {
@@ -28,10 +29,10 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'potvrda',
+        path: 'confirmation',
         loadChildren: () =>
-          import('./../modules/potvrda/potvrda.module').then(
-            (m) => m.PotvrdaModule
+          import('./../modules/confirmation/confirmation.module').then(
+            (m) => m.ConfirmationModule
           ),
       },
     ],

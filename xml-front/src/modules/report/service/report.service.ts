@@ -1,10 +1,10 @@
-import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class IzvestajService {
+export class ReportService {
   public headers = new HttpHeaders({ 'Content-Type': 'application/xml' });
 
   constructor(public http: HttpClient) {}

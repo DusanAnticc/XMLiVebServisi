@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MakePotvrdaComponent } from './make-potvrda.component';
+import { CreateReportComponent } from './create-report.component';
 
-describe('MakePotvrdaComponent', () => {
-  let component: MakePotvrdaComponent;
-  let fixture: ComponentFixture<MakePotvrdaComponent>;
+describe('CreateReportComponent', () => {
+  let component: CreateReportComponent;
+  let fixture: ComponentFixture<CreateReportComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MakePotvrdaComponent ]
+      declarations: [ CreateReportComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MakePotvrdaComponent);
+    fixture = TestBed.createComponent(CreateReportComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
