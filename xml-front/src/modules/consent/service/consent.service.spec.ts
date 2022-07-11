@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SaglasnostService } from './services.service';
+import { ConsentService } from './consent.service';
 
-describe('SaglasnostService', () => {
-  let service: SaglasnostService;
+describe('ConsentService', () => {
+  let service: ConsentService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SaglasnostService);
+    service = TestBed.inject(ConsentService);
   });
 
   it('should be created', () => {

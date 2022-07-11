@@ -12,4 +12,8 @@ export class CreateConfirmationComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  confirmDose() {
+
+  }
+
 }

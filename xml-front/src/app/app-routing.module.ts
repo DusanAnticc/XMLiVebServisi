@@ -8,10 +8,10 @@ const routes: Routes = [
     component: RootLayoutComponent,
     children: [
       {
-        path: 'saglasnost',
+        path: 'consent',
         loadChildren: () =>
-          import('./../modules/saglasnost/saglasnost.module').then(
-            (m) => m.SaglasnostModule
+          import('./../modules/consent/consent.module').then(
+            (m) => m.ConsentModule
           ),
       },
       {

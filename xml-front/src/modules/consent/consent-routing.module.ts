@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SaglasnostComponent } from './saglasnost/saglasnost.component';
+import { CreateConsentComponent } from './pages/create-consent/create-consent.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    component: SaglasnostComponent,
-  },
+    component: CreateConsentComponent,
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class SaglasnostRoutingModule {}
+export class ConsentRoutingModule {}

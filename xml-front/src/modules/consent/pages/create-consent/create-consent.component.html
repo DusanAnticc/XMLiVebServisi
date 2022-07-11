@@ -1,0 +1,130 @@
+<div class="container">
+    <div class="card">
+      <form class="card-form">
+            <h2 class="card-title">Evidencija o vakcinaciji protiv COVID-19</h2>
+        <div class="input">
+            <input
+                type="text"
+                class="input-field"
+                id="jmbg"
+                name="jmbg"
+                required
+            />
+            <label class="input-label">Jmbg</label>
+        </div>
+        <div class="input">
+            <input
+                type="text"
+                class="input-field"
+                id="healthInstitution"
+                name="healthInstitution"
+                required
+            />
+            <label class="input-label">Zdravstvena ustanova</label>
+        </div>
+        <div class="input">
+          <input
+            type="date"
+            class="input-field"
+            id="startDate"
+            name="startDate"
+            required
+          />
+          <label class="input-label">Datum vakcinacije</label>
+        </div>
+        <div class="input">
+            <input
+                type="text"
+                class="input-field"
+                id="doctorData"
+                name="doctorData"
+                required
+            />
+            <label class="input-label">Podaci o lekaru</label>
+        </div>
+        <div class="input">
+            <input
+                type="text"
+                class="input-field"
+                id="vaccinationPoint"
+                name="vaccinationPoint"
+                required
+            />
+            <label class="input-label">Vakcinacijski punkt</label>
+        </div>
+        <div class="input">
+            <select name="vaccine" class="drop-menu" id="lang">
+                <option value="Pfizer-BioNtech">Pfizer-BioNtech</option>
+                <option value="Sputnik V">Sputnik V</option>
+                <option value="Sinopharm">Sinopharm</option>
+                <option value="AstraZeneca">AstraZeneca</option>
+                <option value="Moderna">Moderna</option>
+            </select>
+        <label class="input-label">Odaberite vakcinu</label>
+        </div>
+        <div class="input">
+            <input
+                type="text"
+                class="input-field"
+                id="vaccineMethod"
+                name="vaccineMethod"
+                value="IM"
+                required
+            />
+            <label class="input-label">Nacin davanja vakcine</label>
+        </div>
+        <div class="input">
+            <select name="vaccine" class="drop-menu" id="lang">
+                <option value="Leva ruka">Leva ruka</option>
+                <option value="Desna ruka">Desna ruka</option>
+            </select>
+        <label class="input-label">Ekstremitet</label>
+        </div>
+        <div class="input">
+            <input
+                type="text"
+                class="input-field"
+                id="vaccineSeries"
+                name="vaccineSeries"
+                required
+            />
+            <label class="input-label">Serija vakcine</label>
+        </div>
+        <div class="input">
+            <input
+                type="text"
+                class="input-field"
+                id="vaccineSupplier"
+                name="vaccineSupplier"
+                required
+            />
+            <label class="input-label">Proizvodjac vakcine</label>
+        </div>
+        <div class="input">
+            <input
+                type="text"
+                class="input-field"
+                id="sideEffects"
+                name="sideEffects"
+                required
+            />
+            <label class="input-label">Nezeljena dejstva vakcine</label>
+        </div>
+
+        <div class="action">
+          <button
+            type="submit"
+            class="action-button"
+            id="submit"
+            name="submit"
+            (click)="create()"
+          >
+            Potvrdi
+          </button>
+        </div>
+      </form>
+      <div class="card-info">
+        <div class="action">
+      </div>
+    </div>
+  </div>
