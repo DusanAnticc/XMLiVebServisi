@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormControl,
   FormGroup,
-  FormGroupDirective,
-  NgForm,
   Validators,
 } from '@angular/forms';
 
@@ -16,7 +14,7 @@ import * as x2js from 'xml2js';
   templateUrl: './make-interesovanje.component.html',
   styleUrls: ['./make-interesovanje.component.scss'],
 })
-export class MakeInteresovanjeComponent implements OnInit {
+export class MakeInteresovanjeComponent {
   form: FormGroup;
   parser = new x2js.Parser();
 
@@ -43,8 +41,6 @@ export class MakeInteresovanjeComponent implements OnInit {
       opstina: new FormControl('', [Validators.required]),
     });
   }
-
-  ngOnInit(): void {}
 
   submit(): void {
     var obj = {

@@ -12,62 +12,16 @@ import * as moment from 'moment';
 export class MakeSaglasnostComponent {
   form: FormGroup;
   parser = new x2js.Parser();
-  opstine: any[] = [
-    { value: 'Novi Sad' },
-    { value: 'Beograd' },
-    { value: 'Nis' },
-  ];
-  yesNo: any[] = [
-    { value: 'true', viewValue: 'Da' },
-    { value: 'false', viewValue: 'Ne' },
-  ];
-
-  saglasan: any[] = [
-    { value: 'true', viewValue: 'SAGLASAN SAM' },
-    { value: 'false', viewValue: 'NISAM SAGLASAN' },
-  ];
-
-  pol: any[] = [
-    { value: 'Muski', viewValue: 'Muško' },
-    { value: 'Zenski', viewValue: 'Žensko' },
-  ];
-  vaccines: any[] = [
-    { value: 'Pfizer' },
-    { value: 'Sputnik V' },
-    { value: 'Sinopharm' },
-    { value: 'AstraZeneca' },
-    { value: 'Moderna' },
-    { value: 'Bilo koja' },
-  ];
-  options: any[] = [
-    { value: 'srpsko', viewValue: 'Državljanin Republike Srbije' },
-    { value: 'strano', viewValue: 'Strani državljanin' },
-  ];
-  workingStatus: any[] = [
-    { value: 'zaposlen', viewValue: 'Zaposlen' },
-    { value: 'nezaposlen', viewValue: 'Nezapsolen' },
-    { value: 'penzioner', viewValue: 'Penzioner' },
-    { value: 'ucenik', viewValue: 'Učenik' },
-    { value: 'student', viewValue: 'Student' },
-    { value: 'dete', viewValue: 'Dete' },
-  ];
-  jobRole: any[] = [
-    { value: 'zdra_zastita', viewValue: 'Zdravstvena zaštita' },
-    { value: 'soc_zastita', viewValue: 'Socijalna zaštita' },
-    { value: 'prosveta', viewValue: 'Prosveta' },
-    { value: 'mup', viewValue: 'MUP' },
-    { value: 'vojska', viewValue: 'Vojska RS' },
-    { value: 'drugo', viewValue: 'Drugo' },
-  ];
+  
   constructor(private saglasnostService: SaglasnostService) {
     this.form = new FormGroup({
-      jmbg: new FormControl('', [Validators.pattern('[0-9 ]{13}')]),
+      jmbg: new FormControl('', [Validators.pattern('[0-9]{13}')]),
       stranoDrzavljanstvo: new FormControl(''),
-      brPasosa: new FormControl('', [Validators.pattern('[0-9 ]{9}')]),
+      brPasosa: new FormControl('', [Validators.pattern('[0-9]{9}')]),
       imeRoditelja: new FormControl('', [Validators.required]),
       datum: new FormControl('', [
         Validators.required,
-        Validators.pattern('[0-9 ]{4}-[0-9 ]{2}-[0-9]{2}'),
+        Validators.pattern('[0-9]{4}-[0-9]{2}-[0-9]{2}'),
       ]),
       mestoRodjenja: new FormControl('', [Validators.required]),
       ime: new FormControl('', [Validators.required]),
@@ -75,11 +29,11 @@ export class MakeSaglasnostComponent {
       email: new FormControl('', [Validators.required, Validators.email]),
       brMobilni: new FormControl('', [
         Validators.required,
-        Validators.pattern('06[0-9 ]{8,9}'),
+        Validators.pattern('06[0-9]{8,9}'),
       ]),
       brFiksni: new FormControl('', [
         Validators.required,
-        Validators.pattern('0[0-9 ]{8}'),
+        Validators.pattern('0[0-9]{8}'),
       ]),
       vakcina: new FormControl('', [Validators.required]),
 

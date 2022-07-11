@@ -36,13 +36,13 @@ const routes: Routes = [
       },
     ],
   },
-  // {
-  //   path: 'prijava',
-  //   loadChildren: () =>
-  //     import('./../modules/prijava/prijava.module').then(
-  //       (m) => m.PrijavaModule
-  //     ),
-  // },
+  {
+    path: 'prijava',
+    loadChildren: () =>
+      import('./../modules/prijava/prijava.module').then(
+        (m) => m.PrijavaModule
+      ),
+  },
 ];
 
 @NgModule({
