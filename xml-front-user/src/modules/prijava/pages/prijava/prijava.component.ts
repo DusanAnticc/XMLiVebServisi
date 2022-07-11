@@ -7,38 +7,46 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-prijava',
   templateUrl: './prijava.component.html',
-  styleUrls: ['./prijava.component.scss']
+  styleUrls: ['./prijava.component.scss'],
 })
-
 export class PrijavaComponent implements OnInit {
   form: FormGroup;
   parser = new x2js.Parser();
 
-  constructor(private prijavaService: PrijavaService, private router: Router) { 
+  constructor(private prijavaService: PrijavaService, private router: Router) {
     this.form = new FormGroup({
       email: new FormControl(null, Validators.required),
       lozinka: new FormControl('', Validators.required),
     });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   submit(): void {
     var obj = {
       Prijava_dto: {
         '#': {
-          email:this.form.get('username')?.value,
-          lozinka: this.form.get('password')?.value,
+          email: this.form.get('email')?.value,
+          lozinka: this.form.get('lozinka')?.value,
         },
       },
     };
-      this.prijavaService.login(obj).subscribe(
-        (result) => {
-          this.parser.parseString(result, function(err: any,res: any){          
-        },
-      );
-    }
-      )
+    this.prijavaService.login(obj).subscribe({
+      next: (response) => {
+        this.parser.parseString(response, (err: any, res: any) => {
+          localStorage.setItem('korisnik', JSON.stringify(res));
+
+          this.router.navigate(['/']);
+        });
+      },
+      error: (error) => {
+        if (error.status === 400) {
+          alert('Kredencijali su loše formatirani');
+        }
+        if (error.status === 404) {
+          alert('Loši kredencijali su uneti');
+        }
+      },
+    });
   }
 }

@@ -14,9 +14,6 @@ export class SaglasnostService {
   constructor(public http: HttpClient) {}
 
   create(saglasnost: any): Observable<any> {
-    console.log('majmun/saglasnost');
-    console.log(saglasnost);
-
     var xmlDoc = this.parser.parseFromString(o2x(saglasnost), 'text/xml');
     console.log(saglasnost);
     const licniPodaciNode = xmlDoc?.getElementsByTagName('Licni_podaci')[0];
@@ -44,7 +41,6 @@ export class SaglasnostService {
     );
 
     var xmlString = this.serializer.serializeToString(xmlDoc);
-    console.log('majmun/saglasnost');
     return this.http.post<any>('/api/gradjani/saglasnosti/upis', xmlString, {
       headers: this.headers,
       responseType: 'test/xml' as 'json',

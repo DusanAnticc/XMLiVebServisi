@@ -3,6 +3,7 @@ package com.spring.rest.xmlproj.obj.liste;
 import com.spring.rest.xmlproj.obj.potvrda.Potvrda;
 
 import javax.xml.bind.annotation.XmlAnyAttribute;
+import javax.xml.bind.annotation.XmlAnyElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ public class Potvrde {
 
     private List<Potvrda> potvrdaList;
 
-    @XmlAnyAttribute
+    @XmlAnyElement
     public List<Potvrda> getPotvrdaList() {
         return potvrdaList;
     }

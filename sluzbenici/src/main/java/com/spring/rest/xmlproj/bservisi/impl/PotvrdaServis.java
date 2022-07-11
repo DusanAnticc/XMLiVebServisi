@@ -5,6 +5,7 @@ import com.spring.rest.xmlproj.obj.potvrda.Potvrda;
 import com.spring.rest.xmlproj.rdf.UpisMeta;
 import com.spring.rest.xmlproj.repo.PotvrdaRepo;
 import com.spring.rest.xmlproj.util.FusekiAuthenticationUtilities;
+import com.spring.rest.xmlproj.util.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,13 @@ public class PotvrdaServis implements IPotvrdaServis {
     @Override
     public void upis(Potvrda entitet) {
         try {
+            if(entitet.getSifra() == null || entitet.getSifra().equals(""))
+                entitet.setSifra(RandomString.getAlphaNumericString(8).toUpperCase());
+            entitet.setAbout("http://www.xmlproj.rs/gradjanin/potvrda/"+entitet.getSifra());
+            entitet.setRel("pred:saglasnost");
+            entitet.getZdravstvenaUstanova().setProperty("pred:ustanova");
+            entitet.getDatumIzdavanja().setProperty("pred:datumIzdavanja");
+            entitet.getNazivVakcine().setProperty("pred:nazivVakcine");
             this.potvrdaRepo.upis(entitet);
             this.potvrdaRepo.generisiXML(entitet);
             UpisMeta.run(FusekiAuthenticationUtilities.loadProperties(), "/metadata", configPath+"/data/xml/potvrde/"+entitet.getSifra()+".xml", configPath+"/data/rdf/potvrde/"+entitet.getSifra()+".rdf");

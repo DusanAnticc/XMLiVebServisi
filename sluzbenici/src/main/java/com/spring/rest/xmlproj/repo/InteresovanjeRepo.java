@@ -29,7 +29,7 @@ public class InteresovanjeRepo implements Repo<Interesovanje>{
     @Value("${configPath}")
     private String configPath;
 
-    private final String kolekcija = "/db/xmlproj/gradjanin/interesovanja";
+    private final String kolekcija = "/db/xmlproj/sluzbenik/interesovanja";
     private final String JAXBKontekst = "com.spring.rest.xmlproj.obj.interesovanje";
 
     @Override

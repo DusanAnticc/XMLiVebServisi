@@ -1,15 +1,24 @@
 package com.spring.rest.xmlproj.ws;
 
-import com.spring.rest.xmlproj.bservisi.impl.SaglasnostServis;
-import com.spring.rest.xmlproj.obj.liste.Saglasnosti;
-import com.spring.rest.xmlproj.obj.saglasnost.Saglasnost;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.spring.rest.xmlproj.bservisi.impl.KorisnikServis;
+import com.spring.rest.xmlproj.bservisi.impl.SaglasnostServis;
+import com.spring.rest.xmlproj.obj.korisnik.Korisnik;
+import com.spring.rest.xmlproj.obj.liste.Saglasnosti;
+import com.spring.rest.xmlproj.obj.saglasnost.Saglasnost;
 
 @RestController
 @CrossOrigin
@@ -17,10 +26,12 @@ import java.util.List;
 public class SaglasnostVebServis {
 
     private final SaglasnostServis saglasnostServis;
+    private final KorisnikServis korisnikServis;
 
     @Autowired
-    public SaglasnostVebServis(SaglasnostServis saglasnostServis) {
+    public SaglasnostVebServis(SaglasnostServis saglasnostServis, KorisnikServis korisnikServis) {
         this.saglasnostServis = saglasnostServis;
+        this.korisnikServis = korisnikServis;
     }
 
     @PostMapping("/upis")
@@ -52,5 +63,18 @@ public class SaglasnostVebServis {
         }else{
             return new ResponseEntity<>(new Saglasnosti(sveSaglasnosti), HttpStatus.OK);
         }
+    }
+
+    @GetMapping("/sve/{email}")
+    public ResponseEntity<?> saglasnostiKorisnika(@PathVariable String email){
+        if(email == null || email.equals("")) return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        Korisnik korisnik = this.korisnikServis.dobaviPoId(email);
+
+        List<Saglasnost> korisnikoveSaglasnosti = this.saglasnostServis.dobaviSve().stream().
+        filter(s -> s.getPacijentovDeo().getLicniPodaci().getJmbg().equals(korisnik.getLicniPodaci().getJmbg()) ||
+                    s.getPacijentovDeo().getLicniPodaci().getKontakt().getEmail().equals(korisnik.getLicniPodaci().getKontakt().getEmail())).
+        collect(Collectors.toList());
+
+        return new ResponseEntity<>(new Saglasnosti(korisnikoveSaglasnosti), HttpStatus.OK);
     }
 }

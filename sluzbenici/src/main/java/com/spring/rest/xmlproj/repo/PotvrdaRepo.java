@@ -29,7 +29,7 @@ public class PotvrdaRepo implements Repo<Potvrda> {
     @Value("${configPath}")
     private String configPath;
 
-    private final String kolekcija = "/db/xmlproj/gradjanin/potvrde";
+    private final String kolekcija = "/db/xmlproj/sluzbenik/potvrde";
     private final String JAXBKontekst = "com.spring.rest.xmlproj.obj.potvrda";
 
     @Override

@@ -12,8 +12,8 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  logout(): void {
+  odjava(): void {
     localStorage.clear();
-    this.router.navigate(['/auth/login']);
+    this.router.navigate(['/prijava']);
   }
 }

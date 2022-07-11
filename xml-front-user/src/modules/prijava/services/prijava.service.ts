@@ -5,29 +5,21 @@ import { Observable } from 'rxjs';
 var o2x = require('object-to-xml');
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PrijavaService {
+  public headers = new HttpHeaders({ 'Content-Type': 'application/xml' });
 
-  public headers = new HttpHeaders({ "Content-Type": "application/xml"});
-
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient) {}
 
   login(obj: any): Observable<any> {
-    return this.http.post<any>("api/gradjani/korisnici/prijava", o2x(obj), {
+    return this.http.post<any>('api/gradjani/korisnici/prijava', o2x(obj), {
       headers: this.headers,
-      responseType: 'test/xml' as 'json'
-    })
+      responseType: 'test/xml' as 'json',
+    });
   }
 
-  isLoggedIn(): boolean {
-    if (!localStorage.getItem("user")) {
-      return false;
-    }
-    return true;
-  }
-
-  logout() {
-    localStorage.removeItem("user");
+  getLoggedIn() {
+    return JSON.parse(localStorage.getItem('korisnik')!);
   }
 }

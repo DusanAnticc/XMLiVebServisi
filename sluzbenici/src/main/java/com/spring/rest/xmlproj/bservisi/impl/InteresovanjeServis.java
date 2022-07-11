@@ -62,12 +62,4 @@ public class InteresovanjeServis implements IInteresovanjeServis {
             return new ArrayList<Interesovanje>();
         }
     }
-
-    public List<Interesovanje> dobaviNeobradjenaInteresovanja(){
-        try {
-            return this.interesovanjeRepo.dobaviSve().stream().filter(i -> i.getHref() == null).collect(Collectors.toList());
-        } catch (Exception e) {
-            return new ArrayList<Interesovanje>();
-        }
-    }
 }

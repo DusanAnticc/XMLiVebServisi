@@ -10,6 +10,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { RootLayoutComponent } from './root-layout/root-layout.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, RootLayoutComponent, NavbarComponent],
@@ -20,9 +21,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     HttpClientModule,
     MatToolbarModule,
     MatButtonModule,
-    ToastrModule.forRoot({
-      positionClass: 'toast-top-center',
-    }),
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

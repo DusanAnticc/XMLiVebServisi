@@ -1,16 +1,18 @@
 package com.spring.rest.xmlproj.ws;
 
+import com.spring.rest.xmlproj.bservisi.impl.KorisnikServis;
 import com.spring.rest.xmlproj.bservisi.impl.SertifikatServis;
+import com.spring.rest.xmlproj.obj.korisnik.Korisnik;
 import com.spring.rest.xmlproj.obj.liste.Sertifikati;
 import com.spring.rest.xmlproj.obj.sertifikat.Sertifikat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin
@@ -18,10 +20,12 @@ import java.util.List;
 public class SertifikatVebServis {
 
     private final SertifikatServis sertifikatServis;
+    private final KorisnikServis korisnikServis;
 
     @Autowired
-    public SertifikatVebServis(SertifikatServis sertifikatServis) {
+    public SertifikatVebServis(SertifikatServis sertifikatServis, KorisnikServis korisnikServis) {
         this.sertifikatServis = sertifikatServis;
+        this.korisnikServis = korisnikServis;
     }
 
 
@@ -54,5 +58,18 @@ public class SertifikatVebServis {
         } else {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping("/svi/{email}")
+    public ResponseEntity<?> sertifikatiKorisnika(@PathVariable String email){
+        if(email == null || email.equals("")) return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        Korisnik korisnik = this.korisnikServis.dobaviPoId(email);
+
+        List<Sertifikat> korisnikoviSertifikati = this.sertifikatServis.dobaviSve().stream().
+        filter(s -> s.getLicniPodaci().getJmbg().equals(korisnik.getLicniPodaci().getJmbg()) ||
+                    s.getLicniPodaci().getKontakt().getEmail().equals(korisnik.getLicniPodaci().getKontakt().getEmail())).
+        collect(Collectors.toList());
+
+        return new ResponseEntity<>(new Sertifikati(korisnikoviSertifikati), HttpStatus.OK);
     }
 }
