@@ -1,6 +1,6 @@
 # XMLiVebServisi
 
-Potrebno je pokrenuti dve exist baze i dve fuseki baze uz pomoć sledećih komandi
+Potrebno je pokrenuti dve exist baze i dve fuseki baze uz pomoć sledećih komandi<br>
 Takođe je potrebno napraviti kolekciju "metadata" u obe fuseki baze
 
 Potom je potrebno pokrenuti dva backend i frontend servera
