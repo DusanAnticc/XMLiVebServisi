@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns3:Zahtev xmlns="http://www.xmlproj.rs/gradjanin/licniPodaci" xmlns:pred="http://www.xmlproj.rs/zahtev/predikati/" xmlns:ns3="http://www.xmlproj.rs/gradjanin/zahtev" about="http://www.xmlproj.rs/gradjanin/zahtev/PWKXQG2Q" rel="pred:potvrda" Sifra="PWKXQG2Q">
+    <Licni_podaci>
+        <Jmbg>1234567891015</Jmbg>
+        <Ime>Dusan</Ime>
+        <Prezime>Antic</Prezime>
+        <Datum_rodjenja>1997-06-12</Datum_rodjenja>
+        <Pol>Musko</Pol>
+        <Br_pasosa>123456789</Br_pasosa>
+    </Licni_podaci>
+    <ns3:Razlog property="pred:razlog">letossssss</ns3:Razlog>
+    <ns3:Mesto property="pred:mesto">Beograd</ns3:Mesto>
+    <ns3:Datum_podnosenja property="pred:podnet">2022-07-12</ns3:Datum_podnosenja>
+</ns3:Zahtev>

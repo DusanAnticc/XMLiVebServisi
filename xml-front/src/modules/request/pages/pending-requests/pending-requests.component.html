@@ -1,40 +1,50 @@
 <div class="container">
-    <table class="styled-table">
-      <thead>
-        <tr>
-          <th>Ime i prezime</th>
-          <th>Jmbg</th>
-          <th>Datum podnošenja</th>
-          <th>Razlog za podnošenje</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr id="requestTable" *ngFor="let request of zahtevi">
-          <td>{{ request["ns3:Licni_podaci"][0]["ns3:Ime"] }}</td>
-          <td>{{ request["ns3:Licni_podaci"][0]["ns3:Jmbg"] }}</td>
-          <td>{{ request["ns4:Datum_podnosenja"][0]._ }}</td>
-          <td>{{ request["ns4:Razlog"][0]._  }}</td>
-          <td>
-            <button
-              type="button"
-              class="btn btn-success"
-              (click)="confirmRequest(request.id)"
-            >
-              Prihvati
-            </button>
-          </td>
-          <td>
-            <button
-              type="button"
-              class="btn btn-danger"
-              (click)="declineRequest(request.id)"
-            >
-              Odbij
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>Ime i prezime</th>
+        <th>Jmbg</th>
+        <th>Datum podnošenja</th>
+        <th>Razlog za podnošenje</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr id="requestTable" *ngFor="let request of zahtevi">
+        <td>{{ request["ns3:Licni_podaci"][0]["ns3:Ime"] }}</td>
+        <td>{{ request["ns3:Licni_podaci"][0]["ns3:Jmbg"] }}</td>
+        <td>{{ request["ns4:Datum_podnosenja"][0]._ }}</td>
+        <td>{{ request["ns4:Razlog"][0]._ }}</td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-success"
+            (click)="
+              confirmRequest(
+                request.id,
+                request['ns3:Licni_podaci'][0]['ns3:Jmbg']
+              )
+            "
+          >
+            Prihvati
+          </button>
+        </td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="
+              declineRequest(
+                request.id,
+                request['ns3:Licni_podaci'][0]['ns3:Jmbg']
+              )
+            "
+          >
+            Odbij
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

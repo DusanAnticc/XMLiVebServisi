@@ -8,7 +8,7 @@ import { ResponseModalComponent } from '../../response-modal/response-modal.comp
 @Component({
   selector: 'app-pending-requests',
   templateUrl: './pending-requests.component.html',
-  styleUrls: ['./pending-requests.component.scss']
+  styleUrls: ['./pending-requests.component.scss'],
 })
 export class PendingRequestsComponent implements OnInit {
   pendingRequests: PendingRequest[] = [];
@@ -18,71 +18,55 @@ export class PendingRequestsComponent implements OnInit {
 
   zahtevi: any[] = [];
 
-  constructor( public dialog: MatDialog, public zahtevService: RequestService) {
+  constructor(public dialog: MatDialog, public zahtevService: RequestService) {
     const that = this;
-    this.zahtevService.getZahteve().subscribe(
-      (result) => {
-        this.parser.parseString(result, function (err: any, res: any) {
-          result = res;
-          that.zahtevi = result.zahtevi["ns4:Zahtev"];
-        })
-      }
-    )
-  }
-
-  ngOnInit(): void {
-
-  }
-
-  confirmRequest(id: number) {
-
-    var obj = {
-      razlogdto: {
-        '#': {
-          razlog: "",
-          odobren: true,
-          zahtev: id,
-        }
-      }
-    };
-    this.zahtevService.sendResponse(obj).subscribe(
-      (result) => {
-        this.parser.parseString(result, function (err: any, res: any) {
-        });
-        this.zahtevi = this.zahtevi.filter(zahev => zahev.id !== id);
-      }
-    )
-  }
-
-  declineRequest(id: number) {
-  
-      const dialogConfig = new MatDialogConfig();
-      dialogConfig.disableClose = true;
-      dialogConfig.autoFocus = true;
-      
-      const d = this.dialog.open(ResponseModalComponent, dialogConfig);
-      d.afterClosed().subscribe((result) => {
-        if (result.event === 'send') {
-          var obj = {
-            razlogdto: {
-              '#': {
-                razlog: result.data,
-                odobren: false,
-                zahtev: id,
-              }
-            }
-          };
-  
-          this.zahtevService.sendResponse(obj).subscribe(
-            (result) => {
-              this.parser.parseString(result, function (err: any, res: any) {
-              });
-              this.zahtevi = this.zahtevi.filter(zahtev => zahtev.id !== id);
-            }
-          )
-        }
+    this.zahtevService.getZahteve().subscribe((result) => {
+      this.parser.parseString(result, function (err: any, res: any) {
+        result = res;
+        that.zahtevi = result.zahtevi['ns4:Zahtev'];
       });
-  
-    }
+    });
   }
 
+  ngOnInit(): void {}
+
+  confirmRequest(id: number, jmbg: string) {
+    var obj = {
+      Odgovor_Zahtev_DTO: {
+        '#': {
+          odobren: 'odobren',
+          razlog: '',
+        },
+      },
+    };
+    this.zahtevService.sendResponse(obj, jmbg).subscribe((result) => {
+      this.parser.parseString(result, function (err: any, res: any) {});
+      this.zahtevi = this.zahtevi.filter((zahev) => zahev.id !== id);
+    });
+  }
+
+  declineRequest(id: number, jmbg: string) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    const d = this.dialog.open(ResponseModalComponent, dialogConfig);
+    d.afterClosed().subscribe((result) => {
+      console.log(result);
+      if (result.event === 'send') {
+        var obj = {
+          Odgovor_Zahtev_DTO: {
+            '#': {
+              odobren: 'odbijen',
+              razlog: 'DEFAULT RAZLOG',
+            },
+          },
+        };
+        this.zahtevService.sendResponse(obj, jmbg).subscribe((result) => {
+          this.parser.parseString(result, function (err: any, res: any) {});
+          this.zahtevi = this.zahtevi.filter((zahtev) => zahtev.id !== id);
+        });
+      }
+    });
+  }
+}
