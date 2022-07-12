@@ -43,6 +43,13 @@ const routes: Routes = [
         (m) => m.PrijavaModule
       ),
   },
+  {
+    path: 'pregled',
+    loadChildren: () =>
+      import('./../modules/pregled-dokumenta/pregled-dokumenta.module').then(
+        (m) => m.PregledDokumentaModule
+      ),
+  },
 ];
 
 @NgModule({
