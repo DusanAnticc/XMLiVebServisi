@@ -1,12 +1,17 @@
 package com.spring.rest.xmlproj.ws;
 
 import com.spring.rest.xmlproj.bservisi.impl.ZahtevServis;
+import com.spring.rest.xmlproj.dto.OdgovorZahtevDTO;
 import com.spring.rest.xmlproj.obj.liste.Zahtevi;
+import com.spring.rest.xmlproj.obj.saglasnost.Saglasnost;
 import com.spring.rest.xmlproj.obj.zahtev.Zahtev;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -16,6 +21,7 @@ import java.util.List;
 public class ZahtevVebServis {
 
     private final ZahtevServis zahtevServis;
+
 
     @Autowired
     public ZahtevVebServis(ZahtevServis zahtevServis) {
@@ -54,5 +60,18 @@ public class ZahtevVebServis {
         }
     }
 
-    
+    @PostMapping("/odgovorNaZahtev/{jmbg}")
+    public ResponseEntity<?> odgovorNaZahtev(@PathVariable String jmbg ,@RequestBody OdgovorZahtevDTO dto){
+        if(jmbg == null || jmbg.equals("") || dto == null) return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+
+        if(dto.getOdobren().equals("odbijen") && (dto.getRazlog() == null || dto.getRazlog().equals(""))) return new ResponseEntity<>("Odbijeni zahtevi moraju biti obrazloženi", HttpStatus.BAD_REQUEST);
+
+        if(dto.getOdobren().equals("odobren")) zahtevServis.prihvatanjeZahteva(jmbg);
+        else if(dto.getOdobren().equals("odbijen")) zahtevServis.odbijanjeZahteva(jmbg, dto.getRazlog());
+
+
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
+
 }

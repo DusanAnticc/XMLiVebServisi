@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns3:Sertifikat xmlns="http://www.xmlproj.rs/gradjanin/licniPodaci" xmlns:pred="http://www.xmlproj.rs/sertifikat/predikati/" xmlns:ns3="http://www.xmlproj.rs/gradjanin/sertifikat" broj_sertifikata="LCBBF7ZB" about="http://www.xmlproj.rs/gradjanin/sertifikat/LCBBF7ZB" rel="pred:zahtev">
+    <ns3:Vreme_izdavanja>2022-07-12T18:35:43</ns3:Vreme_izdavanja>
+    <ns3:QR_kod property="pred:qr">http://www.xmlproj.rs/gradjanin/sertifikat/LCBBF7ZB</ns3:QR_kod>
+    <Licni_podaci>
+        <Jmbg>5498132326541</Jmbg>
+        <Ime>Dusan</Ime>
+        <Prezime>Danac</Prezime>
+        <Datum_rodjenja>1997-12-06</Datum_rodjenja>
+        <Pol>Muski</Pol>
+    </Licni_podaci>
+    <ns3:Vakcinacije>
+        <ns3:Vakcinacija>
+            <ns3:Doza>1</ns3:Doza>
+            <ns3:Naziv property="pred:nazivVakcine">Fajzer Bionteh</ns3:Naziv>
+            <ns3:Proizvodjac>Bionteh</ns3:Proizvodjac>
+            <ns3:Datum_primanja property="pred:primljena">2021-01-10</ns3:Datum_primanja>
+            <ns3:Ustanova></ns3:Ustanova>
+        </ns3:Vakcinacija>
+    </ns3:Vakcinacije>
+</ns3:Sertifikat>

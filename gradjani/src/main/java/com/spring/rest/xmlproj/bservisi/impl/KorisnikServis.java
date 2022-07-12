@@ -1,20 +1,17 @@
 package com.spring.rest.xmlproj.bservisi.impl;
 
-import com.spring.rest.xmlproj.bservisi.IKorisnikServis;
-import com.spring.rest.xmlproj.obj.korisnik.Korisnik;
-import com.spring.rest.xmlproj.obj.liste.Potvrde;
-import com.spring.rest.xmlproj.obj.liste.Saglasnosti;
-import com.spring.rest.xmlproj.obj.liste.Sertifikati;
-import com.spring.rest.xmlproj.rdf.UpisMeta;
-import com.spring.rest.xmlproj.repo.KorisnikRepo;
-import com.spring.rest.xmlproj.util.FusekiAuthenticationUtilities;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import com.spring.rest.xmlproj.bservisi.IKorisnikServis;
+import com.spring.rest.xmlproj.obj.korisnik.Korisnik;
+import com.spring.rest.xmlproj.rdf.UpisMeta;
+import com.spring.rest.xmlproj.repo.KorisnikRepo;
+import com.spring.rest.xmlproj.util.FusekiAuthenticationUtilities;
 
 @Service
 public class KorisnikServis implements IKorisnikServis {
@@ -24,16 +21,9 @@ public class KorisnikServis implements IKorisnikServis {
     
     private final KorisnikRepo korisnikRepo;
 
-    private final PotvrdaServis potvrdaServis;
-    private final SaglasnostServis saglasnostServis;
-    private final SertifikatServis sertifikatServis;
-
     @Autowired
-    public KorisnikServis(KorisnikRepo korisnikRepo, PotvrdaServis potvrdaServis, SaglasnostServis saglasnostServis, SertifikatServis sertifikatServis){
+    public KorisnikServis(KorisnikRepo korisnikRepo){
         this.korisnikRepo = korisnikRepo;
-        this.potvrdaServis = potvrdaServis;
-        this.saglasnostServis = saglasnostServis;
-        this.sertifikatServis = sertifikatServis;
     }
 
     @Override

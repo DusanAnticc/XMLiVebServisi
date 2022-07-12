@@ -31,22 +31,22 @@ export class PrijavaComponent implements OnInit {
         },
       },
     };
-    // this.prijavaService.login(obj).subscribe({
-    //   next: (response) => {
-    //     this.parser.parseString(response, (err: any, res: any) => {
-    //       localStorage.setItem('korisnik', JSON.stringify(res));
+    this.prijavaService.login(obj).subscribe({
+      next: (response) => {
+        this.parser.parseString(response, (err: any, res: any) => {
+          localStorage.setItem('korisnik', JSON.stringify(res));
 
-    //       this.router.navigate(['/']);
-    //     });
-    //   },
-    //   error: (error) => {
-    //     if (error.status === 400) {
-    //       alert('Kredencijali su loše formatirani');
-    //     }
-    //     if (error.status === 404) {
-    //       alert('Loši kredencijali su uneti');
-    //     }
-    //   },
-    // });
+          this.router.navigate(['/']);
+        });
+      },
+      error: (error) => {
+        if (error.status === 400) {
+          alert('Kredencijali su loše formatirani');
+        }
+        if (error.status === 404) {
+          alert('Loši kredencijali su uneti');
+        }
+      },
+    });
   }
 }
