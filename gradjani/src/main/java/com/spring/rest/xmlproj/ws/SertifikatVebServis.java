@@ -60,6 +60,16 @@ public class SertifikatVebServis {
         }
     }
 
+    @PostMapping("/upisSlanje")
+    public ResponseEntity<?> upisSertifikataISlanjeGradjaninu(@RequestBody Sertifikat sertifikat) {
+        if (sertifikat != null) {
+            this.sertifikatServis.upisSlanjeMejl(sertifikat);
+            return new ResponseEntity<>(null, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @GetMapping("/svi/{email}")
     public ResponseEntity<?> sertifikatiKorisnika(@PathVariable String email){
         if(email == null || email.equals("")) return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);

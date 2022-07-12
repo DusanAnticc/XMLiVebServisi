@@ -30,14 +30,14 @@ public class EmailServis {
         this.javaMailSender = javaMailSender;
     }
 
-    public void slanjeInteresovanja(String toEmail, String path) {
+    public void odbijenZahtev(String toEmail, String razlog){
         try {
             MimeMessage msg = javaMailSender.createMimeMessage();
-            msg.setSubject("Interesovanje");
+            msg.setSubject("Zahtev za zeleni sertifikat");
             MimeMessageHelper helper = new MimeMessageHelper(msg, true);
             helper.setTo(toEmail);
             helper.setFrom("euprava");
-            helper.setSubject("Interesovanje");
+            helper.setSubject("Zahtev za zeleni sertifikat");
 
             SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
             Date date = new Date(System.currentTimeMillis());
@@ -49,21 +49,17 @@ public class EmailServis {
 
             Multipart emailContent = new MimeMultipart();
             MimeBodyPart textBodyPart = new MimeBodyPart();
-            textBodyPart.setText("Pozdravljamo vašu zainteresovanost za imunizaciju!\n" +
-                    "Vaš termin je " + formatter.format(date)+" \n"+
-                    "U prilogu se nalazi Vaše interesovanje.");
-
-            MimeBodyPart jpgBodyPart = new MimeBodyPart();
-            jpgBodyPart.attachFile(path);
+            textBodyPart.setText("Poštovani,\n" +
+                    "Vaš zahtev za zeleni sertifikat je odbijen sa sledećim obrazloženjem:\n"+
+                    razlog);
 
             emailContent.addBodyPart(textBodyPart);
-            emailContent.addBodyPart(jpgBodyPart);
 
             msg.setContent(emailContent);
             javaMailSender.send(msg);
 
 
-        } catch (MessagingException | IOException ex) {
+        } catch (MessagingException ex) {
             System.out.println("Greška prilikom slanja!");
         }
     }

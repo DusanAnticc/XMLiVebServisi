@@ -1,0 +1,14 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
+  <rdf:Description rdf:about="http://www.xmlproj.rs/gradjanin/sertifikat/1R74PFTS">
+    <pred:zahtev xmlns:pred="http://www.xmlproj.rs/sertifikat/predikati/" rdf:resource="http://www.xmlproj.rs/gradjanin/sertifikat/1R74PFTS"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.xmlproj.rs/gradjanin/sertifikat/1R74PFTS">
+    <pred:qr xmlns:pred="http://www.xmlproj.rs/sertifikat/predikati/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">http://www.xmlproj.rs/gradjanin/sertifikat/1R74PFTS</pred:qr>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.xmlproj.rs/gradjanin/sertifikat/1R74PFTS">
+    <pred:nazivVakcine xmlns:pred="http://www.xmlproj.rs/sertifikat/predikati/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Fajzer Bionteh</pred:nazivVakcine>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.xmlproj.rs/gradjanin/sertifikat/1R74PFTS">
+    <pred:primljena xmlns:pred="http://www.xmlproj.rs/sertifikat/predikati/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">2021-01-10</pred:primljena>
+  </rdf:Description>
+</rdf:RDF>

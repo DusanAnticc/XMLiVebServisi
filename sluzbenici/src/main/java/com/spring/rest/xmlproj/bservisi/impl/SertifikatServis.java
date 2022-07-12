@@ -34,6 +34,7 @@ public class SertifikatServis implements ISertifikatServis {
             entitet.setAbout("http://www.xmlproj.rs/gradjanin/sertifikat/"+entitet.getBrojSertifikata());
             entitet.setRel("pred:zahtev");
             entitet.getQRKod().setProperty("pred:qr");
+            entitet.getQRKod().setValue("http://www.xmlproj.rs/gradjanin/sertifikat/"+entitet.getBrojSertifikata());
             for(Vakcinacija v : entitet.getVakcinacije().getVakcinacija()){
                 v.getNaziv().setProperty("pred:nazivVakcine");
                 v.getDatumPrimanja().setProperty("pred:primljena");
@@ -61,6 +62,26 @@ public class SertifikatServis implements ISertifikatServis {
             return this.sertifikatRepo.dobaviSve();
         } catch (Exception e) {
             return new ArrayList<Sertifikat>();
+        }
+    }
+
+    public void upisSlanjeMejl(Sertifikat entitet){
+        try {
+            if(entitet.getBrojSertifikata() == null || entitet.getBrojSertifikata().equals(""))
+                entitet.setBrojSertifikata(RandomString.getAlphaNumericString(8).toUpperCase());
+            entitet.setAbout("http://www.xmlproj.rs/gradjanin/sertifikat/"+entitet.getBrojSertifikata());
+            entitet.setRel("pred:zahtev");
+            entitet.getQRKod().setProperty("pred:qr");
+            entitet.getQRKod().setValue("http://www.xmlproj.rs/gradjanin/sertifikat/"+entitet.getBrojSertifikata());
+            for(Vakcinacija v : entitet.getVakcinacije().getVakcinacija()){
+                v.getNaziv().setProperty("pred:nazivVakcine");
+                v.getDatumPrimanja().setProperty("pred:primljena");
+            }
+            this.sertifikatRepo.upis(entitet);
+            this.sertifikatRepo.generisiXML(entitet);
+            UpisMeta.run(FusekiAuthenticationUtilities.loadProperties(), "/metadata", configPath+"/data/xml/sertifikati/"+entitet.getBrojSertifikata()+".xml", configPath+"/data/rdf/sertifikati/"+entitet.getBrojSertifikata()+".rdf");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

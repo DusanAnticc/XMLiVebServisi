@@ -1,8 +1,10 @@
 package com.spring.rest.xmlproj.ws;
 
 import com.spring.rest.xmlproj.bservisi.impl.KorisnikServis;
+import com.spring.rest.xmlproj.bservisi.impl.SertifikatServis;
 import com.spring.rest.xmlproj.bservisi.impl.ZahtevServis;
 import com.spring.rest.xmlproj.obj.liste.Zahtevi;
+import com.spring.rest.xmlproj.obj.sertifikat.Sertifikat;
 import com.spring.rest.xmlproj.obj.zahtev.Zahtev;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,10 +22,13 @@ public class ZahtevVebServis {
 
     private final ZahtevServis zahtevServis;
     private final KorisnikServis korisnikServis;
+    private final SertifikatServis sertifikatServis;
+
     @Autowired
-    public ZahtevVebServis(ZahtevServis zahtevServis, KorisnikServis korisnikServis) {
+    public ZahtevVebServis(ZahtevServis zahtevServis, KorisnikServis korisnikServis, SertifikatServis sertifikatServis) {
         this.zahtevServis = zahtevServis;
         this.korisnikServis = korisnikServis;
+        this.sertifikatServis = sertifikatServis;
     }
 
     @GetMapping("")
@@ -68,5 +73,15 @@ public class ZahtevVebServis {
         collect(Collectors.toList());
 
         return new ResponseEntity<>(new Zahtevi(korisnikoviZahtevi), HttpStatus.OK);
+    }
+
+    @PostMapping("/upisSlanje")
+    public ResponseEntity<?> upisSertifikataISlanje(@RequestBody Sertifikat sertifikat) {
+        if (sertifikat != null) {
+            this.sertifikatServis.upisSlanjeMejl(sertifikat);
+            return new ResponseEntity<>(null, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
     }
 }
