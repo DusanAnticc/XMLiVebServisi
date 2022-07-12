@@ -6,10 +6,19 @@
             <input
                 type="text"
                 class="input-field"
-                formControlName="imePrezime"
+                formControlName="ime"
                 required
             />
-            <label class="input-label">Ime i prezime</label>
+            <label class="input-label">Ime</label>
+        </div>
+        <div class="input">
+            <input
+                type="text"
+                class="input-field"
+                formControlName="prezime"
+                required
+            />
+            <label class="input-label">Prezime</label>
         </div>
         <div class="input">
           <input
@@ -22,9 +31,8 @@
         </div>
         <div class="input">
           <select formControlName="pol" class="drop-menu" required>
-              <option value="Muško">Muško</option>
-              <option value="Žensko">Žensko</option>
-              <option value="Drugo">Drugo</option>
+              <option value="Muski">Muško</option>
+              <option value="Zenski">Žensko</option>
           </select>
           <label class="input-label">Pol</label>
         </div>
@@ -37,16 +45,16 @@
             />
             <label class="input-label">Jmbg</label>
         </div>
+
         <div class="input">
-            <select formControlName="vakcina" class="drop-menu">
-                <option value="Pfizer-BioNtech">Pfizer-BioNtech</option>
-                <option value="Sputnik V">Sputnik V</option>
-                <option value="Sinopharm">Sinopharm</option>
-                <option value="AstraZeneca">AstraZeneca</option>
-                <option value="Moderna">Moderna</option>
-            </select>
-        <label class="input-label">Odaberite vakcinu</label>
-        </div>
+          <input
+            type="text"
+            class="input-field"
+            formControlName="ustanova"
+            required
+          />
+          <label class="input-label">Ustanova</label>
+      </div>
 
         <div class="action">
           <button

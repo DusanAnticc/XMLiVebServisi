@@ -41,7 +41,7 @@ export class InteresovanjeService {
     );
     interesovanjeNode?.setAttribute(
       'xmlns:pred',
-      'http://http://www.xmlproj.rs/saglasnost/predikati/'
+      'http://http://www.xmlproj.rs/interesovanje/predikati/'
     );
     interesovanjeNode?.setAttribute(
       'xsi:schemaLocation',
