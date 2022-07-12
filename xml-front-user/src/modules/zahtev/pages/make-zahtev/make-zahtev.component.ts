@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment';
 import * as x2js from 'xml2js';
@@ -10,36 +10,22 @@ import { ZahtevService } from '../../services/zahtev.service';
   styleUrls: ['./make-zahtev.component.scss']
 })
 
-export class MakeZahtevComponent implements OnInit {
+export class MakeZahtevComponent {
 
   form: FormGroup;
   parser = new x2js.Parser();
 
-  options: any[] = [
-    { value: 'Muski', viewValue: 'Muško' },
-    { value: 'Zenski', viewValue: 'Žensko' },
-  ];
-
-  opstine: any[] = [
-    { value: 'Novi Sad' },
-    { value: 'Beograd' },
-    { value: 'Nis' },
-  ];
-
   constructor(private zahtevService: ZahtevService) {
     this.form = new FormGroup({
-      jmbg: new FormControl('', [Validators.required, Validators.pattern('[0-9 ]{13}')]),
+      jmbg: new FormControl('', [Validators.required, Validators.pattern('[0-9]{13}')]),
       ime: new FormControl('', [Validators.required]),
       prezime: new FormControl('', [Validators.required]),
-      datum: new FormControl('', [Validators.required, Validators.pattern('[0-9 ]{4}-[0-9 ]{2}-[0-9]{2}')]),
-      brPasosa: new FormControl('', [Validators.required, Validators.pattern('[0-9 ]{9}')]),
+      datum: new FormControl('', [Validators.required, Validators.pattern('[0-9]{4}-[0-9]{2}-[0-9]{2}')]),
+      brPasosa: new FormControl('', [Validators.required, Validators.pattern('[0-9]{9}')]),
       pol: new FormControl('', [Validators.required]),
       razlog: new FormControl('', [Validators.required]),
       opstina: new FormControl('', [Validators.required]),
     });
-  }
-
-  ngOnInit(): void {
   }
 
   submit(): void {

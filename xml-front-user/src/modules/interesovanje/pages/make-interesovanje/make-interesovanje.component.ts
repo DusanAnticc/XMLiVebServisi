@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormControl,
   FormGroup,
-  FormGroupDirective,
-  NgForm,
   Validators,
 } from '@angular/forms';
 
@@ -16,51 +14,26 @@ import * as x2js from 'xml2js';
   templateUrl: './make-interesovanje.component.html',
   styleUrls: ['./make-interesovanje.component.scss'],
 })
-export class MakeInteresovanjeComponent implements OnInit {
+export class MakeInteresovanjeComponent {
   form: FormGroup;
   parser = new x2js.Parser();
-  options: any[] = [
-    { value: 'drzavljanin_rs', viewValue: 'Državljanin Republike Srbije' },
-    {
-      value: 'strani_sa_boravkom_u_rs',
-      viewValue: 'Strani državljanin sa boravkom u RS',
-    },
-    {
-      value: 'strani_bez_boravka_u_rs',
-      viewValue: 'Strani državljanin bez boravka u RS',
-    },
-  ];
-  vaccines: any[] = [
-    { value: 'Pfizer' },
-    { value: 'Sputnik V' },
-    { value: 'Sinopharm' },
-    { value: 'AstraZeneca' },
-    { value: 'Moderna' },
-    { value: 'Bilo koja' },
-  ];
-  yesNo: any[] = [{ value: 'Da' }, { value: 'Ne' }];
-  opstine: any[] = [
-    { value: 'Novi Sad' },
-    { value: 'Beograd' },
-    { value: 'Nis' },
-  ];
 
   constructor(private interesovanjeService: InteresovanjeService) {
     this.form = new FormGroup({
       jmbg: new FormControl('', [
         Validators.required,
-        Validators.pattern('[0-9 ]{13}'),
+        Validators.pattern('[0-9]{13}'),
       ]),
       ime: new FormControl('', [Validators.required]),
       prezime: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
       brMobilni: new FormControl('', [
         Validators.required,
-        Validators.pattern('06[0-9 ]{8,9}'),
+        Validators.pattern('06[0-9]{8,9}'),
       ]),
       brFiksni: new FormControl('', [
         Validators.required,
-        Validators.pattern('0[0-9 ]{8}'),
+        Validators.pattern('0[0-9]{8}'),
       ]),
       opcija: new FormControl('', [Validators.required]),
       vakcina: new FormControl('', [Validators.required]),
@@ -68,8 +41,6 @@ export class MakeInteresovanjeComponent implements OnInit {
       opstina: new FormControl('', [Validators.required]),
     });
   }
-
-  ngOnInit(): void {}
 
   submit(): void {
     var obj = {
