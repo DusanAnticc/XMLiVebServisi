@@ -1,13 +1,12 @@
 <div class="container">
     <div class="card">
-      <form class="card-form">
+      <form class="card-form" [formGroup]="form" (ngSubmit)="submit()">
             <h2 class="card-title">Potvrda o vakcinaciji</h2>
         <div class="input">
             <input
                 type="text"
                 class="input-field"
-                id="nameAndSurname"
-                name="nameAndSurname"
+                formControlName="imePrezime"
                 required
             />
             <label class="input-label">Ime i prezime</label>
@@ -16,32 +15,30 @@
           <input
             type="date"
             class="input-field"
-            id="startDate"
-            name="startDate"
+            formControlName="datumRodjenja"
             required
           />
-          <label class="input-label">Datum rodjenja</label>
+          <label class="input-label">Datum rođenja</label>
         </div>
         <div class="input">
-                <select name="gender" class="drop-menu" id="lang">
-                    <option value="Musko">Musko</option>
-                    <option value="Zensko">Zensko</option>
-                    <option value="Drugo">Drugo</option>
-                </select>
-            <label class="input-label">Pol</label>
+          <select formControlName="pol" class="drop-menu" required>
+              <option value="Muško">Muško</option>
+              <option value="Žensko">Žensko</option>
+              <option value="Drugo">Drugo</option>
+          </select>
+          <label class="input-label">Pol</label>
         </div>
         <div class="input">
             <input
               type="text"
               class="input-field"
-              id="jmbg"
-              name="jmbg"
+              formControlName="jmbg"
               required
             />
             <label class="input-label">Jmbg</label>
         </div>
         <div class="input">
-            <select name="vaccine" class="drop-menu" id="lang">
+            <select formControlName="vakcina" class="drop-menu">
                 <option value="Pfizer-BioNtech">Pfizer-BioNtech</option>
                 <option value="Sputnik V">Sputnik V</option>
                 <option value="Sinopharm">Sinopharm</option>
@@ -57,14 +54,11 @@
             class="action-button"
             id="submit"
             name="submit"
-            (click)="confirmDose()"
+            [disabled]="!form.valid"
           >
             Potvrdi primljenu dozu vakcine
           </button>
         </div>
       </form>
-      <div class="card-info">
-        <div class="action">
-      </div>
-    </div>
+      <br>
   </div>

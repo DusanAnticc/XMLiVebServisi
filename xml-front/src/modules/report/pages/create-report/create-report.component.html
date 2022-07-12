@@ -1,23 +1,21 @@
 <div class="container">
     <div class="card">
-      <form class="card-form">
-            <h2 class="card-title">Izvestaj o imunizaciji</h2>
+      <form class="card-form" [formGroup]="form" (ngSubmit)="submit()">
+            <h2 class="card-title">Izveštaj o imunizaciji</h2>
         <div class="input">
           <input
             type="date"
             class="input-field"
-            id="startDate"
-            name="startDate"
+            formControlName="periodOd"
             required
           />
-          <label class="input-label">Pocetni datum</label>
+          <label class="input-label">Početni datum</label>
         </div>
         <div class="input">
             <input
               type="date"
               class="input-field"
-              id="endDate"
-              name="endDate"
+              formControlName="periodDo"
               required
             />
             <label class="input-label">Krajnji datum</label>
@@ -29,7 +27,7 @@
             class="action-button"
             id="submit"
             name="submit"
-            (click)="create()"
+            [disabled]="!form.valid"
           >
             Kreiraj
           </button>
@@ -38,37 +36,29 @@
       <div class="card-info">
         <div class="action">
             <button
-              type="submit"
               class="get-html"
-              id="submit"
-              name="submit"
+              [disabled]="!form.valid"
               (click)="getHtml()"
             >
               Preuzmi html
             </button>
             <button
-            type="submit"
             class="get-pdf"
-            id="submit"
-            name="submit"
+            [disabled]="!form.valid"
             (click)="getPdf()"
             >
                 Preuzmi pdf
             </button>
             <button
-            type="submit"
             class="get-pdf"
-            id="submit"
-            name="submit"
+            [disabled]="!form.valid"
             (click)="getRdf()"
             >
             Preuzmi rdf
             </button>
             <button
-            type="submit"
             class="get-pdf"
-            id="submit"
-            name="submit"
+            [disabled]="!form.valid"
             (click)="getJson()"
             >
                 Preuzmi json
@@ -76,3 +66,4 @@
       </div>
     </div>
   </div>
+  <br><br><br><br><br><br><br>

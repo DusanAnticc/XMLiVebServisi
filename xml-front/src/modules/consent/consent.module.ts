@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CreateConsentComponent } from './pages/create-consent/create-consent.component';
 import { ConsentRoutingModule } from './consent-routing.module';
-
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -10,7 +10,8 @@ import { ConsentRoutingModule } from './consent-routing.module';
   ],
   imports: [
     CommonModule,
-    ConsentRoutingModule
+    ConsentRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class ConsentModule { }
