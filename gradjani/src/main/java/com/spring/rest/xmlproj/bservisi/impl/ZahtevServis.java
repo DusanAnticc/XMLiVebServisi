@@ -63,4 +63,13 @@ public class ZahtevServis implements IZahtevServis {
             return new ArrayList<Zahtev>();
         }
     }
+
+    public Zahtev dobaviPoJmbgu(String jmbg){
+        try {
+            return this.zahtevRepo.dobaviSve().stream().filter(s -> s.getLicniPodaci().getJmbg().equals(jmbg)).findFirst().get();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 }

@@ -15,11 +15,14 @@ export class SaglasnostService {
   constructor(public http: HttpClient, public prijavaService: PrijavaService) {}
 
   getAllSaglasnostiByEmail(): Observable<any> {
-    var email = this.prijavaService.getLoggedIn()["ns2:Korisnik"]["Licni_podaci"][0]["Kontakt"][0]["Email"];
-    return this.http.get<any>("/api/gradjani/saglasnosti/sve/"+email,{
+    var email =
+      this.prijavaService.getLoggedIn()['ns2:Korisnik']['Licni_podaci'][0][
+        'Kontakt'
+      ][0]['Email'];
+    return this.http.get<any>('/api/gradjani/saglasnosti/sve/' + email, {
       headers: this.headers,
       responseType: 'test/xml' as 'json',
-    })
+    });
   }
 
   create(saglasnost: any): Observable<any> {
