@@ -4,7 +4,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,12 +16,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.spring.rest.xmlproj.bservisi.impl.InteresovanjeServis;
 import com.spring.rest.xmlproj.bservisi.impl.KorisnikServis;
 import com.spring.rest.xmlproj.obj.interesovanje.Interesovanje;
 import com.spring.rest.xmlproj.obj.korisnik.Korisnik;
 import com.spring.rest.xmlproj.obj.liste.Interesovanja;
+import com.spring.rest.xmlproj.util.RandomString;
 
 
 @RestController
@@ -28,11 +33,13 @@ public class InteresovanjeVebServis {
 
     private final InteresovanjeServis interesovanjeServis;
     private final KorisnikServis korisnikServis;
+    private final RestTemplate restTemplate;
 
     @Autowired
-    public InteresovanjeVebServis(InteresovanjeServis interesovanjeServis, KorisnikServis korisnikServis) {
+    public InteresovanjeVebServis(InteresovanjeServis interesovanjeServis, KorisnikServis korisnikServis, RestTemplate restTemplate) {
         this.interesovanjeServis = interesovanjeServis;
         this.korisnikServis = korisnikServis;
+        this.restTemplate = restTemplate;
     }
 
     @GetMapping("")
@@ -60,7 +67,11 @@ public class InteresovanjeVebServis {
     @PostMapping("/upis")
     public ResponseEntity<?> upisInteresovanja(@RequestBody Interesovanje interesovanje) {
         if (interesovanje != null) {
+            if(interesovanje.getSifra() == null || interesovanje.getSifra().equals(""))
+                interesovanje.setSifra(RandomString.getAlphaNumericString(8).toUpperCase());
             this.interesovanjeServis.upis(interesovanje);
+            interesovanje = this.interesovanjeServis.dobaviPoId(interesovanje.getSifra());
+            this.slanjeSluzbenicima(interesovanje);
             return new ResponseEntity<>(null, HttpStatus.CREATED);
         } else {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -78,5 +89,13 @@ public class InteresovanjeVebServis {
         collect(Collectors.toList());
 
         return new ResponseEntity<>(new Interesovanja(korisnikovaInteresovanja), HttpStatus.OK);
+    }
+
+    public void slanjeSluzbenicima(Interesovanje entitet){
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_XML);
+        HttpEntity<Interesovanje> request = new HttpEntity<Interesovanje>(entitet, headers);
+
+        ResponseEntity<Interesovanje> entity = restTemplate.postForEntity("http://localhost:8081/api/sluzbenici/interesovanja/upis", request, Interesovanje.class);
     }
 }

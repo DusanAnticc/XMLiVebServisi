@@ -7,13 +7,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  role: any = localStorage.getItem('role');
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
-  logout(): void {
+  odjava(): void {
     localStorage.clear();
-    this.router.navigate(['/auth/login']);
+    this.router.navigate(['/prijava']);
   }
 }

@@ -77,4 +77,13 @@ public class SaglasnostVebServis {
 
         return new ResponseEntity<>(new Saglasnosti(korisnikoveSaglasnosti), HttpStatus.OK);
     }
+
+    @GetMapping("/poJmbg/{jmbg}")
+    public ResponseEntity<?> dobaviSaglsnostPoJmbgu(@PathVariable String jmbg){
+        Saglasnost saglasnost = this.saglasnostServis.dobaviPoJmbgu(jmbg);
+
+        if(saglasnost != null) return new ResponseEntity<>(saglasnost, HttpStatus.OK);
+        else return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+    
 }

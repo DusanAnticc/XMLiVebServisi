@@ -42,7 +42,17 @@
             <ns3:Faksimil property="pred:faksimil"></ns3:Faksimil>
             <ns3:Broj_telefona></ns3:Broj_telefona>
         </ns3:Podaci_lekar>
-        <ns3:Vakcine/>
+        <ns3:Vakcine>
+            <ns3:Vakcina>
+                <ns3:Naziv property="pred:nazivVakcine">Fajzer Bionteh</ns3:Naziv>
+                <ns3:Datum_davanja>2021-01-10</ns3:Datum_davanja>
+                <ns3:Nacin_davanja>IM</ns3:Nacin_davanja>
+                <ns3:Ekstremitet>LR</ns3:Ekstremitet>
+                <ns3:Serija>674512</ns3:Serija>
+                <ns3:Proizvodjac>Bionteh</ns3:Proizvodjac>
+                <ns3:Nuspojava>Nepoznato</ns3:Nuspojava>
+            </ns3:Vakcina>
+        </ns3:Vakcine>
         <ns3:Privremene_nuspojave/>
         <ns3:Odluka property="pred:odluka">false</ns3:Odluka>
     </ns3:Radnikov_deo>
