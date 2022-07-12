@@ -10,6 +10,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { RootLayoutComponent } from './root-layout/root-layout.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [AppComponent, RootLayoutComponent, NavbarComponent],
@@ -20,6 +21,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     HttpClientModule,
     MatToolbarModule,
     MatButtonModule,
+    MatDialogModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-center',
     }),

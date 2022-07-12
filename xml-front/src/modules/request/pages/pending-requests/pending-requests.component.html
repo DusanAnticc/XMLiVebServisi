@@ -11,11 +11,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr id="requestTable" *ngFor="let request of pendingRequests">
-          <td>{{ request.nameAndSurname }}</td>
-          <td>{{ request.jmbg }}</td>
-          <td>{{ request.date }}</td>
-          <td>{{ request.reason }}</td>
+        <tr id="requestTable" *ngFor="let request of zahtevi">
+          <td>{{ request["ns3:Licni_podaci"][0]["ns3:Ime"] }}</td>
+          <td>{{ request["ns3:Licni_podaci"][0]["ns3:Jmbg"] }}</td>
+          <td>{{ request["ns4:Datum_podnosenja"][0]._ }}</td>
+          <td>{{ request["ns4:Razlog"][0]._  }}</td>
           <td>
             <button
               type="button"
