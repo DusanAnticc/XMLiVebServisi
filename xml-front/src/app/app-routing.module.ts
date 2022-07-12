@@ -37,16 +37,18 @@ const routes: Routes = [
       },
     ],
   },
-  // {
-  //   path: 'auth',
-  //   children: [
-  //     {
-  //       path: '',
-  //       loadChildren: () =>
-  //         import('./../auth/auth.module').then((m) => m.AuthModule),
-  //     },
-  //   ],
-  // },
+  {
+    path: 'prijava',
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./../modules/prijava/prijava.module').then(
+            (m) => m.PrijavaModule
+          ),
+      },
+    ],
+  },
 ];
 
 @NgModule({

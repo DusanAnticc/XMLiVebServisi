@@ -1,53 +1,95 @@
-<mat-card>
-    <mat-card-content>
-        <form [formGroup]="form" (ngSubmit)="submit()">
-            <h2>Zahtev za izdavanje digitalnog zelenog sertifikata</h2>
-            <mat-form-field>
-                <input matInput placeholder="Ime" formControlName="ime" required />
-            </mat-form-field>
+<div class="container">
+    <div class="card">
+      <form class="card-form" [formGroup]="form" (ngSubmit)="submit()">
+        <h2 class="card-title">Zahtev za izdavanje digitalnog zelenog sertifikata</h2>
+  
+        <div class="input">
+            <input
+                type="text"
+                class="input-field"
+                formControlName="jmbg"
+                required
+            />
+            <label class="input-label">JMBG</label>
+        </div>
+  
+        <div class="input">
+          <input
+              type="text"
+              class="input-field"
+              formControlName="ime"
+              required
+          />
+          <label class="input-label">Ime</label>
+        </div>
+  
+        <div class="input">
+          <input
+              type="text"
+              class="input-field"
+              formControlName="prezime"
+              required
+          />
+          <label class="input-label">Prezime</label>
+        </div>
 
-            <mat-form-field>
-                <input matInput placeholder="Prezime" formControlName="prezime" required />             
-            </mat-form-field>
+        <div class="input">
+            <input
+                type="date"
+                class="input-field"
+                formControlName="datum"
+                required
+            />
+            <label class="input-label">Datum rođenja</label>
+        </div>
 
-            <mat-form-field>
-                <input matInput placeholder="Datum rođenja (YYYY-MM-DD)" formControlName="datum" required />            
-            </mat-form-field>
+        <div class="input">
+            <select class="drop-menu" required formControlName="pol">
+                <option value="Musko">Muško</option>
+                <option value="Zensko">Žensko</option>
+            </select>
+            <label class="input-label">Pol</label>
+        </div>
 
-            <mat-form-field >
-                <mat-label>Pol</mat-label>
-                <mat-select required formControlName="pol">
-                    <mat-option *ngFor="let option of options" [value]="option.value">
-                        {{option.value}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
+        <div class="input">
+            <input
+                type="text"
+                class="input-field"
+                formControlName="brPasosa"
+                required
+            />
+            <label class="input-label">Broj pasoša</label>
+        </div>
+  
+        <div class="input">
+          <input
+              type="text"
+              class="input-field"
+              formControlName="razlog"
+              required
+          />
+          <label class="input-label">Razlog za podnošenje zahteva</label>
+        </div>
 
-            <mat-form-field>
-                <input matInput placeholder="Jmbg" formControlName="jmbg" required />             
-            </mat-form-field>
-
-            <mat-form-field>
-                <input matInput placeholder="Broj pasoša" formControlName="brPasosa" required />              
-            </mat-form-field>
-
-            <mat-form-field>
-                 <textarea matInput placeholder="Razlog za podnošenje zahteva" formControlName="razlog"
-                    required></textarea>
-            </mat-form-field>
-
-            <mat-form-field>
-                <mat-label>Grad</mat-label>
-                <mat-select required formControlName="opstina">
-                  <mat-option *ngFor="let o of opstine" [value]="o.value">
-                    {{o.value}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-
-             <button mat-raised-button color="primary" [disabled]="!form.valid">
-                Kreiraj
-            </button>
-        </form>
-    </mat-card-content>
-</mat-card>
+        <div class="input">
+            <select class="drop-menu" required formControlName="opstina">
+                <option value="Beograd">Beograd</option>
+                <option value="Novi Sad">Novi Sad</option>
+                <option value="Niš">Niš</option>
+            </select>
+            <label class="input-label">Grad</label>
+        </div>
+        
+        <div class="action">
+          <button
+            type="submit"
+            class="action-button"
+            id="submit"
+            name="submit"
+            [disabled]="!form.valid"
+          >
+            Potvrdi
+          </button>
+        </div>
+      </form><br>
+  </div>

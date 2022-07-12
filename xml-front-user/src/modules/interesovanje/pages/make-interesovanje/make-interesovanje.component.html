@@ -1,74 +1,115 @@
-<mat-card>
-    <mat-card-content>
-      <form [formGroup]="form" (ngSubmit)="submit()">
-        <h2>Interesovanje za vakcinisanje</h2>
+<div class="container">
+  <div class="card">
+    <form class="card-form" [formGroup]="form" (ngSubmit)="submit()">
+          <h2 class="card-title">Iskazivanje interesovanja za vakcinisanje protiv COVID-19</h2>
+          <div class="input">
+            <select class="drop-menu" required formControlName="opcija">
+                <option value="Državljanin Republike Srbije">Državljanin Republike Srbije</option>
+                <option value="Strani državljanin sa boravkom u RS">Strani državljanin sa boravkom u RS</option>
+                <option value="Strani državljanin bez boravka u RS">Strani državljanin bez boravka u RS</option>
+            </select>
+            <label class="input-label">Odaberite opciju</label>
+          </div>
 
-        <mat-form-field>
-          <mat-label>Odaberite opciju</mat-label>
-          <mat-select required formControlName="opcija">
-            <mat-option *ngFor="let option of options" [value]="option.value">
-              {{option.viewValue}}
-            </mat-option>
-          </mat-select>          
-        </mat-form-field>
-        
-        <mat-form-field>
-          <input matInput placeholder="Jmbg" formControlName="jmbg" required />          
-        </mat-form-field>
+      <div class="input">
+          <input
+              type="text"
+              class="input-field"
+              formControlName="jmbg"
+              required
+          />
+          <label class="input-label">JMBG</label>
+      </div>
 
-        <mat-form-field>
-          <input matInput placeholder="Ime" formControlName="ime" required />         
-        </mat-form-field>
+      <div class="input">
+        <input
+            type="text"
+            class="input-field"
+            formControlName="ime"
+            required
+        />
+        <label class="input-label">Ime</label>
+      </div>
 
-        <mat-form-field>
-          <input matInput placeholder="Prezime" formControlName="prezime" required />          
-        </mat-form-field>
+      <div class="input">
+        <input
+            type="text"
+            class="input-field"
+            formControlName="prezime"
+            required
+        />
+        <label class="input-label">Prezime</label>
+      </div>
 
-        <mat-form-field>
-          <input matInput placeholder="Aresa elektronske pošte" formControlName="email" required />          
-        </mat-form-field>
+      <div class="input">
+        <input
+            type="text"
+            class="input-field"
+            formControlName="email"
+            required
+        />
+        <label class="input-label">Adresa elektronske pošte</label>
+      </div>
 
-        <mat-form-field>
-          <input matInput placeholder="Broj mobilnog telefona (06... )"
-            formControlName="brMobilni" required />
-        </mat-form-field>
+      <div class="input">
+        <input
+            type="text"
+            class="input-field"
+            formControlName="brMobilni"
+            required
+        />
+        <label class="input-label">Broj mobilnog telefona (primer 065786567)</label>
+      </div>
 
-        <mat-form-field>
-          <input matInput placeholder="Broj fiksong telefona (011... )"
-            formControlName="brFiksni" required />
-        </mat-form-field>
+      <div class="input">
+        <input
+            type="text"
+            class="input-field"
+            formControlName="brFiksni"
+            required
+        />
+        <label class="input-label">Broj fiksnog telefona (primer 011786567)</label>
+      </div>
 
-        <mat-form-field>
-          <mat-label>Grad</mat-label>
-          <mat-select required formControlName="opstina">
-            <mat-option *ngFor="let o of opstine" [value]="o.value">
-              {{o.value}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+      <div class="input">
+        <input
+            type="text"
+            class="input-field"
+            formControlName="opstina"
+            required
+        />
+        <label class="input-label">Lokacija gde želite da primite vakcinu (opština)</label>
+      </div>
 
-        <mat-form-field >
-          <mat-label>Vakcina</mat-label>
-          <mat-select required formControlName="vakcina">
-            <mat-option *ngFor="let vaccine of vaccines" [value]="vaccine.value">
-              {{vaccine.value}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+      <div class="input">
+        <select formControlName="vakcina" class="drop-menu" required>
+            <option value="Pfizer-BioNtech">Pfizer-BioNtech</option>
+            <option value="Sputnik V">Sputnik V</option>
+            <option value="Sinopharm">Sinopharm</option>
+            <option value="AstraZeneca">AstraZeneca</option>
+            <option value="Moderna">Moderna</option>
+        </select>
+      <label class="input-label">Odaberite vakcinu</label>
+      </div>
 
-        <mat-form-field >
-          <mat-label>Da li ste dobrovoljni davalac krvi?</mat-label>
-          <mat-select required formControlName="davalac">
-            <mat-option *ngFor="let option of yesNo" [value]="option.value">
-              {{option.value}}
-            </mat-option>  
-          </mat-select>
-        </mat-form-field>
-
-        <button mat-raised-button color="primary" [disabled]="!form.valid">
-          Kreiraj
+      <div class="input">
+        <select formControlName="davalac" class="drop-menu" required>
+            <option value="Da">Da</option>
+            <option value="Ne">Ne</option>
+        </select>
+      <label class="input-label">Da li ste dobrovoljni davalac krvi?</label>
+      </div>
+      
+      <div class="action">
+        <button
+          type="submit"
+          class="action-button"
+          id="submit"
+          name="submit"
+          [disabled]="!form.valid"
+        >
+          Iskažite interesovanje
         </button>
-
-      </form>
-    </mat-card-content>
-  </mat-card>
+      </div>
+    </form><br>
+</div>

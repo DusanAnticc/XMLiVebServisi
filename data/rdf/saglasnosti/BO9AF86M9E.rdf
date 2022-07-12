@@ -15,6 +15,9 @@
     <pred:faksimil xmlns:pred="http://www.xmlproj.rs/saglasnost/predikati/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.xmlproj.rs/gradjanin/saglasnost/BO9AF86M9E">
+    <pred:nazivVakcine xmlns:pred="http://www.xmlproj.rs/saglasnost/predikati/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Fajzer Bionteh</pred:nazivVakcine>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.xmlproj.rs/gradjanin/saglasnost/BO9AF86M9E">
     <pred:odluka xmlns:pred="http://www.xmlproj.rs/saglasnost/predikati/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">false</pred:odluka>
   </rdf:Description>
 </rdf:RDF>

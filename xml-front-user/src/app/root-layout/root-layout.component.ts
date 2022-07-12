@@ -11,6 +11,8 @@ export class RootLayoutComponent implements OnInit {
   constructor(private prijavaService: PrijavaService, private router: Router) {}
 
   ngOnInit(): void {
+    console.log(this.prijavaService.getLoggedIn());
+
     if (
       !this.prijavaService.getLoggedIn() ||
       this.prijavaService.getLoggedIn()['ns2:Korisnik']['ns2:Uloga'][0] !==

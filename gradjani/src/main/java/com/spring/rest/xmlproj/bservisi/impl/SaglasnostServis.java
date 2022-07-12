@@ -70,4 +70,12 @@ public class SaglasnostServis implements ISaglasnostServis {
             return new ArrayList<Saglasnost>();
         }
     }
+
+    public Saglasnost dobaviPoJmbgu(String jmbg){
+        try {
+            return this.saglasnostRepo.dobaviSve().stream().filter(s -> s.getPacijentovDeo().getLicniPodaci().getJmbg().equals(jmbg)).findFirst().get();
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }
