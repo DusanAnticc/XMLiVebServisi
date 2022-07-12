@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { PrijavaService } from 'src/modules/prijava/services/prijava.service';
 
 var o2x = require('object-to-xml');
 
@@ -12,7 +13,15 @@ export class InteresovanjeService {
   private parser = new DOMParser();
   private serializer = new XMLSerializer();
 
-  constructor(public http: HttpClient) {}
+  constructor(public http: HttpClient, public prijavaService: PrijavaService) {}
+
+  getAllInteresovanjeByEmail(): Observable<any> {
+    var email = this.prijavaService.getLoggedIn()["ns2:Korisnik"]["Licni_podaci"][0]["Kontakt"][0]["Email"];
+    return this.http.get<any>("/api/gradjani/interesovanja/sva/"+email,{
+      headers: this.headers,
+      responseType: 'test/xml' as 'json',
+    })
+  }
 
   create(interesovanje: any): Observable<any> {
     var xmlDoc = this.parser.parseFromString(o2x(interesovanje), 'text/xml');
