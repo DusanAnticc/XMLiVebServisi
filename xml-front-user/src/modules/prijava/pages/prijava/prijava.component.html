@@ -1,31 +1,41 @@
-<br />
-<br />
-<mat-card>
-  <mat-card-content>
-    <form [formGroup]="form" (ngSubmit)="submit()">
-      <h2>Prijava</h2>
-      <mat-form-field>
+<br><br><br><br><br><br><br><br>
+<div class="container">
+  <div class="card">
+    <form class="card-form" [formGroup]="form" (ngSubmit)="submit()">
+          <h2 class="card-title">Prijava</h2>
+      <div class="input">
         <input
-          matInput
-          placeholder="korisnički email"
+          type="text"
+          class="input-field"
           formControlName="email"
           name="email"
           required
         />
-      </mat-form-field>
-      <mat-form-field>
+          <label class="input-label">Korisnički email</label>
+      </div>
+
+      <div class="input">
         <input
-          matInput
           type="password"
-          placeholder="Lozinka"
+          class="input-field"
           formControlName="lozinka"
           name="lozinka"
           required
         />
-      </mat-form-field>
-      <button mat-raised-button color="primary" [disabled]="!form.valid">
+        <label class="input-label">Lozinka</label>
+      </div>
+
+      <div class="action">
+        <button
+          type="submit"
+          class="action-button"
+          id="submit"
+          name="submit"
+          [disabled]="!form.valid"
+        >
         Prijavite se
-      </button>
+        </button>
+      </div>
     </form>
-  </mat-card-content>
-</mat-card>
+    <br>
+</div>

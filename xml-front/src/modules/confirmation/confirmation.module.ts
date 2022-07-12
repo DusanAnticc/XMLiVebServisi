@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CreateConfirmationComponent } from './pages/create-confirmation/create-confirmation.component';
 import { ConfirmationRoutingModule } from './confirmation-routing.module';
-
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -10,7 +10,8 @@ import { ConfirmationRoutingModule } from './confirmation-routing.module';
   ],
   imports: [
     CommonModule,
-    ConfirmationRoutingModule
+    ConfirmationRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class ConfirmationModule { }

@@ -1,13 +1,12 @@
 <div class="container">
     <div class="card">
-      <form class="card-form">
+      <form class="card-form" [formGroup]="form" (ngSubmit)="submit()">
             <h2 class="card-title">Evidencija o vakcinaciji protiv COVID-19</h2>
         <div class="input">
             <input
                 type="text"
                 class="input-field"
-                id="jmbg"
-                name="jmbg"
+                formControlName="jmbg"
                 required
             />
             <label class="input-label">Jmbg</label>
@@ -16,8 +15,7 @@
             <input
                 type="text"
                 class="input-field"
-                id="healthInstitution"
-                name="healthInstitution"
+                formControlName="zdravstvenaUstanova"
                 required
             />
             <label class="input-label">Zdravstvena ustanova</label>
@@ -26,8 +24,7 @@
           <input
             type="date"
             class="input-field"
-            id="startDate"
-            name="startDate"
+            formControlName="datumDavanjaVakcine"
             required
           />
           <label class="input-label">Datum vakcinacije</label>
@@ -36,8 +33,7 @@
             <input
                 type="text"
                 class="input-field"
-                id="doctorData"
-                name="doctorData"
+                formControlName="podaciOLekaru"
                 required
             />
             <label class="input-label">Podaci o lekaru</label>
@@ -46,14 +42,13 @@
             <input
                 type="text"
                 class="input-field"
-                id="vaccinationPoint"
-                name="vaccinationPoint"
+                formControlName="vakcinacijskiPunkt"
                 required
             />
             <label class="input-label">Vakcinacijski punkt</label>
         </div>
         <div class="input">
-            <select name="vaccine" class="drop-menu" id="lang">
+            <select class="drop-menu" formControlName="vakcina" required>
                 <option value="Pfizer-BioNtech">Pfizer-BioNtech</option>
                 <option value="Sputnik V">Sputnik V</option>
                 <option value="Sinopharm">Sinopharm</option>
@@ -66,15 +61,14 @@
             <input
                 type="text"
                 class="input-field"
-                id="vaccineMethod"
-                name="vaccineMethod"
+                formControlName="nacinDavanjaVakcine"
                 value="IM"
                 required
             />
             <label class="input-label">Način davanja vakcine</label>
         </div>
         <div class="input">
-            <select name="vaccine" class="drop-menu" id="lang">
+            <select class="drop-menu" formControlName="ekstremitet" required>
                 <option value="Leva ruka">Leva ruka</option>
                 <option value="Desna ruka">Desna ruka</option>
             </select>
@@ -84,8 +78,7 @@
             <input
                 type="text"
                 class="input-field"
-                id="vaccineSeries"
-                name="vaccineSeries"
+                formControlName="serijaVakcine"
                 required
             />
             <label class="input-label">Serija vakcine</label>
@@ -94,8 +87,7 @@
             <input
                 type="text"
                 class="input-field"
-                id="vaccineSupplier"
-                name="vaccineSupplier"
+                formControlName="proizvodjac"
                 required
             />
             <label class="input-label">Proizvođač vakcine</label>
@@ -104,8 +96,7 @@
             <input
                 type="text"
                 class="input-field"
-                id="sideEffects"
-                name="sideEffects"
+                formControlName="nezeljenaReakcija"
                 required
             />
             <label class="input-label">Neželjena dejstva vakcine</label>
@@ -117,7 +108,7 @@
             class="action-button"
             id="submit"
             name="submit"
-            (click)="create()"
+            [disabled]="!form.valid"
           >
             Potvrdi
           </button>

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ReportService } from '../../service/report.service';
+import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import * as x2js from 'xml2js';
 
 @Component({
   selector: 'app-create-report',
@@ -7,15 +9,20 @@ import { ReportService } from '../../service/report.service';
   styleUrls: ['./create-report.component.scss']
 })
 export class CreateReportComponent {
+  form: FormGroup;
+  parser = new x2js.Parser();
 
   constructor(
     private reportService: ReportService
   ) {
+    this.form = new FormGroup({
+      periodOd: new FormControl('', Validators.required),
+      periodDo: new FormControl('', Validators.required),
+    });
   }
 
-  create() {
-    const startDate = (<HTMLInputElement>document.getElementById("startDate")).value;
-    const endDate = (<HTMLInputElement>document.getElementById("endDate")).value;
+  submit() {
+
   }
 
   getHtml() {
